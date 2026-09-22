@@ -1,12 +1,5 @@
 package com.haptix.app.ui.screens.completion
 
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,31 +18,27 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.haptix.app.session.StudySessionState
-import com.haptix.app.ui.components.CyberBackground
+import com.haptix.app.ui.components.HaptiXBackground
 import com.haptix.app.ui.components.HaptiXPrimaryButton
 import com.haptix.app.ui.components.HaptiXSecondaryButton
-import com.haptix.app.ui.theme.CyberCyan
-import com.haptix.app.ui.theme.CyberGreen
+import com.haptix.app.ui.theme.EditorialMetadataLabel
 import com.haptix.app.ui.theme.LocalSpacing
-import com.haptix.app.ui.theme.TechnicalMicroLabel
-import com.haptix.app.ui.theme.TechnicalValueLabel
 
 /**
  * Screen 6: Study Session Completion.
- * Calm, premium scientific conclusion screen with subtle animated cyan pulse ring,
- * 22dp summary card, and academic conclusion actions.
+ * Calm, professional, Apple-inspired conclusion screen.
+ * Restrained typography, elegant checkmark, clear research summary, and minimal actions.
  */
 @Composable
 fun CompletionScreen(
@@ -64,98 +53,114 @@ fun CompletionScreen(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        CyberBackground(modifier = Modifier.fillMaxSize()) {
+        HaptiXBackground(modifier = Modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(spacing.xl),
+                    .padding(horizontal = spacing.screenHorizontal, vertical = spacing.xl),
                 verticalArrangement = Arrangement.SpaceBetween,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Spacer(modifier = Modifier.height(spacing.md))
 
-                // Main Content
+                // Main Calm Content
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    // Large Success Checkmark with subtle cyan pulse ring
-                    SubtleSuccessCheckmark()
+                    // Minimal Elegant Checkmark
+                    Box(
+                        modifier = Modifier
+                            .size(72.dp)
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.surfaceVariant),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Canvas(modifier = Modifier.size(32.dp)) {
+                            val strokeWidth = 3.dp.toPx()
+                            val checkColor = Color(0xFF30D158) // Apple Success Green
+                            drawLine(
+                                color = checkColor,
+                                start = Offset(x = size.width * 0.22f, y = size.height * 0.54f),
+                                end = Offset(x = size.width * 0.44f, y = size.height * 0.76f),
+                                strokeWidth = strokeWidth,
+                                cap = StrokeCap.Round
+                            )
+                            drawLine(
+                                color = checkColor,
+                                start = Offset(x = size.width * 0.44f, y = size.height * 0.76f),
+                                end = Offset(x = size.width * 0.80f, y = size.height * 0.28f),
+                                strokeWidth = strokeWidth,
+                                cap = StrokeCap.Round
+                            )
+                        }
+                    }
 
                     Spacer(modifier = Modifier.height(spacing.lg))
 
                     Text(
-                        text = "SESSION COMPLETE",
+                        text = "Study Complete",
                         style = MaterialTheme.typography.headlineMedium.copy(
-                            fontWeight = FontWeight.Bold,
-                            letterSpacing = (-0.5).sp
+                            fontWeight = FontWeight.Bold
                         ),
                         color = MaterialTheme.colorScheme.onBackground
                     )
 
-                    Spacer(modifier = Modifier.height(spacing.xs))
+                    Spacer(modifier = Modifier.height(6.dp))
 
                     Text(
-                        text = "Your experimental session has been captured successfully.",
+                        text = "Thank you.\nYour responses have been recorded.",
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        textAlign = TextAlign.Center
                     )
 
-                    Spacer(modifier = Modifier.height(spacing.xl))
+                    Spacer(modifier = Modifier.height(spacing.largeSectionGap))
 
-                    // Clean Session Summary Card (22dp rounded)
+                    // Research Metrics Card
                     Surface(
-                        shape = RoundedCornerShape(22.dp),
-                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
-                        color = MaterialTheme.colorScheme.surface,
+                        shape = RoundedCornerShape(18.dp),
+                        color = MaterialTheme.colorScheme.surfaceVariant,
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(spacing.lg)
+                                .padding(20.dp)
                         ) {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    text = "SESSION SUMMARY",
-                                    style = TechnicalMicroLabel,
-                                    color = MaterialTheme.colorScheme.primary
-                                )
-                                Text(
-                                    text = "DATA RECORDED",
-                                    style = TechnicalMicroLabel,
-                                    color = CyberGreen
-                                )
-                            }
+                            Text(
+                                text = "STUDY OVERVIEW",
+                                style = EditorialMetadataLabel.copy(
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    letterSpacing = 1.0.sp
+                                ),
+                                color = MaterialTheme.colorScheme.primary
+                            )
 
-                            Spacer(modifier = Modifier.height(spacing.md))
+                            Spacer(modifier = Modifier.height(14.dp))
 
-                            SummaryRow(
-                                label = "PARTICIPANT",
-                                value = sessionState.participant?.id ?: "ANONYMOUS"
+                            CompletionSummaryRow(
+                                label = "Participant",
+                                value = sessionState.participant?.id ?: "Anonymous"
                             )
-                            SummaryRow(
-                                label = "STIMULUS",
-                                value = sessionState.selectedVideoId?.uppercase() ?: "NONE"
+                            CompletionSummaryRow(
+                                label = "Stimulus evaluated",
+                                value = sessionState.selectedVideoId?.replace("_", " ")?.replaceFirstChar { it.uppercase() } ?: "None"
                             )
-                            SummaryRow(
-                                label = "HAPTICS",
-                                value = if (sessionState.isHapticsEnabled) "ENABLED" else "MUTED"
+                            CompletionSummaryRow(
+                                label = "Haptic condition",
+                                value = if (sessionState.isHapticsEnabled) "Active actuation" else "Muted (Control)"
                             )
-                            SummaryRow(
-                                label = "RESPONSES",
-                                value = "${sessionState.feedbackResponses.size} / 05"
+                            CompletionSummaryRow(
+                                label = "Evaluations submitted",
+                                value = "${sessionState.feedbackResponses.size} responses"
                             )
                         }
                     }
                 }
 
-                // Actions
+                // Bottom Actions
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -163,14 +168,14 @@ fun CompletionScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     HaptiXPrimaryButton(
-                        text = "FINISH STUDY",
+                        text = "FINISH",
                         onClick = onFinish
                     )
 
                     Spacer(modifier = Modifier.height(spacing.sm))
 
                     HaptiXSecondaryButton(
-                        text = "Evaluate Another Video Clip",
+                        text = "Evaluate Another Stimulus",
                         onClick = onTestAnotherClip
                     )
                 }
@@ -179,97 +184,29 @@ fun CompletionScreen(
     }
 }
 
-/**
- * Clean scientific checkmark icon with a restrained cyan ambient pulse ring.
- */
 @Composable
-private fun SubtleSuccessCheckmark(
-    modifier: Modifier = Modifier
-) {
-    val infiniteTransition = rememberInfiniteTransition(label = "CheckmarkPulse")
-    val pulseScale by infiniteTransition.animateFloat(
-        initialValue = 0.96f,
-        targetValue = 1.05f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1400, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "PulseScale"
-    )
-    val pulseAlpha by infiniteTransition.animateFloat(
-        initialValue = 0.3f,
-        targetValue = 0.8f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1400, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "PulseAlpha"
-    )
-
-    Box(
-        modifier = modifier.size(72.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        // Subtle animated outer cyan ring
-        Canvas(modifier = Modifier.size(68.dp).scale(pulseScale)) {
-            drawCircle(
-                color = CyberCyan.copy(alpha = pulseAlpha),
-                style = Stroke(width = 1.8.dp.toPx())
-            )
-        }
-
-        // Inner solid circular badge with checkmark
-        Box(
-            modifier = Modifier
-                .size(48.dp)
-                .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.surfaceVariant),
-            contentAlignment = Alignment.Center
-        ) {
-            Canvas(modifier = Modifier.size(24.dp)) {
-                val strokeWidth = 2.5.dp.toPx()
-                val pathColor = CyberCyan
-                // Checkmark lines
-                drawLine(
-                    color = pathColor,
-                    start = Offset(x = size.width * 0.2f, y = size.height * 0.52f),
-                    end = Offset(x = size.width * 0.44f, y = size.height * 0.76f),
-                    strokeWidth = strokeWidth,
-                    cap = StrokeCap.Round
-                )
-                drawLine(
-                    color = pathColor,
-                    start = Offset(x = size.width * 0.44f, y = size.height * 0.76f),
-                    end = Offset(x = size.width * 0.82f, y = size.height * 0.28f),
-                    strokeWidth = strokeWidth,
-                    cap = StrokeCap.Round
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun SummaryRow(
+private fun CompletionSummaryRow(
     label: String,
     value: String
 ) {
-    val spacing = LocalSpacing.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = spacing.xs),
+            .padding(vertical = 5.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = label,
-            style = TechnicalMicroLabel,
+            style = MaterialTheme.typography.bodyMedium.copy(fontSize = 14.sp),
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Text(
             text = value,
-            style = TechnicalValueLabel.copy(fontSize = 12.sp),
+            style = EditorialMetadataLabel.copy(
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold
+            ),
             color = MaterialTheme.colorScheme.onSurface
         )
     }

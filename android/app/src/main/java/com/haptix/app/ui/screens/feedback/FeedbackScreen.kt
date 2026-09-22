@@ -27,17 +27,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.haptix.app.data.model.FeedbackResponse
-import com.haptix.app.ui.components.CyberBackground
 import com.haptix.app.ui.components.FeedbackQuestionCard
+import com.haptix.app.ui.components.HaptiXBackground
 import com.haptix.app.ui.components.HaptiXPrimaryButton
 import com.haptix.app.ui.components.HaptiXTextField
-import com.haptix.app.ui.theme.CyberCyan
+import com.haptix.app.ui.theme.EditorialMetadataLabel
 import com.haptix.app.ui.theme.LocalSpacing
-import com.haptix.app.ui.theme.TechnicalMicroLabel
 
 /**
  * Screen 5: Post-Playback Experimental Questionnaire.
- * Editorial layout with 22dp evaluation cards, progress bar indicator, and 5 standardized Likert items.
+ * Apple-style review and rating interface with large 5-star controls,
+ * clean typography, restrained separators, and spacious layout.
  */
 @Composable
 fun FeedbackScreen(
@@ -63,75 +63,62 @@ fun FeedbackScreen(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        CyberBackground {
+        HaptiXBackground {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = spacing.lg)
-                    .verticalScroll(scrollState),
+                    .verticalScroll(scrollState)
+                    .padding(horizontal = spacing.screenHorizontal),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Spacer(modifier = Modifier.height(spacing.md))
 
-                    // Editorial Header
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = "04 // POST-PLAYBACK EVALUATION",
-                            style = TechnicalMicroLabel.copy(
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.SemiBold
-                            ),
-                            color = MaterialTheme.colorScheme.primary
-                        )
+                    // Header
+                    Text(
+                        text = "03",
+                        style = EditorialMetadataLabel.copy(
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 1.5.sp
+                        ),
+                        color = MaterialTheme.colorScheme.primary
+                    )
 
-                        Surface(
-                            shape = RoundedCornerShape(8.dp),
-                            color = MaterialTheme.colorScheme.surfaceVariant
-                        ) {
-                            Text(
-                                text = "04 / 04",
-                                style = TechnicalMicroLabel.copy(fontSize = 10.sp),
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-                            )
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(spacing.xs))
+                    Spacer(modifier = Modifier.height(4.dp))
 
                     Text(
-                        text = "Subjective Evaluation",
-                        style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
+                        text = "Evaluate the Stimulus",
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            fontWeight = FontWeight.Bold
+                        ),
                         color = MaterialTheme.colorScheme.onBackground
                     )
 
+                    Spacer(modifier = Modifier.height(4.dp))
+
                     Text(
-                        text = "Please evaluate the stimulus presentation across the 5 dimensions below.",
-                        style = MaterialTheme.typography.bodyMedium,
+                        text = "How did the stimulus feel?",
+                        style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
 
                     Spacer(modifier = Modifier.height(spacing.md))
 
-                    // Progress indicator row
+                    // Progress indicator
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "PROGRESS: $answeredCount OF ${STUDY_QUESTIONS.size} QUESTIONS EVALUATED",
-                            style = TechnicalMicroLabel.copy(fontSize = 10.sp),
-                            color = CyberCyan
+                            text = "$answeredCount of ${STUDY_QUESTIONS.size} completed",
+                            style = EditorialMetadataLabel.copy(fontSize = 12.sp),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(spacing.xxs))
+                    Spacer(modifier = Modifier.height(8.dp))
 
                     LinearProgressIndicator(
                         progress = { progressFraction },
@@ -139,13 +126,13 @@ fun FeedbackScreen(
                             .fillMaxWidth()
                             .height(4.dp)
                             .clip(RoundedCornerShape(2.dp)),
-                        color = CyberCyan,
-                        trackColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
+                        color = MaterialTheme.colorScheme.primary,
+                        trackColor = MaterialTheme.colorScheme.surfaceVariant
                     )
 
-                    Spacer(modifier = Modifier.height(spacing.lg))
+                    Spacer(modifier = Modifier.height(spacing.sectionGap))
 
-                    // The 5 Fixed Study Questions in 22dp Cards
+                    // Standardized Likert Questions
                     STUDY_QUESTIONS.forEach { question ->
                         val rating = viewModel.getRatingForQuestion(question.number)
 
@@ -160,10 +147,10 @@ fun FeedbackScreen(
                             highAnchorLabel = question.highAnchor
                         )
 
-                        Spacer(modifier = Modifier.height(spacing.md))
+                        Spacer(modifier = Modifier.height(spacing.sectionGap))
                     }
 
-                    // Optional commentary
+                    // Optional qualitative notes
                     HaptiXTextField(
                         value = uiState.comments,
                         onValueChange = { viewModel.updateComments(it) },
@@ -172,10 +159,10 @@ fun FeedbackScreen(
                         singleLine = false
                     )
 
-                    Spacer(modifier = Modifier.height(spacing.xl))
+                    Spacer(modifier = Modifier.height(spacing.largeSectionGap))
                 }
 
-                // Submission Action
+                // Submission CTA
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()

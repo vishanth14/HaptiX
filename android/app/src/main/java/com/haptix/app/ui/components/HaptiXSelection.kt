@@ -3,7 +3,9 @@ package com.haptix.app.ui.components
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,6 +28,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +37,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
@@ -42,13 +46,16 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.haptix.app.ui.theme.EditorialMetadataLabel
 import com.haptix.app.ui.theme.LocalSpacing
 import com.haptix.app.ui.theme.TechnicalMicroLabel
 import com.haptix.app.ui.theme.TechnicalValueLabel
 
+
 /**
- * Clean technical selection chips for survey demographics (e.g. Gender).
- * Features 16dp rounded geometry, smooth color transitions, and soft cyan glow on active item.
+ * Clean Apple-style selection pills for demographic options (e.g. Gender).
+ * Features rounded geometry, filled subtle surfaces, and large 48dp touch targets.
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -63,16 +70,18 @@ fun HaptiXChoiceGroup(
 
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = label.uppercase(),
-            style = TechnicalMicroLabel,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            text = label,
+            style = MaterialTheme.typography.titleMedium.copy(
+                fontWeight = FontWeight.SemiBold
+            ),
+            color = MaterialTheme.colorScheme.onSurface
         )
 
-        Spacer(modifier = Modifier.height(spacing.sm))
+        Spacer(modifier = Modifier.height(10.dp))
 
         FlowRow(
-            horizontalArrangement = Arrangement.spacedBy(spacing.sm),
-            verticalArrangement = Arrangement.spacedBy(spacing.sm),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier.fillMaxWidth()
         ) {
             options.forEach { option ->
@@ -80,42 +89,36 @@ fun HaptiXChoiceGroup(
 
                 val backgroundColor by animateColorAsState(
                     targetValue = if (isSelected) {
-                        MaterialTheme.colorScheme.primary.copy(alpha = 0.16f)
-                    } else {
-                        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.45f)
-                    },
-                    animationSpec = tween(200),
-                    label = "chipBg"
-                )
-
-                val borderColor by animateColorAsState(
-                    targetValue = if (isSelected) {
                         MaterialTheme.colorScheme.primary
                     } else {
-                        MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
+                        MaterialTheme.colorScheme.surfaceVariant
                     },
-                    animationSpec = tween(200),
-                    label = "chipBorder"
+                    animationSpec = tween(150),
+                    label = "chipBg"
                 )
 
                 val textColor by animateColorAsState(
                     targetValue = if (isSelected) {
-                        MaterialTheme.colorScheme.primary
+                        Color.White
                     } else {
                         MaterialTheme.colorScheme.onSurface
                     },
-                    animationSpec = tween(200),
+                    animationSpec = tween(150),
                     label = "chipText"
                 )
 
                 Surface(
                     shape = RoundedCornerShape(16.dp),
-                    border = BorderStroke(1.dp, borderColor),
                     color = backgroundColor,
                     modifier = Modifier
-                        .defaultMinSize(minHeight = 44.dp)
+                        .defaultMinSize(minHeight = 48.dp)
                         .clip(RoundedCornerShape(16.dp))
-                        .clickable(role = Role.RadioButton) { onOptionSelected(option) }
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = ripple(bounded = true, radius = 32.dp),
+                            role = Role.RadioButton,
+                            onClick = { onOptionSelected(option) }
+                        )
                         .semantics {
                             this.role = Role.RadioButton
                             this.selected = isSelected
@@ -124,7 +127,7 @@ fun HaptiXChoiceGroup(
                 ) {
                     Box(
                         contentAlignment = Alignment.Center,
-                        modifier = Modifier.padding(horizontal = 18.dp, vertical = 11.dp)
+                        modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp)
                     ) {
                         Text(
                             text = option,
@@ -140,6 +143,7 @@ fun HaptiXChoiceGroup(
         }
     }
 }
+
 
 /**
  * Precision 1 to 5 scale selector for research metrics with 14dp rounded cards.
@@ -254,7 +258,7 @@ fun LikertScaleSelector(
 }
 
 /**
- * Standard accessible dropdown selection component with 16dp rounded geometry.
+ * Standard accessible dropdown selection component with Apple-inspired styling.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -266,17 +270,18 @@ fun HaptiXDropdown(
     modifier: Modifier = Modifier,
     placeholder: String = "Select option..."
 ) {
-    val spacing = LocalSpacing.current
     var expanded by remember { mutableStateOf(false) }
 
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = label.uppercase(),
-            style = TechnicalMicroLabel,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            text = label,
+            style = MaterialTheme.typography.titleMedium.copy(
+                fontWeight = FontWeight.SemiBold
+            ),
+            color = MaterialTheme.colorScheme.onSurface
         )
 
-        Spacer(modifier = Modifier.height(spacing.xs))
+        Spacer(modifier = Modifier.height(8.dp))
 
         ExposedDropdownMenuBox(
             expanded = expanded,
@@ -300,9 +305,9 @@ fun HaptiXDropdown(
                 shape = RoundedCornerShape(16.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = MaterialTheme.colorScheme.primary,
-                    unfocusedBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.6f),
-                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
-                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f)
+                    unfocusedBorderColor = Color.Transparent,
+                    focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
                 ),
                 textStyle = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier
@@ -312,14 +317,16 @@ fun HaptiXDropdown(
 
             ExposedDropdownMenu(
                 expanded = expanded,
-                onDismissRequest = { expanded = false }
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.background(MaterialTheme.colorScheme.surfaceVariant)
             ) {
                 options.forEach { option ->
                     DropdownMenuItem(
                         text = {
                             Text(
                                 text = option,
-                                style = MaterialTheme.typography.bodyLarge
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.onSurface
                             )
                         },
                         onClick = {
@@ -332,3 +339,4 @@ fun HaptiXDropdown(
         }
     }
 }
+

@@ -19,15 +19,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.haptix.app.ui.theme.CyberCyan
 
 /**
- * Standard Primary button for key progression actions in the research flow (e.g. "Begin Study", "Continue").
- * Elevated with generous 16dp rounded geometry, subtle press scale feedback, and restrained luminous accents.
+ * Standard Apple-style Primary filled button for key research progression actions (e.g. "BEGIN STUDY →").
+ * Features 18dp rounded geometry, solid system accent container, and subtle 0.98 press scale.
  */
 @Composable
 fun HaptiXPrimaryButton(
@@ -41,7 +41,7 @@ fun HaptiXPrimaryButton(
     val isPressed by interactionSource.collectIsPressedAsState()
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.98f else 1.0f,
-        animationSpec = tween(150),
+        animationSpec = tween(120),
         label = "btnScale"
     )
 
@@ -49,25 +49,29 @@ fun HaptiXPrimaryButton(
         onClick = onClick,
         enabled = enabled,
         interactionSource = interactionSource,
-        shape = RoundedCornerShape(16.dp),
-        border = if (enabled) BorderStroke(1.dp, CyberCyan.copy(alpha = 0.6f)) else null,
+        shape = RoundedCornerShape(18.dp),
+        border = null,
+        elevation = ButtonDefaults.buttonElevation(
+            defaultElevation = 0.dp,
+            pressedElevation = 0.dp
+        ),
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary,
+            contentColor = Color.White,
             disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
             disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
         ),
-        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 14.dp),
+        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 15.dp),
         modifier = modifier
             .scale(scale)
-            .defaultMinSize(minHeight = 50.dp)
+            .defaultMinSize(minHeight = 52.dp)
             .then(if (fullWidth) Modifier.fillMaxWidth() else Modifier)
     ) {
         Text(
             text = text,
             style = MaterialTheme.typography.labelLarge.copy(
-                letterSpacing = 0.6.sp,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.SemiBold,
+                letterSpacing = 0.2.sp
             ),
             textAlign = TextAlign.Center
         )
@@ -75,7 +79,8 @@ fun HaptiXPrimaryButton(
 }
 
 /**
- * Secondary button for alternative actions (e.g. "Back", "Skip", "Retry").
+ * Secondary button for alternative actions (e.g. "Back", "Skip", "Finish Later").
+ * Sits gently on secondary surface without loud borders.
  */
 @Composable
 fun HaptiXSecondaryButton(
@@ -89,7 +94,7 @@ fun HaptiXSecondaryButton(
     val isPressed by interactionSource.collectIsPressedAsState()
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.98f else 1.0f,
-        animationSpec = tween(150),
+        animationSpec = tween(120),
         label = "btnSecScale"
     )
 
@@ -97,25 +102,29 @@ fun HaptiXSecondaryButton(
         onClick = onClick,
         enabled = enabled,
         interactionSource = interactionSource,
-        shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
+        shape = RoundedCornerShape(18.dp),
+        border = null,
+        elevation = ButtonDefaults.buttonElevation(
+            defaultElevation = 0.dp,
+            pressedElevation = 0.dp
+        ),
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
             contentColor = MaterialTheme.colorScheme.onSurface,
             disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
             disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
         ),
-        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 14.dp),
+        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 15.dp),
         modifier = modifier
             .scale(scale)
-            .defaultMinSize(minHeight = 50.dp)
+            .defaultMinSize(minHeight = 52.dp)
             .then(if (fullWidth) Modifier.fillMaxWidth() else Modifier)
     ) {
         Text(
             text = text,
             style = MaterialTheme.typography.labelLarge.copy(
-                letterSpacing = 0.3.sp,
-                fontWeight = FontWeight.Medium
+                fontWeight = FontWeight.Medium,
+                letterSpacing = 0.1.sp
             ),
             textAlign = TextAlign.Center
         )
@@ -123,7 +132,7 @@ fun HaptiXSecondaryButton(
 }
 
 /**
- * Clean outlined button for secondary options with subtle technical border.
+ * Clean outlined button for secondary choices with subtle Apple-style hairline border.
  */
 @Composable
 fun HaptiXOutlinedButton(
@@ -137,7 +146,7 @@ fun HaptiXOutlinedButton(
     val isPressed by interactionSource.collectIsPressedAsState()
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.98f else 1.0f,
-        animationSpec = tween(150),
+        animationSpec = tween(120),
         label = "btnOutScale"
     )
 
@@ -145,24 +154,25 @@ fun HaptiXOutlinedButton(
         onClick = onClick,
         enabled = enabled,
         interactionSource = interactionSource,
-        shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+        shape = RoundedCornerShape(18.dp),
+        border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)),
         colors = ButtonDefaults.outlinedButtonColors(
             contentColor = MaterialTheme.colorScheme.primary
         ),
-        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 14.dp),
+        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 15.dp),
         modifier = modifier
             .scale(scale)
-            .defaultMinSize(minHeight = 50.dp)
+            .defaultMinSize(minHeight = 52.dp)
             .then(if (fullWidth) Modifier.fillMaxWidth() else Modifier)
     ) {
         Text(
             text = text,
             style = MaterialTheme.typography.labelLarge.copy(
-                letterSpacing = 0.3.sp,
-                fontWeight = FontWeight.Medium
+                fontWeight = FontWeight.Medium,
+                letterSpacing = 0.1.sp
             ),
             textAlign = TextAlign.Center
         )
     }
 }
+

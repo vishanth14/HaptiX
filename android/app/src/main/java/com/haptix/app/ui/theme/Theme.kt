@@ -15,79 +15,91 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 /**
- * Visual theme mode for the HaptiX Cyberpunk research application.
+ * Visual theme mode for the HaptiX research application.
  */
 enum class CyberThemeMode {
     DARK,
     LIGHT
 }
 
+typealias HaptiXThemeMode = CyberThemeMode
+
 val LocalCyberThemeMode = staticCompositionLocalOf { CyberThemeMode.DARK }
 
 /**
- * Modern product geometry shapes:
- * - Large cards: 20-24dp
- * - Secondary cards / modules: 16-20dp
- * - Buttons & Inputs: 14-18dp
+ * Apple-inspired soft rounded geometry shapes:
+ * - Small / Chips: 12dp
+ * - Medium / Cards & Inputs: 18dp
+ * - Large / Media & Featured modules: 22dp
+ * - ExtraLarge / Hero artwork: 28dp
  */
-val CyberShapes = Shapes(
-    small = RoundedCornerShape(14.dp),
+val HaptiXShapes = Shapes(
+    small = RoundedCornerShape(12.dp),
     medium = RoundedCornerShape(18.dp),
     large = RoundedCornerShape(22.dp),
-    extraLarge = RoundedCornerShape(26.dp)
+    extraLarge = RoundedCornerShape(28.dp)
 )
 
-/**
- * Cyber Dark Scheme: Deep blue-black laboratory interface with electric cyan and violet accents.
- */
-val CyberDarkColorScheme = darkColorScheme(
-    primary = CyberCyan,
-    onPrimary = Color(0xFF04101A),
-    primaryContainer = CyberCyanContainer,
-    onPrimaryContainer = CyberCyanHighlight,
-    secondary = CyberViolet,
-    onSecondary = Color(0xFF1E0A3C),
-    secondaryContainer = CyberVioletContainer,
-    onSecondaryContainer = Color(0xFFE9D5FF),
-    tertiary = CyberGreen,
-    onTertiary = Color(0xFF022C22),
-    background = CyberDarkBackground,
-    onBackground = CyberTextPrimary,
-    surface = CyberDarkSurface,
-    onSurface = CyberTextPrimary,
-    surfaceVariant = CyberDarkSurfaceElevated,
-    onSurfaceVariant = CyberTextSecondary,
-    outline = CyberDarkBorder,
-    outlineVariant = CyberDarkBorderAccent,
-    error = CyberRed,
-    onError = Color(0xFF450A0A)
-)
+val CyberShapes = HaptiXShapes
 
 /**
- * Cyber Light Scheme: High-contrast daylight technical laboratory interface with electric blue and violet accents.
+ * Apple-inspired Dark Scheme:
+ * Deep black backdrop (#000000), subtle charcoal surfaces (#0B0B0D, #151518),
+ * pristine light typography (#F5F5F7), and restrained system blue (#0A84FF).
  */
-val CyberLightColorScheme = lightColorScheme(
-    primary = CyberBlue,
+val HaptiXDarkColorScheme = darkColorScheme(
+    primary = AppleSystemBlueDark,
     onPrimary = Color.White,
-    primaryContainer = CyberBlueContainer,
-    onPrimaryContainer = CyberBlueDim,
-    secondary = CyberLightViolet,
+    primaryContainer = Color(0x1F0A84FF),
+    onPrimaryContainer = Color(0xFFBCE3FF),
+    secondary = AppleSystemPurpleDark,
     onSecondary = Color.White,
-    secondaryContainer = Color(0xFFF3E8FF),
-    onSecondaryContainer = Color(0xFF581C87),
-    tertiary = CyberGreen,
+    secondaryContainer = Color(0x1F5E5CE6),
+    onSecondaryContainer = Color(0xFFE5E4FF),
+    tertiary = AppleSystemGreenDark,
     onTertiary = Color.White,
-    background = CyberLightBackground,
-    onBackground = CyberLightTextPrimary,
-    surface = CyberLightSurface,
-    onSurface = CyberLightTextPrimary,
-    surfaceVariant = CyberLightSurfaceElevated,
-    onSurfaceVariant = CyberLightTextSecondary,
-    outline = CyberLightBorder,
-    outlineVariant = CyberLightBorderAccent,
-    error = CyberRed,
+    background = AppleDarkBackground,
+    onBackground = AppleDarkTextPrimary,
+    surface = AppleDarkSurfacePrimary,
+    onSurface = AppleDarkTextPrimary,
+    surfaceVariant = AppleDarkSurfaceSecondary,
+    onSurfaceVariant = AppleDarkTextSecondary,
+    outline = AppleDarkBorder,
+    outlineVariant = AppleDarkBorderSubtle,
+    error = AppleSystemRedDark,
     onError = Color.White
 )
+
+/**
+ * Apple-inspired Light Scheme:
+ * Clean soft gray backdrop (#F5F5F7), pure white cards (#FFFFFF), subtle secondary gray (#EDEDF0),
+ * crisp dark typography (#1D1D1F), and vibrant system blue (#007AFF).
+ */
+val HaptiXLightColorScheme = lightColorScheme(
+    primary = AppleSystemBlueLight,
+    onPrimary = Color.White,
+    primaryContainer = Color(0x1A007AFF),
+    onPrimaryContainer = Color(0xFF0056B3),
+    secondary = AppleSystemPurpleLight,
+    onSecondary = Color.White,
+    secondaryContainer = Color(0x1A5856D6),
+    onSecondaryContainer = Color(0xFF3836B0),
+    tertiary = AppleSystemGreenLight,
+    onTertiary = Color.White,
+    background = AppleLightBackground,
+    onBackground = AppleLightTextPrimary,
+    surface = AppleLightSurfacePrimary,
+    onSurface = AppleLightTextPrimary,
+    surfaceVariant = AppleLightSurfaceSecondary,
+    onSurfaceVariant = AppleLightTextSecondary,
+    outline = AppleLightBorder,
+    outlineVariant = AppleLightBorderSubtle,
+    error = AppleSystemRedLight,
+    onError = Color.White
+)
+
+val CyberDarkColorScheme = HaptiXDarkColorScheme
+val CyberLightColorScheme = HaptiXLightColorScheme
 
 @Composable
 fun HaptiXTheme(
@@ -95,38 +107,38 @@ fun HaptiXTheme(
     spacing: HaptiXSpacing = HaptiXSpacing(),
     content: @Composable () -> Unit
 ) {
-    val targetScheme = if (themeMode == CyberThemeMode.DARK) CyberDarkColorScheme else CyberLightColorScheme
+    val targetScheme = if (themeMode == CyberThemeMode.DARK) HaptiXDarkColorScheme else HaptiXLightColorScheme
 
-    // Smooth 250ms color transitions between themes
+    // Smooth 200ms color transitions between dark and light themes
     val animatedScheme = ColorScheme(
-        primary = animateColorAsState(targetScheme.primary, tween(250), label = "primary").value,
-        onPrimary = animateColorAsState(targetScheme.onPrimary, tween(250), label = "onPrimary").value,
-        primaryContainer = animateColorAsState(targetScheme.primaryContainer, tween(250), label = "primaryContainer").value,
-        onPrimaryContainer = animateColorAsState(targetScheme.onPrimaryContainer, tween(250), label = "onPrimaryContainer").value,
+        primary = animateColorAsState(targetScheme.primary, tween(200), label = "primary").value,
+        onPrimary = animateColorAsState(targetScheme.onPrimary, tween(200), label = "onPrimary").value,
+        primaryContainer = animateColorAsState(targetScheme.primaryContainer, tween(200), label = "primaryContainer").value,
+        onPrimaryContainer = animateColorAsState(targetScheme.onPrimaryContainer, tween(200), label = "onPrimaryContainer").value,
         inversePrimary = targetScheme.inversePrimary,
-        secondary = animateColorAsState(targetScheme.secondary, tween(250), label = "secondary").value,
-        onSecondary = animateColorAsState(targetScheme.onSecondary, tween(250), label = "onSecondary").value,
-        secondaryContainer = animateColorAsState(targetScheme.secondaryContainer, tween(250), label = "secondaryContainer").value,
-        onSecondaryContainer = animateColorAsState(targetScheme.onSecondaryContainer, tween(250), label = "onSecondaryContainer").value,
-        tertiary = animateColorAsState(targetScheme.tertiary, tween(250), label = "tertiary").value,
-        onTertiary = animateColorAsState(targetScheme.onTertiary, tween(250), label = "onTertiary").value,
+        secondary = animateColorAsState(targetScheme.secondary, tween(200), label = "secondary").value,
+        onSecondary = animateColorAsState(targetScheme.onSecondary, tween(200), label = "onSecondary").value,
+        secondaryContainer = animateColorAsState(targetScheme.secondaryContainer, tween(200), label = "secondaryContainer").value,
+        onSecondaryContainer = animateColorAsState(targetScheme.onSecondaryContainer, tween(200), label = "onSecondaryContainer").value,
+        tertiary = animateColorAsState(targetScheme.tertiary, tween(200), label = "tertiary").value,
+        onTertiary = animateColorAsState(targetScheme.onTertiary, tween(200), label = "onTertiary").value,
         tertiaryContainer = targetScheme.tertiaryContainer,
         onTertiaryContainer = targetScheme.onTertiaryContainer,
-        background = animateColorAsState(targetScheme.background, tween(250), label = "background").value,
-        onBackground = animateColorAsState(targetScheme.onBackground, tween(250), label = "onBackground").value,
-        surface = animateColorAsState(targetScheme.surface, tween(250), label = "surface").value,
-        onSurface = animateColorAsState(targetScheme.onSurface, tween(250), label = "onSurface").value,
-        surfaceVariant = animateColorAsState(targetScheme.surfaceVariant, tween(250), label = "surfaceVariant").value,
-        onSurfaceVariant = animateColorAsState(targetScheme.onSurfaceVariant, tween(250), label = "onSurfaceVariant").value,
+        background = animateColorAsState(targetScheme.background, tween(200), label = "background").value,
+        onBackground = animateColorAsState(targetScheme.onBackground, tween(200), label = "onBackground").value,
+        surface = animateColorAsState(targetScheme.surface, tween(200), label = "surface").value,
+        onSurface = animateColorAsState(targetScheme.onSurface, tween(200), label = "onSurface").value,
+        surfaceVariant = animateColorAsState(targetScheme.surfaceVariant, tween(200), label = "surfaceVariant").value,
+        onSurfaceVariant = animateColorAsState(targetScheme.onSurfaceVariant, tween(200), label = "onSurfaceVariant").value,
         surfaceTint = targetScheme.surfaceTint,
         inverseSurface = targetScheme.inverseSurface,
         inverseOnSurface = targetScheme.inverseOnSurface,
-        error = animateColorAsState(targetScheme.error, tween(250), label = "error").value,
-        onError = animateColorAsState(targetScheme.onError, tween(250), label = "onError").value,
+        error = animateColorAsState(targetScheme.error, tween(200), label = "error").value,
+        onError = animateColorAsState(targetScheme.onError, tween(200), label = "onError").value,
         errorContainer = targetScheme.errorContainer,
         onErrorContainer = targetScheme.onErrorContainer,
-        outline = animateColorAsState(targetScheme.outline, tween(250), label = "outline").value,
-        outlineVariant = animateColorAsState(targetScheme.outlineVariant, tween(250), label = "outlineVariant").value,
+        outline = animateColorAsState(targetScheme.outline, tween(200), label = "outline").value,
+        outlineVariant = animateColorAsState(targetScheme.outlineVariant, tween(200), label = "outlineVariant").value,
         scrim = targetScheme.scrim,
         surfaceBright = targetScheme.surfaceBright,
         surfaceDim = targetScheme.surfaceDim,
@@ -144,8 +156,9 @@ fun HaptiXTheme(
         MaterialTheme(
             colorScheme = animatedScheme,
             typography = Typography,
-            shapes = CyberShapes,
+            shapes = HaptiXShapes,
             content = content
         )
     }
 }
+

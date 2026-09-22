@@ -1,12 +1,5 @@
 package com.haptix.app.ui.screens.welcome
 
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,21 +11,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
@@ -40,17 +28,16 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.haptix.app.ui.components.CyberBackground
+import com.haptix.app.ui.components.HaptiXBackground
 import com.haptix.app.ui.components.HaptiXPrimaryButton
-import com.haptix.app.ui.theme.CyberCyan
-import com.haptix.app.ui.theme.CyberGreen
-import com.haptix.app.ui.theme.CyberViolet
+import com.haptix.app.ui.theme.AppleSystemBlueDark
+import com.haptix.app.ui.theme.EditorialMetadataLabel
 import com.haptix.app.ui.theme.LocalSpacing
-import com.haptix.app.ui.theme.TechnicalMicroLabel
 
 /**
- * Redesigned Welcome Screen with editorial product-style composition,
- * abstract multimodal hero visualization, and substantial primary CTA.
+ * Apple Music inspired editorial welcome landing screen for HaptiX.
+ * Features large typography, a rich media hero visual composition, study overview metrics,
+ * and a prominent rounded CTA button.
  */
 @Composable
 fun WelcomeScreen(
@@ -64,169 +51,130 @@ fun WelcomeScreen(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        CyberBackground {
+        HaptiXBackground {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = spacing.xl, vertical = spacing.lg)
+                    .padding(horizontal = spacing.screenHorizontal)
                     .verticalScroll(scrollState),
-                verticalArrangement = Arrangement.SpaceBetween,
-                horizontalAlignment = Alignment.Start
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    Spacer(modifier = Modifier.height(spacing.sm))
+                    Spacer(modifier = Modifier.height(28.dp))
 
-                    // Small Eyebrow
+                    // Small category tag
                     Text(
-                        text = "RESEARCH PROTOCOL // EXP-2026",
-                        style = TechnicalMicroLabel.copy(
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.SemiBold
+                        text = "RESEARCH STUDY",
+                        style = EditorialMetadataLabel.copy(
+                            letterSpacing = 1.2.sp
                         ),
                         color = MaterialTheme.colorScheme.primary
                     )
 
-                    Spacer(modifier = Modifier.height(spacing.xs))
+                    Spacer(modifier = Modifier.height(6.dp))
 
-                    // Large Editorial Title
+                    // Large Editorial Title Hierarchy
                     Text(
                         text = "HaptiX",
                         style = MaterialTheme.typography.displaySmall.copy(
+                            fontSize = 38.sp,
                             fontWeight = FontWeight.Bold,
-                            letterSpacing = (-0.5).sp
+                            letterSpacing = (-0.6).sp,
+                            lineHeight = 44.sp
                         ),
                         color = MaterialTheme.colorScheme.onBackground
                     )
 
+                    Spacer(modifier = Modifier.height(4.dp))
+
                     Text(
-                        text = "Multimodal Haptic-Video Evaluation",
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            fontWeight = FontWeight.Normal,
-                            letterSpacing = 0.2.sp
+                        text = "Multimodal Haptic\nResearch Study",
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            fontWeight = FontWeight.SemiBold,
+                            lineHeight = 34.sp
                         ),
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Text(
+                        text = "Investigating the perceptual synchrony, tactile fidelity, and subjective realism of frequency-matched multimodal stimuli.",
+                        style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
 
-                    Spacer(modifier = Modifier.height(spacing.lg))
+                    Spacer(modifier = Modifier.height(28.dp))
 
-                    // Large Visual / Abstract Multimodal Hero Area (24dp rounded)
-                    MultimodalHeroVisual(modifier = Modifier.fillMaxWidth().height(160.dp))
+                    // Large Apple Music-style Editorial Media Hero Composition (24dp rounded)
+                    AppleEditorialHeroVisual(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                    )
 
-                    Spacer(modifier = Modifier.height(spacing.lg))
+                    Spacer(modifier = Modifier.height(28.dp))
 
-                    // Compact Study Information Container (20dp rounded)
+                    // Study Overview Section (sitting directly on background or subtle grouping)
+                    Text(
+                        text = "Study Overview",
+                        style = MaterialTheme.typography.headlineSmall.copy(
+                            fontWeight = FontWeight.SemiBold
+                        ),
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+
+                    Spacer(modifier = Modifier.height(14.dp))
+
                     Surface(
                         shape = RoundedCornerShape(20.dp),
-                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
-                        color = MaterialTheme.colorScheme.surface,
+                        color = MaterialTheme.colorScheme.surfaceVariant,
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(spacing.lg)
+                                .padding(horizontal = 20.dp, vertical = 16.dp)
                         ) {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    text = "STUDY SPECIFICATION",
-                                    style = TechnicalMicroLabel,
-                                    color = MaterialTheme.colorScheme.primary
-                                )
-                                Text(
-                                    text = "SECURE PROTOCOL",
-                                    style = TechnicalMicroLabel,
-                                    color = CyberGreen
-                                )
-                            }
+                            StudyOverviewRow(label = "Video stimuli", value = "03")
 
-                            Spacer(modifier = Modifier.height(spacing.xs))
-
-                            Text(
-                                text = "Controlled experimental evaluation of human perception, tactile realism, and multimodal synchrony during audio-visual playback.",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(0.5.dp)
+                                    .background(MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
                             )
+                            Spacer(modifier = Modifier.height(12.dp))
 
-                            Spacer(modifier = Modifier.height(spacing.md))
+                            StudyOverviewRow(label = "Haptic conditions", value = "06")
 
-                            // Steps overview
-                            val steps = listOf(
-                                "01" to "Participant intake",
-                                "02" to "Stimulus library",
-                                "03" to "Audio-tactile playback",
-                                "04" to "Evaluation questionnaire"
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(0.5.dp)
+                                    .background(MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
                             )
+                            Spacer(modifier = Modifier.height(12.dp))
 
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.spacedBy(6.dp)
-                            ) {
-                                steps.forEach { (num, label) ->
-                                    Surface(
-                                        shape = RoundedCornerShape(10.dp),
-                                        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
-                                        modifier = Modifier.weight(1f)
-                                    ) {
-                                        Column(modifier = Modifier.padding(6.dp)) {
-                                            Text(
-                                                text = num,
-                                                style = TechnicalMicroLabel.copy(
-                                                    fontSize = 10.sp,
-                                                    fontWeight = FontWeight.Bold
-                                                ),
-                                                color = MaterialTheme.colorScheme.primary
-                                            )
-                                            Text(
-                                                text = label,
-                                                style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
-                                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                                maxLines = 1
-                                            )
-                                        }
-                                    }
-                                }
-                            }
+                            StudyOverviewRow(label = "Feedback", value = "05 questions")
                         }
                     }
 
-                    Spacer(modifier = Modifier.height(spacing.xl))
+                    Spacer(modifier = Modifier.height(36.dp))
                 }
 
-                // Primary CTA & Bottom Readiness
+                // Bottom Call To Action: Apple-style filled rounded button
                 Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 32.dp)
                 ) {
                     HaptiXPrimaryButton(
                         text = "BEGIN STUDY  →",
                         onClick = onBeginStudy
                     )
-
-                    Spacer(modifier = Modifier.height(spacing.md))
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .size(6.dp)
-                                .clip(CircleShape)
-                                .background(CyberGreen)
-                        )
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Text(
-                            text = "INTERFACE READY",
-                            style = TechnicalMicroLabel.copy(fontSize = 10.sp),
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(spacing.xs))
                 }
             }
         }
@@ -234,97 +182,128 @@ fun WelcomeScreen(
 }
 
 /**
- * Large abstract visual hero communicating VIDEO + AUDIO + HAPTICS
- * with subtle animated frequency waves and layered glowing curves.
+ * Editorial Hero Visual Composition:
+ * Organic waveform and tactile pulse curves inside a rounded media canvas with subtle depth.
  */
 @Composable
-private fun MultimodalHeroVisual(
+private fun AppleEditorialHeroVisual(
     modifier: Modifier = Modifier
 ) {
-    val infiniteTransition = rememberInfiniteTransition(label = "HeroWaves")
-    val phaseOffset by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = (2 * Math.PI).toFloat(),
-        animationSpec = infiniteRepeatable(
-            animation = tween(8000, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "phase"
-    )
-
-    Surface(
-        shape = RoundedCornerShape(24.dp),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
-        color = Color(0xFF0D1320),
-        modifier = modifier.clip(RoundedCornerShape(24.dp))
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(24.dp))
+            .background(Color(0xFF151518))
     ) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Canvas(modifier = Modifier.fillMaxSize()) {
-                val w = size.width
-                val h = size.height
+        // Generative waveform artwork
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            val w = size.width
+            val h = size.height
 
-                // Radial atmospheric depth behind waveform
-                drawCircle(
-                    brush = Brush.radialGradient(
-                        colors = listOf(
-                            CyberCyan.copy(alpha = 0.15f),
-                            CyberViolet.copy(alpha = 0.08f),
-                            Color.Transparent
-                        ),
-                        center = Offset(w * 0.5f, h * 0.5f),
-                        radius = w * 0.55f
-                    ),
-                    center = Offset(w * 0.5f, h * 0.5f),
-                    radius = w * 0.55f
+            // Subtle dark background gradient
+            drawRect(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFF141F30),
+                        Color(0xFF0A0D14)
+                    )
                 )
+            )
 
-                // Cyan Wave (Audio-Video Stream)
-                val path1 = Path()
-                path1.moveTo(0f, h * 0.5f)
-                val waveLen = w / 2.2f
-                for (x in 0..w.toInt() step 5) {
-                    val y = h * 0.5f + (kotlin.math.sin((x / waveLen) * 2 * Math.PI + phaseOffset) * 24f).toFloat()
-                    path1.lineTo(x.toFloat(), y)
-                }
-                drawPath(
-                    path = path1,
-                    color = CyberCyan.copy(alpha = 0.75f),
-                    style = Stroke(width = 2.2.dp.toPx())
-                )
-
-                // Violet Wave (Tactile/Haptic Frequency)
-                val path2 = Path()
-                path2.moveTo(0f, h * 0.5f)
-                for (x in 0..w.toInt() step 5) {
-                    val y = h * 0.5f + (kotlin.math.cos((x / (waveLen * 0.8f)) * 2 * Math.PI - phaseOffset) * 20f).toFloat()
-                    path2.lineTo(x.toFloat(), y)
-                }
-                drawPath(
-                    path = path2,
-                    color = CyberViolet.copy(alpha = 0.6f),
-                    style = Stroke(width = 1.8.dp.toPx())
-                )
+            // Tactile frequency waveform 1
+            val path1 = Path()
+            path1.moveTo(0f, h * 0.52f)
+            val step = 6
+            for (x in 0..w.toInt() step step) {
+                val factor = (x / w) * Math.PI * 3.2
+                val y = h * 0.52f + (kotlin.math.sin(factor) * (h * 0.28f)).toFloat()
+                path1.lineTo(x.toFloat(), y)
             }
+            drawPath(
+                path = path1,
+                color = AppleSystemBlueDark.copy(alpha = 0.65f),
+                style = Stroke(width = 2.5.dp.toPx())
+            )
 
-            // Central Floating Pill Badge
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(Color.Black.copy(alpha = 0.7f))
-                    .padding(horizontal = 14.dp, vertical = 6.dp)
-            ) {
-                Text(
-                    text = "VIDEO  +  AUDIO  +  HAPTICS",
-                    style = TechnicalMicroLabel.copy(
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.Bold
-                    ),
-                    color = CyberCyan
+            // Audio waveform 2
+            val path2 = Path()
+            path2.moveTo(0f, h * 0.48f)
+            for (x in 0..w.toInt() step step) {
+                val factor = (x / w) * Math.PI * 4.8
+                val y = h * 0.48f + (kotlin.math.cos(factor) * (h * 0.20f)).toFloat()
+                path2.lineTo(x.toFloat(), y)
+            }
+            drawPath(
+                path = path2,
+                color = Color.White.copy(alpha = 0.35f),
+                style = Stroke(width = 1.5.dp.toPx())
+            )
+        }
+
+        // Overlay scrim
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(
+                            Color.Transparent,
+                            Color.Black.copy(alpha = 0.65f)
+                        )
+                    )
                 )
+        )
+
+        // Bottom badge pills inside hero
+        Row(
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            listOf("Haptic frequency", "Video", "Audio", "Research").forEach { tag ->
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(Color.White.copy(alpha = 0.12f))
+                        .padding(horizontal = 10.dp, vertical = 5.dp)
+                ) {
+                    Text(
+                        text = tag,
+                        style = EditorialMetadataLabel.copy(
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Medium
+                        ),
+                        color = Color.White
+                    )
+                }
             }
         }
     }
 }
+
+@Composable
+private fun StudyOverviewRow(
+    label: String,
+    value: String
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+
+        Text(
+            text = value,
+            style = MaterialTheme.typography.titleMedium.copy(
+                fontWeight = FontWeight.SemiBold
+            ),
+            color = MaterialTheme.colorScheme.primary
+        )
+    }
+}
+

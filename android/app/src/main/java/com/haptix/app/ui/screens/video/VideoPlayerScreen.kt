@@ -3,8 +3,8 @@ package com.haptix.app.ui.screens.video
 import android.content.res.Configuration
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,7 +40,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -49,41 +48,37 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
+import com.haptix.app.data.repository.DefaultHapticRepository
+import com.haptix.app.haptics.AndroidHapticPlayer
+import com.haptix.app.haptics.HapticCapabilityLevel
+import com.haptix.app.haptics.HapticSynchronizer
 import com.haptix.app.media.MediaResourceHelper
 import com.haptix.app.ui.components.CanvasFullscreenIcon
 import com.haptix.app.ui.components.CanvasPauseIcon
 import com.haptix.app.ui.components.CanvasPlayIcon
 import com.haptix.app.ui.components.CanvasVolumeIcon
-import com.haptix.app.ui.components.CyberBackground
+import com.haptix.app.ui.components.HaptiXBackground
 import com.haptix.app.ui.components.HapticStatusToggle
 import com.haptix.app.ui.components.HaptiXPrimaryButton
 import com.haptix.app.ui.components.formatDuration
-import com.haptix.app.ui.theme.CyberCyan
-import com.haptix.app.ui.theme.CyberGreen
+import com.haptix.app.ui.theme.EditorialMetadataLabel
 import com.haptix.app.ui.theme.LocalSpacing
-import com.haptix.app.ui.theme.Slate950
 import com.haptix.app.ui.theme.TechnicalMicroLabel
 import com.haptix.app.ui.theme.TechnicalValueLabel
 import kotlinx.coroutines.delay
-
-import androidx.compose.foundation.clickable
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.haptix.app.data.repository.DefaultHapticRepository
-import com.haptix.app.haptics.AndroidHapticPlayer
-import com.haptix.app.haptics.HapticCapabilityLevel
-import com.haptix.app.haptics.HapticSynchronizer
-import com.haptix.app.ui.theme.CyberAmber
-import com.haptix.app.ui.theme.CyberTextMuted
+import java.util.Locale
 
 /**
  * Screen 4: Video Stimulus Player with tactile actuation synchronization.
- * Uses AndroidX Media3 ExoPlayer for real video playback, connected to custom streaming-grade
- * floating controls and millisecond-accurate haptic synchronization.
+ * Apple-inspired media player design prioritizing visual content, clean controls,
+ * native haptic actuation management, and collapsible research telemetry.
  */
 @Composable
 fun VideoPlayerScreen(
@@ -233,6 +228,12 @@ fun VideoPlayerScreen(
         viewModel.seekTo(positionMs)
     }
 
+    val stimulusNumber = if (videoId.startsWith("video_")) {
+        videoId.removePrefix("video_")
+    } else {
+        videoId.takeLast(2)
+    }
+
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -244,11 +245,10 @@ fun VideoPlayerScreen(
                     exoPlayer = exoPlayer,
                     uiState = uiState,
                     onPlayPause = onPlayPauseAction,
-                    isLandscape = true,
                     modifier = Modifier.fillMaxSize()
                 )
 
-                // Floating Streaming Controls at bottom
+                // Translucent Apple-style Floating Controls at bottom
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -257,7 +257,7 @@ fun VideoPlayerScreen(
                             Brush.verticalGradient(
                                 colors = listOf(
                                     Color.Transparent,
-                                    Color.Black.copy(alpha = 0.9f)
+                                    Color.Black.copy(alpha = 0.85f)
                                 )
                             )
                         )
@@ -274,86 +274,63 @@ fun VideoPlayerScreen(
                 }
             }
         } else {
-            // Standard Portrait Layout with Cyber Background
-            CyberBackground(modifier = Modifier.fillMaxSize()) {
+            // Standard Portrait Layout
+            HaptiXBackground(modifier = Modifier.fillMaxSize()) {
                 val scrollState = rememberScrollState()
 
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(horizontal = spacing.lg)
-                        .verticalScroll(scrollState),
+                        .verticalScroll(scrollState)
+                        .padding(horizontal = spacing.screenHorizontal),
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Spacer(modifier = Modifier.height(spacing.md))
 
-                        // Editorial Step Header
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = "03 // STIMULUS PLAYBACK",
-                                style = TechnicalMicroLabel.copy(
-                                    fontSize = 11.sp,
-                                    fontWeight = FontWeight.SemiBold
-                                ),
-                                color = MaterialTheme.colorScheme.primary
-                            )
-
-                            Surface(
-                                shape = RoundedCornerShape(8.dp),
-                                color = MaterialTheme.colorScheme.surfaceVariant
-                            ) {
-                                Text(
-                                    text = "03 / 04",
-                                    style = TechnicalMicroLabel.copy(fontSize = 10.sp),
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(spacing.xs))
-
+                        // Header: Stimulus Number and Title
                         Text(
-                            text = "Tactile Presentation",
-                            style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                            color = MaterialTheme.colorScheme.onBackground
+                            text = "STIMULUS $stimulusNumber",
+                            style = EditorialMetadataLabel.copy(
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold,
+                                letterSpacing = 1.5.sp
+                            ),
+                            color = MaterialTheme.colorScheme.primary
                         )
 
+                        Spacer(modifier = Modifier.height(4.dp))
+
                         Text(
-                            text = "Observe the audio-visual presentation and evaluate tactile actuation.",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            text = uiState.videoItem?.title ?: "Experimental Video",
+                            style = MaterialTheme.typography.headlineMedium.copy(
+                                fontWeight = FontWeight.Bold
+                            ),
+                            color = MaterialTheme.colorScheme.onBackground
                         )
 
                         Spacer(modifier = Modifier.height(spacing.md))
 
-                        // Dominant 22dp Rounded Video Surface Viewport hosting ExoPlayer
+                        // Dominant 20dp Rounded Video Surface Viewport hosting ExoPlayer
                         Surface(
-                            shape = RoundedCornerShape(22.dp),
-                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
-                            color = Slate950,
+                            shape = RoundedCornerShape(20.dp),
+                            color = Color.Black,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .aspectRatio(16f / 9f)
-                                .clip(RoundedCornerShape(22.dp))
+                                .clip(RoundedCornerShape(20.dp))
                         ) {
                             VideoSurfaceArea(
                                 exoPlayer = exoPlayer,
                                 uiState = uiState,
                                 onPlayPause = onPlayPauseAction,
-                                isLandscape = false,
                                 modifier = Modifier.fillMaxSize()
                             )
                         }
 
-                        // Floating Streaming Controls Bar
-                        Spacer(modifier = Modifier.height(spacing.xs))
+                        Spacer(modifier = Modifier.height(spacing.md))
 
+                        // Apple-style Playback Controls Bar
                         PlayerControlsBar(
                             uiState = uiState,
                             onPlayPause = onPlayPauseAction,
@@ -363,61 +340,18 @@ fun VideoPlayerScreen(
                             isLandscape = false
                         )
 
-                        Spacer(modifier = Modifier.height(spacing.md))
-
-                        // Stimulus Metadata Card (20dp rounded)
-                        uiState.videoItem?.let { video ->
-                            Surface(
-                                shape = RoundedCornerShape(20.dp),
-                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
-                                color = MaterialTheme.colorScheme.surface,
-                                modifier = Modifier.fillMaxWidth()
-                            ) {
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(spacing.lg)
-                                ) {
-                                    Row(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Text(
-                                            text = "[ STIMULUS METADATA // ${video.id.uppercase()} ]",
-                                            style = TechnicalMicroLabel,
-                                            color = MaterialTheme.colorScheme.primary
-                                        )
-                                        Text(
-                                            text = formatDuration(video.durationMs),
-                                            style = TechnicalValueLabel,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
-
-                                    Spacer(modifier = Modifier.height(spacing.xs))
-
-                                    Text(
-                                        text = video.title,
-                                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-                                        color = MaterialTheme.colorScheme.onSurface
-                                    )
-
-                                    if (video.description.isNotBlank()) {
-                                        Spacer(modifier = Modifier.height(spacing.xxs))
-                                        Text(
-                                            text = video.description,
-                                            style = MaterialTheme.typography.bodyMedium,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
-                                }
-                            }
+                        if (uiState.videoItem?.description?.isNotBlank() == true) {
+                            Spacer(modifier = Modifier.height(spacing.sm))
+                            Text(
+                                text = uiState.videoItem?.description.orEmpty(),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
                         }
 
-                        Spacer(modifier = Modifier.height(spacing.md))
+                        Spacer(modifier = Modifier.height(spacing.sectionGap))
 
-                        // Persistent Haptic Actuation Toggle Card with Pulse Line
+                        // Apple-style Native Haptic Actuation Toggle Card
                         HapticStatusToggle(
                             isHapticsEnabled = uiState.isHapticsEnabled,
                             isHapticSupported = isHapticSupported,
@@ -429,7 +363,7 @@ fun VideoPlayerScreen(
                             }
                         )
 
-                        Spacer(modifier = Modifier.height(spacing.xs))
+                        Spacer(modifier = Modifier.height(spacing.sm))
 
                         // Subtle Research Telemetry Toggle (Dev/Researcher only)
                         Row(
@@ -437,12 +371,15 @@ fun VideoPlayerScreen(
                             horizontalArrangement = Arrangement.End
                         ) {
                             Text(
-                                text = if (uiState.isDebugMode) "[-] HIDE RESEARCH TELEMETRY" else "[+] RESEARCH DEBUG MODE",
-                                style = TechnicalMicroLabel.copy(fontSize = 9.sp),
-                                color = CyberTextMuted,
+                                text = if (uiState.isDebugMode) "Hide Research Telemetry" else "Research Telemetry",
+                                style = EditorialMetadataLabel.copy(
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Medium
+                                ),
+                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
                                 modifier = Modifier
                                     .clickable { viewModel.toggleDebugMode() }
-                                    .padding(vertical = spacing.xxs)
+                                    .padding(vertical = spacing.xs)
                             )
                         }
 
@@ -451,17 +388,17 @@ fun VideoPlayerScreen(
                             ResearchDebugHudCard(uiState = uiState)
                         }
 
-                        Spacer(modifier = Modifier.height(spacing.lg))
+                        Spacer(modifier = Modifier.height(spacing.sectionGap))
                     }
 
-                    // Completion Progression Action
+                    // Bottom Progression Button
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = spacing.xl)
                     ) {
                         HaptiXPrimaryButton(
-                            text = if (uiState.isCompleted) "PROCEED TO FEEDBACK  →" else "EVALUATE STIMULUS (FEEDBACK)  →",
+                            text = "PROCEED TO FEEDBACK  →",
                             onClick = { onPlaybackFinished(videoId) }
                         )
                     }
@@ -472,35 +409,17 @@ fun VideoPlayerScreen(
 }
 
 /**
- * Visual canvas area for video stimulus presentation hosting Media3 [PlayerView] with HUD overlay.
+ * Visual canvas area for video stimulus presentation hosting Media3 [PlayerView].
  */
 @Composable
 private fun VideoSurfaceArea(
     exoPlayer: ExoPlayer,
     uiState: VideoPlayerUiState,
     onPlayPause: () -> Unit,
-    isLandscape: Boolean,
     modifier: Modifier = Modifier
 ) {
-    val stimulusTag = if (uiState.videoItem?.id?.startsWith("video_") == true) {
-        "STIMULUS " + uiState.videoItem.id.removePrefix("video_")
-    } else {
-        "STIMULUS // ${uiState.videoItem?.id?.uppercase() ?: "01"}"
-    }
-
-    val syncStatusText = when {
-        uiState.isPlaying -> "PLAYING"
-        uiState.isCompleted -> "COMPLETED"
-        else -> "PAUSED"
-    }
-    val syncStatusColor = when {
-        uiState.isPlaying -> CyberGreen
-        uiState.isCompleted -> CyberCyan
-        else -> Color.White.copy(alpha = 0.5f)
-    }
-
     Box(
-        modifier = modifier.background(Slate950),
+        modifier = modifier.background(Color.Black),
         contentAlignment = Alignment.Center
     ) {
         // Real Media3 PlayerView hosting the video surface
@@ -518,81 +437,27 @@ private fun VideoSurfaceArea(
             modifier = Modifier.fillMaxSize()
         )
 
-        // Floating Top HUD Overlay
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.TopCenter)
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Black.copy(alpha = 0.8f),
-                            Color.Transparent
-                        )
-                    )
-                )
-                .padding(horizontal = 16.dp, vertical = 10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top
-        ) {
-            Column {
-                Text(
-                    text = stimulusTag,
-                    style = TechnicalMicroLabel.copy(fontSize = 10.sp),
-                    color = CyberCyan
-                )
-                Text(
-                    text = (uiState.videoItem?.title ?: "Experimental Stimulus").uppercase(),
-                    style = MaterialTheme.typography.labelLarge.copy(
-                        color = Color.White,
-                        fontWeight = FontWeight.SemiBold
-                    ),
-                    maxLines = 1
-                )
-            }
-
-            // Sync Status Chip
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(6.dp))
-                    .background(Color.Black.copy(alpha = 0.6f))
-                    .padding(horizontal = 8.dp, vertical = 3.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(6.dp)
-                        .clip(CircleShape)
-                        .background(syncStatusColor)
-                )
-                Spacer(modifier = Modifier.width(6.dp))
-                Text(
-                    text = "SYNC: $syncStatusText",
-                    style = TechnicalMicroLabel.copy(fontSize = 9.sp),
-                    color = syncStatusColor
-                )
-            }
-        }
-
         // Center Tap to Play/Pause Floating Affordance (shown when paused or completed)
         if (!uiState.isPlaying) {
-            IconButton(
-                onClick = onPlayPause,
+            Box(
+                contentAlignment = Alignment.Center,
                 modifier = Modifier
-                    .size(64.dp)
-                    .background(Color.Black.copy(alpha = 0.65f), CircleShape)
+                    .size(56.dp)
+                    .clip(CircleShape)
+                    .background(Color.Black.copy(alpha = 0.6f))
+                    .clickable(onClick = onPlayPause)
                     .semantics {
                         this.contentDescription = if (uiState.isPlaying) "Pause video" else "Play video"
                     }
             ) {
-                CanvasPlayIcon(color = Color.White, size = 28.dp)
+                CanvasPlayIcon(color = Color.White, size = 24.dp)
             }
         }
     }
 }
 
 /**
- * Reusable streaming-grade playback controls bar.
+ * Apple-style clean playback controls bar with scrubber, time labels, and circular actions.
  */
 @Composable
 private fun PlayerControlsBar(
@@ -605,10 +470,10 @@ private fun PlayerControlsBar(
     modifier: Modifier = Modifier
 ) {
     val spacing = LocalSpacing.current
-    val contentColor = if (isLandscape) Color.White else MaterialTheme.colorScheme.onSurface
+    val contentColor = if (isLandscape) Color.White else MaterialTheme.colorScheme.onBackground
 
     Column(modifier = modifier.fillMaxWidth()) {
-        // Sleek Scrubber Slider
+        // Scrubber Slider
         val maxDuration = uiState.durationMs.coerceAtLeast(1L).toFloat()
         val currentPosition = uiState.currentPositionMs.toFloat().coerceIn(0f, maxDuration)
 
@@ -617,9 +482,9 @@ private fun PlayerControlsBar(
             onValueChange = { onSeek(it.toLong()) },
             valueRange = 0f..maxDuration,
             colors = SliderDefaults.colors(
-                thumbColor = CyberCyan,
-                activeTrackColor = CyberCyan,
-                inactiveTrackColor = if (isLandscape) Color.White.copy(alpha = 0.25f) else MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
+                thumbColor = MaterialTheme.colorScheme.primary,
+                activeTrackColor = MaterialTheme.colorScheme.primary,
+                inactiveTrackColor = if (isLandscape) Color.White.copy(alpha = 0.25f) else MaterialTheme.colorScheme.surfaceVariant
             ),
             modifier = Modifier
                 .fillMaxWidth()
@@ -628,14 +493,14 @@ private fun PlayerControlsBar(
                 }
         )
 
-        // Time and Floating Actions Row
+        // Time and Actions Row
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
+            // Left: Play/Pause button + Current / Total Time
             Row(verticalAlignment = Alignment.CenterVertically) {
-                // Play / Pause Floating Button
                 IconButton(
                     onClick = onPlayPause,
                     modifier = Modifier.size(44.dp)
@@ -649,16 +514,18 @@ private fun PlayerControlsBar(
 
                 Spacer(modifier = Modifier.width(spacing.xs))
 
-                // Time indicators in monospace technical style
                 Text(
                     text = "${formatDuration(uiState.currentPositionMs)} / ${formatDuration(uiState.durationMs)}",
-                    style = TechnicalValueLabel.copy(fontSize = 12.sp),
-                    color = contentColor
+                    style = EditorialMetadataLabel.copy(
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium
+                    ),
+                    color = if (isLandscape) Color.White.copy(alpha = 0.8f) else MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
+            // Right: Volume and Fullscreen buttons
             Row(verticalAlignment = Alignment.CenterVertically) {
-                // Volume Mute / Unmute Floating Button
                 IconButton(
                     onClick = onVolumeToggle,
                     modifier = Modifier.size(44.dp)
@@ -666,7 +533,6 @@ private fun PlayerControlsBar(
                     CanvasVolumeIcon(color = contentColor, isMuted = uiState.isMuted, size = 20.dp)
                 }
 
-                // Fullscreen Floating Button
                 IconButton(
                     onClick = onFullscreenToggle,
                     modifier = Modifier.size(44.dp)
@@ -679,8 +545,8 @@ private fun PlayerControlsBar(
 }
 
 /**
- * Technical Research Debug HUD displaying real-time synchronization and frequency parameters.
- * Accessible to researchers via the technical toggle; hidden from normal study participants.
+ * Compact Research Debug HUD displaying real-time synchronization and frequency telemetry.
+ * Subtle, non-intrusive container reserved for scientific calibration.
  */
 @Composable
 private fun ResearchDebugHudCard(
@@ -693,58 +559,55 @@ private fun ResearchDebugHudCard(
     val minutes = totalSec / 60
     val seconds = totalSec % 60
     val millis = posMs % 1000
-    val formattedPosition = String.format("%02d:%02d.%03d", minutes, seconds, millis)
+    val formattedPosition = String.format(Locale.US, "%02d:%02d.%03d", minutes, seconds, millis)
 
-    val freqText = uiState.currentEventFrequencyHz?.let { String.format("%.1f Hz", it) } ?: "---"
-    val ampText = uiState.currentEventAmplitude?.let { String.format("%.2f", it) } ?: "---"
+    val freqText = uiState.currentEventFrequencyHz?.let { String.format(Locale.US, "%.1f Hz", it) } ?: "---"
+    val ampText = uiState.currentEventAmplitude?.let { String.format(Locale.US, "%.2f", it) } ?: "---"
     val durText = uiState.currentEventDurationMs?.let { "${it} ms" } ?: "---"
-    val eventLabel = uiState.currentEventDescription ?: (if (uiState.currentEventFrequencyHz != null) "ACTIVE STIMULUS" else "IDLE / BETWEEN EVENTS")
+    val eventLabel = uiState.currentEventDescription ?: (if (uiState.currentEventFrequencyHz != null) "Active Stimulus" else "Idle / Between Events")
 
     Surface(
-        shape = RoundedCornerShape(12.dp),
-        border = BorderStroke(1.dp, CyberCyan.copy(alpha = 0.35f)),
-        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
+        shape = RoundedCornerShape(14.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant,
         modifier = modifier.fillMaxWidth()
     ) {
-        Column(modifier = Modifier.padding(spacing.md)) {
+        Column(modifier = Modifier.padding(16.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "RESEARCH DEBUG // REAL-TIME TELEMETRY",
-                    style = TechnicalMicroLabel.copy(fontSize = 10.sp),
-                    color = CyberCyan
+                    text = "RESEARCH TELEMETRY",
+                    style = EditorialMetadataLabel.copy(
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 1.0.sp
+                    ),
+                    color = MaterialTheme.colorScheme.primary
                 )
-                Box(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(CyberCyan.copy(alpha = 0.15f))
-                        .padding(horizontal = 6.dp, vertical = 2.dp)
-                ) {
-                    Text(
-                        text = "DEV ONLY",
-                        style = TechnicalMicroLabel.copy(fontSize = 8.sp),
-                        color = CyberCyan
-                    )
-                }
+
+                Text(
+                    text = "DEBUG MODE",
+                    style = EditorialMetadataLabel.copy(fontSize = 10.sp),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
 
-            Spacer(modifier = Modifier.height(spacing.xs))
+            Spacer(modifier = Modifier.height(10.dp))
 
-            DebugTelemetryRow(label = "Current video position", value = formattedPosition)
-            DebugTelemetryRow(label = "Current haptic event", value = eventLabel)
+            DebugTelemetryRow(label = "Video Position", value = formattedPosition)
+            DebugTelemetryRow(label = "Haptic Event", value = eventLabel)
             DebugTelemetryRow(label = "Frequency", value = freqText)
             DebugTelemetryRow(label = "Amplitude", value = ampText)
-            DebugTelemetryRow(label = "Event duration", value = durText)
+            DebugTelemetryRow(label = "Duration", value = durText)
             DebugTelemetryRow(
-                label = "Haptic capability",
+                label = "Capability",
                 value = uiState.capabilityLevel.name,
                 valueColor = when (uiState.capabilityLevel) {
-                    HapticCapabilityLevel.SUPPORTED -> CyberGreen
-                    HapticCapabilityLevel.LIMITED -> CyberAmber
-                    HapticCapabilityLevel.UNAVAILABLE -> Color(0xFFEF4444)
+                    HapticCapabilityLevel.SUPPORTED -> Color(0xFF30D158)
+                    HapticCapabilityLevel.LIMITED -> Color(0xFFFFD60A)
+                    HapticCapabilityLevel.UNAVAILABLE -> Color(0xFFFF453A)
                 }
             )
         }
@@ -757,24 +620,25 @@ private fun DebugTelemetryRow(
     value: String,
     valueColor: Color = MaterialTheme.colorScheme.onSurface
 ) {
-    val spacing = LocalSpacing.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 2.dp),
+            .padding(vertical = 3.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = label.uppercase(),
-            style = TechnicalMicroLabel.copy(fontSize = 9.sp),
+            text = label,
+            style = MaterialTheme.typography.bodyMedium.copy(fontSize = 13.sp),
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
         Text(
             text = value,
-            style = TechnicalValueLabel.copy(fontSize = 11.sp),
+            style = EditorialMetadataLabel.copy(
+                fontSize = 13.sp,
+                fontWeight = FontWeight.SemiBold
+            ),
             color = valueColor
         )
     }
 }
-

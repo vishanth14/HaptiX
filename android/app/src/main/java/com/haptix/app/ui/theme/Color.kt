@@ -2,102 +2,147 @@ package com.haptix.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// ==========================================
-// CYBER DARK PALETTE (Premium Multimodal Research)
-// ==========================================
-val CyberDarkBackground = Color(0xFF070A12)
-val CyberDarkSurface = Color(0xFF0D1320)
-val CyberDarkSurfaceElevated = Color(0xFF141D2C)
-val CyberDarkSurfaceElevatedSecondary = Color(0xFF1C2638)
-val CyberDarkBorder = Color(0xFF1E2B3E)
-val CyberDarkBorderAccent = Color(0xFF2E3E58)
+// =========================================================================
+// APPLE-INSPIRED COLOR SYSTEM (HaptiX Research Edition)
+// =========================================================================
 
-val CyberCyan = Color(0xFF00D9FF)
-val CyberCyanDim = Color(0xFF00B4D8)
-val CyberCyanContainer = Color(0x1F00D9FF)
-val CyberCyanGlow = Color(0x3300D9FF)
-val CyberCyanHighlight = Color(0xFFC4F1FF)
+// --- Dark Mode ---
+val AppleDarkBackground = Color(0xFF000000)
+val AppleDarkSurfacePrimary = Color(0xFF0B0B0D)
+val AppleDarkSurfaceSecondary = Color(0xFF151518)
+val AppleDarkSurfaceTertiary = Color(0xFF1E1E22)
+val AppleDarkBorder = Color(0xFF2C2C2E)
+val AppleDarkBorderSubtle = Color(0xFF1C1C1E)
 
-val CyberViolet = Color(0xFF8B5CF6)
-val CyberVioletDim = Color(0xFF7C3AED)
-val CyberVioletContainer = Color(0x1F8B5CF6)
-val CyberVioletGlow = Color(0x338B5CF6)
+val AppleDarkTextPrimary = Color(0xFFF5F5F7)
+val AppleDarkTextSecondary = Color(0xFFA1A1A6)
+val AppleDarkTextTertiary = Color(0xFF6E6E73)
 
-val CyberTextPrimary = Color(0xFFF4F7FB)
-val CyberTextSecondary = Color(0xFF9AA7B8)
-val CyberTextMuted = Color(0xFF627184)
+val AppleSystemBlueDark = Color(0xFF0A84FF)
+val AppleSystemPurpleDark = Color(0xFF5E5CE6)
+val AppleSystemGreenDark = Color(0xFF30D158)
+val AppleSystemYellowDark = Color(0xFFFFD60A)
+val AppleSystemRedDark = Color(0xFFFF453A)
 
-// ==========================================
-// CYBER LIGHT PALETTE (Technical Daylight / Product)
-// ==========================================
-val CyberLightBackground = Color(0xFFF5F7FB)
-val CyberLightSurface = Color(0xFFFFFFFF)
-val CyberLightSurfaceElevated = Color(0xFFEEF2F7)
-val CyberLightSurfaceElevatedSecondary = Color(0xFFE2E8F0)
-val CyberLightBorder = Color(0xFFE2E8F0)
-val CyberLightBorderAccent = Color(0xFFCBD5E1)
+// --- Light Mode ---
+val AppleLightBackground = Color(0xFFF5F5F7)
+val AppleLightSurfacePrimary = Color(0xFFFFFFFF)
+val AppleLightSurfaceSecondary = Color(0xFFEDEDF0)
+val AppleLightSurfaceTertiary = Color(0xFFE5E5EA)
+val AppleLightBorder = Color(0xFFD1D1D6)
+val AppleLightBorderSubtle = Color(0xFFE5E5EA)
 
-val CyberBlue = Color(0xFF007AFF)
-val CyberLightCyan = Color(0xFF0091FF)
+val AppleLightTextPrimary = Color(0xFF1D1D1F)
+val AppleLightTextSecondary = Color(0xFF6E6E73)
+val AppleLightTextTertiary = Color(0xFF86868B)
+
+val AppleSystemBlueLight = Color(0xFF007AFF)
+val AppleSystemPurpleLight = Color(0xFF5856D6)
+val AppleSystemGreenLight = Color(0xFF34C759)
+val AppleSystemYellowLight = Color(0xFFFFCC00)
+val AppleSystemRedLight = Color(0xFFFF3B30)
+
+// =========================================================================
+// HAPTIX DESIGN SYSTEM TOKENS
+// =========================================================================
+val HaptiXBlue = AppleSystemBlueDark
+val HaptiXBlueLight = AppleSystemBlueLight
+val HaptiXPurple = AppleSystemPurpleDark
+val HaptiXGreen = AppleSystemGreenDark
+val HaptiXYellow = AppleSystemYellowDark
+val HaptiXRed = AppleSystemRedDark
+
+// Star Rating Colors
+val StarGold = Color(0xFFFFD60A)
+val StarEmptyDark = Color(0xFF3A3A3C)
+val StarEmptyLight = Color(0xFFD1D1D6)
+val StarEmpty = StarEmptyDark
+
+// =========================================================================
+// BACKWARD-COMPATIBLE ALIASES (Transitioning from Cyberpunk to Apple)
+// =========================================================================
+val CyberDarkBackground = AppleDarkBackground
+val CyberDarkSurface = AppleDarkSurfacePrimary
+val CyberDarkSurfaceElevated = AppleDarkSurfaceSecondary
+val CyberDarkSurfaceElevatedSecondary = AppleDarkSurfaceTertiary
+val CyberDarkBorder = AppleDarkBorder
+val CyberDarkBorderAccent = AppleDarkBorderSubtle
+
+val CyberCyan = AppleSystemBlueDark
+val CyberCyanDim = Color(0xFF0066CC)
+val CyberCyanContainer = Color(0x1F0A84FF)
+val CyberCyanGlow = Color(0x1A0A84FF)
+val CyberCyanHighlight = Color(0xFFBCE3FF)
+
+val CyberViolet = AppleSystemPurpleDark
+val CyberVioletDim = Color(0xFF4B49C8)
+val CyberVioletContainer = Color(0x1F5E5CE6)
+val CyberVioletGlow = Color(0x1A5E5CE6)
+
+val CyberTextPrimary = AppleDarkTextPrimary
+val CyberTextSecondary = AppleDarkTextSecondary
+val CyberTextMuted = AppleDarkTextTertiary
+
+val CyberLightBackground = AppleLightBackground
+val CyberLightSurface = AppleLightSurfacePrimary
+val CyberLightSurfaceElevated = AppleLightSurfaceSecondary
+val CyberLightSurfaceElevatedSecondary = AppleLightSurfaceTertiary
+val CyberLightBorder = AppleLightBorder
+val CyberLightBorderAccent = AppleLightBorderSubtle
+
+val CyberBlue = AppleSystemBlueLight
+val CyberLightCyan = AppleSystemBlueLight
 val CyberBlueDim = Color(0xFF0056B3)
 val CyberBlueContainer = Color(0x1A007AFF)
-val CyberBlueGlow = Color(0x26007AFF)
+val CyberBlueGlow = Color(0x1A007AFF)
 
-val CyberLightViolet = Color(0xFF7C3AED)
-val CyberLightTextPrimary = Color(0xFF0B1220)
-val CyberLightTextSecondary = Color(0xFF596579)
-val CyberLightTextMuted = Color(0xFF8896AB)
+val CyberLightViolet = AppleSystemPurpleLight
+val CyberLightTextPrimary = AppleLightTextPrimary
+val CyberLightTextSecondary = AppleLightTextSecondary
+val CyberLightTextMuted = AppleLightTextTertiary
 
-// ==========================================
-// SEMANTIC STATUS TOKENS
-// ==========================================
-val CyberGreen = Color(0xFF10B981)
-val CyberGreenGlow = Color(0x3310B981)
-val CyberGreenContainer = Color(0x1A10B981)
+val CyberGreen = AppleSystemGreenDark
+val CyberGreenGlow = Color(0x1A30D158)
+val CyberGreenContainer = Color(0x1A30D158)
 
-val CyberAmber = Color(0xFFF59E0B)
-val CyberAmberContainer = Color(0x1AF59E0B)
+val CyberAmber = AppleSystemYellowDark
+val CyberAmberContainer = Color(0x1AFFD60A)
 
-val CyberRed = Color(0xFFEF4444)
-val CyberRedContainer = Color(0x1AEF4444)
+val CyberRed = AppleSystemRedDark
+val CyberRedContainer = Color(0x1AFF453A)
 
-val CyberStarGold = Color(0xFFFBBF24)
+val CyberStarGold = StarGold
 
-// ==========================================
-// BACKWARD-COMPATIBLE ALIASES
-// ==========================================
-val Slate950 = CyberDarkBackground
-val Slate900 = Color(0xFF0F172A)
-val Slate800 = CyberDarkSurface
-val Slate700 = Color(0xFF334155)
-val Slate600 = Color(0xFF475569)
-val Slate500 = Color(0xFF64748B)
-val Slate400 = Color(0xFF94A3B8)
-val Slate300 = Color(0xFFCBD5E1)
-val Slate200 = Color(0xFFE2E8F0)
-val Slate100 = Color(0xFFF1F5F9)
-val Slate50 = Color(0xFFF8FAFC)
+val Slate950 = AppleDarkBackground
+val Slate900 = Color(0xFF0C0C0E)
+val Slate800 = AppleDarkSurfaceSecondary
+val Slate700 = Color(0xFF2C2C2E)
+val Slate600 = Color(0xFF3A3A3C)
+val Slate500 = Color(0xFF6E6E73)
+val Slate400 = Color(0xFF8E8E93)
+val Slate300 = Color(0xFFAEAEB2)
+val Slate200 = Color(0xFFD1D1D6)
+val Slate100 = Color(0xFFE5E5EA)
+val Slate50 = Color(0xFFF2F2F7)
 
-val AccentBlue = CyberBlue
-val AccentBlueLight = CyberCyan
-val AccentBlueDark = Color(0xFF1D4ED8)
-val AccentBlueContainer = CyberCyanContainer
-val AccentBlueBorder = Color(0xFFBFDBFE)
+val AccentBlue = AppleSystemBlueLight
+val AccentBlueLight = AppleSystemBlueDark
+val AccentBlueDark = Color(0xFF0056B3)
+val AccentBlueContainer = Color(0x1A007AFF)
+val AccentBlueBorder = Color(0xFFBCE3FF)
 
-val StatusGreen = CyberGreen
-val StatusGreenContainer = CyberGreenContainer
-val StatusRed = CyberRed
-val StatusRedContainer = CyberRedContainer
-val StatusAmber = CyberAmber
-val StatusAmberContainer = CyberAmberContainer
+val StatusGreen = AppleSystemGreenDark
+val StatusGreenContainer = Color(0x1A30D158)
+val StatusRed = AppleSystemRedDark
+val StatusRedContainer = Color(0x1AFF453A)
+val StatusAmber = AppleSystemYellowDark
+val StatusAmberContainer = Color(0x1AFFD60A)
 
-val StarGold = CyberStarGold
-val StarEmpty = Color(0xFF64748B)
+val SurfaceLight = AppleLightSurfacePrimary
+val SurfaceDark = AppleDarkSurfacePrimary
+val SurfaceVariantLight = AppleLightSurfaceSecondary
+val SurfaceVariantDark = AppleDarkSurfaceSecondary
 
-val SurfaceLight = CyberLightSurface
-val SurfaceDark = CyberDarkSurface
-val SurfaceVariantLight = CyberLightSurfaceElevated
-val SurfaceVariantDark = CyberDarkSurfaceElevated
 val BackgroundLight = CyberLightBackground
 val BackgroundDark = CyberDarkBackground
 val BorderLight = CyberLightBorder

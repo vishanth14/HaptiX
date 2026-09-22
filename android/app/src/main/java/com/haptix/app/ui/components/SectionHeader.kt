@@ -1,27 +1,21 @@
 package com.haptix.app.ui.components
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.haptix.app.ui.theme.CyberCyan
-import com.haptix.app.ui.theme.LocalSpacing
-import com.haptix.app.ui.theme.TechnicalMicroLabel
+import androidx.compose.ui.unit.sp
+import com.haptix.app.ui.theme.EditorialMetadataLabel
 
 /**
- * Standard section header for research study screens.
- * Elevated with laboratory step indices, cyan tick accents, and clean technical typography.
+ * Editorial Apple-style section header for study screens.
+ * Uses clean system typography, restrained letter-spacing, and clear hierarchy.
  */
 @Composable
 fun SectionHeader(
@@ -30,50 +24,35 @@ fun SectionHeader(
     subtitle: String? = null,
     stepLabel: String? = null
 ) {
-    val spacing = LocalSpacing.current
-
     Column(modifier = modifier.fillMaxWidth()) {
         if (stepLabel != null) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Box(
-                    modifier = Modifier
-                        .width(3.dp)
-                        .height(10.dp)
-                        .background(MaterialTheme.colorScheme.primary)
-                )
-                Spacer(modifier = Modifier.width(spacing.xs))
-                Text(
-                    text = "[ ${stepLabel.uppercase()} ]",
-                    style = TechnicalMicroLabel,
-                    color = MaterialTheme.colorScheme.primary
-                )
-            }
-            Spacer(modifier = Modifier.height(spacing.xs))
+            Text(
+                text = stepLabel.uppercase(),
+                style = EditorialMetadataLabel.copy(
+                    letterSpacing = 1.0.sp
+                ),
+                color = MaterialTheme.colorScheme.primary
+            )
+            Spacer(modifier = Modifier.height(4.dp))
         }
 
         Text(
             text = title,
-            style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.onSurface
+            style = MaterialTheme.typography.headlineSmall.copy(
+                fontWeight = FontWeight.Bold,
+                letterSpacing = (-0.3).sp
+            ),
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         if (subtitle != null) {
-            Spacer(modifier = Modifier.height(spacing.xs))
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = subtitle,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
-
-        Spacer(modifier = Modifier.height(spacing.sm))
-
-        // Subtle 1dp technical guideline
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(1.dp)
-                .background(MaterialTheme.colorScheme.outline.copy(alpha = 0.4f))
-        )
     }
 }
+
