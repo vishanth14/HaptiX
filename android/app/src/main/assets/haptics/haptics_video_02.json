@@ -1,0 +1,61 @@
+{
+  "_comment": "HaptiX internal research representation of frequency-calibrated haptic stimuli for Video 02. NOT an official Android OS JSON format.",
+  "format": "HaptiX-Frequency-Stimulus",
+  "version": "1.0",
+  "source": "AOSP Haptics Architecture Guidelines & Pacinian Corpuscle Psychophysics (Choi & Kuchenbecker, 2013)",
+  "sourceUrl": "https://source.android.com/devices/sensors/haptics",
+  "description": "High-frequency transients evaluation focusing on experimentally selected stimuli within the Pacinian high-sensitivity band (200 Hz - 250 Hz). Actuator resonant frequency is device-dependent and must be queried from Android hardware APIs where available.",
+  "frequencyUnit": "Hz",
+  "timingUnit": "ms",
+  "videoId": "video_02",
+  "points": [
+    {
+      "startTimeMs": 1000,
+      "durationMs": 60,
+      "frequencyHz": 200.0,
+      "amplitude": 0.9,
+      "description": "Crisp transient click (200 Hz)",
+      "provenance": "perception-literature motivated"
+    },
+    {
+      "startTimeMs": 4500,
+      "durationMs": 80,
+      "frequencyHz": 235.0,
+      "amplitude": 0.95,
+      "description": "Experimental high-frequency strike (235 Hz)",
+      "provenance": "experimentally selected by HaptiX"
+    },
+    {
+      "startTimeMs": 11000,
+      "durationMs": 50,
+      "frequencyHz": 250.0,
+      "amplitude": 1.0,
+      "description": "Sharp tactile snap (250 Hz)",
+      "provenance": "perception-literature motivated"
+    },
+    {
+      "startTimeMs": 19000,
+      "durationMs": 70,
+      "frequencyHz": 220.0,
+      "amplitude": 0.85,
+      "description": "Mid-high transient pulse (220 Hz)",
+      "provenance": "experimentally selected by HaptiX"
+    },
+    {
+      "startTimeMs": 28000,
+      "durationMs": 100,
+      "frequencyHz": 235.0,
+      "amplitude": 0.95,
+      "description": "Experimental dual-accent pulse (235 Hz)",
+      "provenance": "experimentally selected by HaptiX"
+    },
+    {
+      "startTimeMs": 37000,
+      "durationMs": 60,
+      "frequencyHz": 250.0,
+      "amplitude": 1.0,
+      "description": "Final sharp impulse (250 Hz)",
+      "provenance": "perception-literature motivated"
+    }
+  ]
+}

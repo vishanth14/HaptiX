@@ -1,0 +1,61 @@
+{
+  "_comment": "HaptiX internal research representation of frequency-calibrated haptic stimuli for Video 03. NOT an official Android OS JSON format.",
+  "format": "HaptiX-Frequency-Stimulus",
+  "version": "1.0",
+  "source": "AOSP Haptics Architecture Guidelines & Pacinian Corpuscle Psychophysics (Choi & Kuchenbecker, 2013)",
+  "sourceUrl": "https://source.android.com/devices/sensors/haptics",
+  "description": "Modulated rhythms spanning experimentally selected frequencies across the tactile spectrum (150 Hz -> 180 Hz -> 200 Hz -> 235 Hz). Device-specific actuator resonant frequencies must be obtained via Android APIs.",
+  "frequencyUnit": "Hz",
+  "timingUnit": "ms",
+  "videoId": "video_03",
+  "points": [
+    {
+      "startTimeMs": 2000,
+      "durationMs": 150,
+      "frequencyHz": 150.0,
+      "amplitude": 0.6,
+      "description": "Base rhythm beat (150 Hz)",
+      "provenance": "perception-literature motivated & experimentally selected by HaptiX"
+    },
+    {
+      "startTimeMs": 8000,
+      "durationMs": 120,
+      "frequencyHz": 180.0,
+      "amplitude": 0.7,
+      "description": "Intermediate rhythm modulation (180 Hz)",
+      "provenance": "experimentally selected by HaptiX"
+    },
+    {
+      "startTimeMs": 15000,
+      "durationMs": 100,
+      "frequencyHz": 200.0,
+      "amplitude": 0.8,
+      "description": "Harmonic sync step (200 Hz)",
+      "provenance": "perception-literature motivated"
+    },
+    {
+      "startTimeMs": 24000,
+      "durationMs": 80,
+      "frequencyHz": 235.0,
+      "amplitude": 0.9,
+      "description": "Experimental upper-band sync step (235 Hz)",
+      "provenance": "experimentally selected by HaptiX"
+    },
+    {
+      "startTimeMs": 35000,
+      "durationMs": 200,
+      "frequencyHz": 180.0,
+      "amplitude": 0.75,
+      "description": "Returning mid-cadence pulse (180 Hz)",
+      "provenance": "experimentally selected by HaptiX"
+    },
+    {
+      "startTimeMs": 48000,
+      "durationMs": 250,
+      "frequencyHz": 235.0,
+      "amplitude": 1.0,
+      "description": "Experimental upper-band burst (235 Hz)",
+      "provenance": "experimentally selected by HaptiX"
+    }
+  ]
+}
