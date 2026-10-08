@@ -10,7 +10,9 @@ import com.haptix.app.haptics.HapticEngine
 import com.haptix.app.haptics.HapticSynchronizer
 import com.haptix.app.monitoring.PerformanceMonitor
 import com.haptix.app.session.StudySessionViewModel
+import com.haptix.app.R
 import com.haptix.app.ui.components.formatDuration
+import com.haptix.app.ui.components.resolveThumbnailDrawable
 import com.haptix.app.ui.screens.feedback.FeedbackViewModel
 import com.haptix.app.ui.screens.feedback.STUDY_QUESTIONS
 import com.haptix.app.ui.screens.profile.ProfileViewModel
@@ -18,6 +20,8 @@ import com.haptix.app.ui.screens.video.VideoListViewModel
 import com.haptix.app.ui.screens.video.VideoPlayerViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -235,6 +239,93 @@ class UiLayerTest {
         assertEquals(20_000L, viewModel.getSavedPlaybackPosition())
     }
 
+    @Test
+    fun videoPlayerViewModel_controlsVisibilityToggleSequence() {
+        val testScope = CoroutineScope(Dispatchers.Unconfined)
+        val viewModel = VideoPlayerViewModel(coroutineScope = testScope)
+        viewModel.loadVideo("video_01")
+
+        // 1. Initial State: Controls are visible
+        assertTrue(viewModel.uiState.value.controlsVisible)
+
+        // 2. Tap 1: VISIBLE -> HIDDEN
+        viewModel.toggleControlsVisibility()
+        assertFalse(viewModel.uiState.value.controlsVisible)
+
+        // 3. Tap 2: HIDDEN -> VISIBLE
+        viewModel.toggleControlsVisibility()
+        assertTrue(viewModel.uiState.value.controlsVisible)
+
+        // 4. Tap 3: VISIBLE -> HIDDEN
+        viewModel.toggleControlsVisibility()
+        assertFalse(viewModel.uiState.value.controlsVisible)
+
+        // 5. Tap 4: HIDDEN -> VISIBLE
+        viewModel.toggleControlsVisibility()
+        assertTrue(viewModel.uiState.value.controlsVisible)
+
+        // Repeat sequence to verify indefinite toggle reliability (5+ cycles)
+        for (i in 1..5) {
+            // VISIBLE -> HIDDEN
+            viewModel.toggleControlsVisibility()
+            assertFalse("Expected controls hidden on cycle $i toggle 1", viewModel.uiState.value.controlsVisible)
+
+            // HIDDEN -> VISIBLE
+            viewModel.toggleControlsVisibility()
+            assertTrue("Expected controls visible on cycle $i toggle 2", viewModel.uiState.value.controlsVisible)
+        }
+
+        // Test explicit setControlsVisibility
+        viewModel.setControlsVisibility(false)
+        assertFalse(viewModel.uiState.value.controlsVisible)
+
+        viewModel.setControlsVisibility(true)
+        assertTrue(viewModel.uiState.value.controlsVisible)
+    }
+
+    @Test
+    fun videoPlayerViewModel_landscapeAndPlaybackControlsToggle() {
+        val testScope = CoroutineScope(Dispatchers.Unconfined)
+        val viewModel = VideoPlayerViewModel(coroutineScope = testScope)
+        viewModel.loadVideo("video_01")
+
+        // Enter landscape / fullscreen
+        viewModel.toggleFullscreen()
+        assertTrue(viewModel.uiState.value.isFullscreen)
+        assertTrue(viewModel.uiState.value.controlsVisible)
+
+        // Tap to hide controls in landscape
+        viewModel.toggleControlsVisibility()
+        assertFalse(viewModel.uiState.value.controlsVisible)
+
+        // Start playback while controls are hidden: playback state updates without breaking toggle state
+        viewModel.updatePlaybackState(isPlaying = true, isCompleted = false)
+        assertTrue(viewModel.uiState.value.isPlaying)
+        assertFalse(viewModel.uiState.value.controlsVisible)
+
+        // Tap to show controls during playback
+        viewModel.toggleControlsVisibility()
+        assertTrue(viewModel.uiState.value.controlsVisible)
+
+        // Seek while controls are visible
+        viewModel.seekTo(5000L)
+        assertEquals(5000L, viewModel.uiState.value.currentPositionMs)
+        assertTrue(viewModel.uiState.value.controlsVisible)
+
+        // Tap to hide controls again
+        viewModel.toggleControlsVisibility()
+        assertFalse(viewModel.uiState.value.controlsVisible)
+
+        // Tap to show controls
+        viewModel.toggleControlsVisibility()
+        assertTrue(viewModel.uiState.value.controlsVisible)
+
+        // Exit fullscreen to portrait
+        viewModel.toggleFullscreen()
+        assertFalse(viewModel.uiState.value.isFullscreen)
+        assertTrue(viewModel.uiState.value.controlsVisible)
+    }
+
     // 5. FeedbackViewModel tests
     @Test
     fun feedbackViewModel_has5FixedQuestionsAndClampsRatings() {
@@ -307,5 +398,24 @@ class UiLayerTest {
         assertNull(sessionViewModel.sessionState.value.participant)
         assertNull(sessionViewModel.sessionState.value.selectedVideoId)
         assertTrue(sessionViewModel.sessionState.value.isHapticsEnabled)
+    }
+
+    // 7. Thumbnail integration tests for F1 and Koji
+    @Test
+    fun thumbnailIntegration_f1AndKojiResolveRealDrawables() = runBlocking {
+        val repo = DefaultVideoRepository()
+        val videos = repo.getVideos().first()
+
+        val f1 = videos.find { it.id == "f1_2025_haptic_trailer" }
+        assertNotNull("F1 video must exist", f1)
+        assertEquals("f1_2025_thumbnail", f1?.thumbnailResUri)
+        assertEquals(R.drawable.f1_2025_thumbnail, f1?.thumbnailResId)
+        assertEquals(R.drawable.f1_2025_thumbnail, resolveThumbnailDrawable(f1!!))
+
+        val koji = videos.find { it.id == "koji" }
+        assertNotNull("Koji video must exist", koji)
+        assertEquals("koji_thumbnail", koji?.thumbnailResUri)
+        assertEquals(R.drawable.koji_thumbnail, koji?.thumbnailResId)
+        assertEquals(R.drawable.koji_thumbnail, resolveThumbnailDrawable(koji!!))
     }
 }

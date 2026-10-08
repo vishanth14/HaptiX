@@ -61,4 +61,27 @@ class VideoListViewModel(
     fun selectVideo(videoId: String) {
         _uiState.value = _uiState.value.copy(selectedVideoId = videoId)
     }
+
+    /**
+     * Registers and selects a remote video and synchronized haptic JSON stimulus.
+     */
+    fun registerRemoteStimulus(videoUrl: String, hapticUrl: String, title: String = ""): VideoItem {
+        val cleanVideoUrl = videoUrl.trim()
+        val cleanHapticUrl = hapticUrl.trim()
+        val derivedTitle = title.ifBlank {
+            cleanVideoUrl.substringAfterLast("/").substringBefore("?").ifBlank { "Remote Stimulus" }
+        }
+        val id = "remote_${System.currentTimeMillis()}"
+        val item = VideoItem(
+            id = id,
+            title = derivedTitle,
+            videoUrl = cleanVideoUrl,
+            hapticUrl = cleanHapticUrl,
+            category = "REMOTE_STIMULUS"
+        )
+        videoRepository.registerVideo(item)
+        selectVideo(id)
+        loadVideos()
+        return item
+    }
 }

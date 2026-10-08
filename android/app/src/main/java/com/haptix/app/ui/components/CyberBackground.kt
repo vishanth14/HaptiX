@@ -7,22 +7,25 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.haptix.app.ui.components.motion.ElasticOverscrollContainer
 
 /**
  * Calm, minimal background container for HaptiX screens.
- * Replaces previous cyber atmospheric gradients with an elegant, restrained solid surface.
+ * Provides the base solid surface and activates native elastic rubber-band overscroll.
  */
 @Composable
 fun HaptiXBackground(
     modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        content()
+    ElasticOverscrollContainer {
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+        ) {
+            content()
+        }
     }
 }
 
@@ -36,4 +39,3 @@ fun CyberBackground(
 ) {
     HaptiXBackground(modifier = modifier, content = content)
 }
-

@@ -158,4 +158,87 @@ class VideoPlayerViewModelSyncTest {
         viewModel.toggleHaptics()
         assertFalse(viewModel.uiState.value.isHapticsEnabled)
     }
+
+    @Test
+    fun playbackPosition_persistsAcrossConfigurationRestoration() {
+        val testScope = CoroutineScope(Dispatchers.Unconfined)
+        val viewModel = VideoPlayerViewModel(coroutineScope = testScope)
+        viewModel.loadVideo("vid_sync_01")
+
+        viewModel.savePlaybackPosition(12500L)
+        assertEquals(12500L, viewModel.getSavedPlaybackPosition())
+    }
+
+    @Test
+    fun configurationChange_doesNotDuplicateHapticEvents() {
+        val testScope = CoroutineScope(Dispatchers.Unconfined)
+        val fakeEngine = FakeHapticEngine(supported = true)
+        val synchronizer = HapticSynchronizer(engine = fakeEngine, toleranceMs = 50L)
+        val event = HapticEvent(
+            startTimeMs = 3000L,
+            durationMs = 200L,
+            intensity = 0.8f,
+            parameters = mapOf("frequencyHz" to 180.0f)
+        )
+        val pattern = HapticPattern(videoId = "vid_sync_01", events = listOf(event))
+
+        val viewModel = VideoPlayerViewModel(
+            videoRepository = FakeVideoRepo(),
+            hapticRepository = FakeHapticRepo(pattern),
+            hapticSynchronizer = synchronizer,
+            hapticEngine = fakeEngine,
+            coroutineScope = testScope
+        )
+
+        viewModel.loadVideo("vid_sync_01")
+
+        // First pass through event
+        viewModel.onTimelinePositionChanged(3010L)
+        assertEquals(1, fakeEngine.playedEvents.size)
+
+        // Rotation occurs: saved position restored, timeline ticks at same or subsequent position
+        viewModel.savePlaybackPosition(3010L)
+        val restoredPos = viewModel.getSavedPlaybackPosition()
+        viewModel.onTimelinePositionChanged(restoredPos)
+        viewModel.onTimelinePositionChanged(3050L)
+
+        // Must still be 1 (no duplicate actuation)
+        assertEquals(1, fakeEngine.playedEvents.size)
+    }
+
+    @Test
+    fun backwardSeek_restoresEventEligibility() {
+        val testScope = CoroutineScope(Dispatchers.Unconfined)
+        val fakeEngine = FakeHapticEngine(supported = true)
+        val synchronizer = HapticSynchronizer(engine = fakeEngine, toleranceMs = 50L)
+        val event = HapticEvent(
+            startTimeMs = 4000L,
+            durationMs = 200L,
+            intensity = 0.8f,
+            parameters = mapOf("frequencyHz" to 180.0f)
+        )
+        val pattern = HapticPattern(videoId = "vid_sync_01", events = listOf(event))
+
+        val viewModel = VideoPlayerViewModel(
+            videoRepository = FakeVideoRepo(),
+            hapticRepository = FakeHapticRepo(pattern),
+            hapticSynchronizer = synchronizer,
+            hapticEngine = fakeEngine,
+            coroutineScope = testScope
+        )
+
+        viewModel.loadVideo("vid_sync_01")
+
+        // First play through
+        viewModel.onTimelinePositionChanged(4020L)
+        assertEquals(1, fakeEngine.playedEvents.size)
+
+        // Seek backwards to 1000L
+        viewModel.seekTo(1000L)
+        assertFalse(fakeEngine.isPlaying)
+
+        // Play forward again across event
+        viewModel.onTimelinePositionChanged(4010L)
+        assertEquals(2, fakeEngine.playedEvents.size)
+    }
 }

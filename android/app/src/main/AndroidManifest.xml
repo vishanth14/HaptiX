@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Required for network streaming of video and remote haptic datasets -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <!-- Required for haptic feedback playback -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -10,10 +13,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.HaptiX">
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize"
             android:theme="@style/Theme.HaptiX">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

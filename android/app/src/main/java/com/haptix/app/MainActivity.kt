@@ -23,16 +23,29 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        val startVideoId = intent?.getStringExtra("videoId")
+        val startDestination = intent?.getStringExtra("startDestination")
+            ?: startVideoId?.let { com.haptix.app.navigation.HaptiXDestinations.videoPlayerRoute(it) }
+            ?: com.haptix.app.navigation.HaptiXDestinations.WELCOME
+
         setContent {
             val sessionViewModel: StudySessionViewModel = viewModel()
             val sessionState by sessionViewModel.sessionState.collectAsState()
+
+            if (startVideoId != null) {
+                sessionViewModel.selectVideo(startVideoId)
+            }
 
             HaptiXTheme(themeMode = sessionState.themeMode) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HaptiXNavigation(sessionViewModel = sessionViewModel)
+                    HaptiXNavigation(
+                        sessionViewModel = sessionViewModel,
+                        startDestination = startDestination
+                    )
                 }
             }
         }

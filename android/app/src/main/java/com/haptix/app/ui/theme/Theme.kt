@@ -43,58 +43,58 @@ val HaptiXShapes = Shapes(
 val CyberShapes = HaptiXShapes
 
 /**
- * Apple-inspired Dark Scheme:
- * Deep black backdrop (#000000), subtle charcoal surfaces (#0B0B0D, #151518),
- * pristine light typography (#F5F5F7), and restrained system blue (#0A84FF).
+ * Obsidian Dark Scheme:
+ * Deep obsidian backdrop (#050608), technical dark surfaces (#0D1118, #121925),
+ * pristine light typography (#F5F7FA), and electric cyan primary signal (#00E5FF).
  */
 val HaptiXDarkColorScheme = darkColorScheme(
-    primary = AppleSystemBlueDark,
-    onPrimary = Color.White,
-    primaryContainer = Color(0x1F0A84FF),
+    primary = ObsidianDarkPalette.cyanAccent,
+    onPrimary = ObsidianDarkPalette.background,
+    primaryContainer = Color(0x3300E5FF),
     onPrimaryContainer = Color(0xFFBCE3FF),
-    secondary = AppleSystemPurpleDark,
+    secondary = ObsidianDarkPalette.secondaryViolet,
     onSecondary = Color.White,
-    secondaryContainer = Color(0x1F5E5CE6),
+    secondaryContainer = Color(0x337C5CFF),
     onSecondaryContainer = Color(0xFFE5E4FF),
-    tertiary = AppleSystemGreenDark,
-    onTertiary = Color.White,
-    background = AppleDarkBackground,
-    onBackground = AppleDarkTextPrimary,
-    surface = AppleDarkSurfacePrimary,
-    onSurface = AppleDarkTextPrimary,
-    surfaceVariant = AppleDarkSurfaceSecondary,
-    onSurfaceVariant = AppleDarkTextSecondary,
-    outline = AppleDarkBorder,
-    outlineVariant = AppleDarkBorderSubtle,
-    error = AppleSystemRedDark,
+    tertiary = ObsidianDarkPalette.signalGreen,
+    onTertiary = ObsidianDarkPalette.background,
+    background = ObsidianDarkPalette.background,
+    onBackground = ObsidianDarkPalette.textPrimary,
+    surface = ObsidianDarkPalette.surface,
+    onSurface = ObsidianDarkPalette.textPrimary,
+    surfaceVariant = ObsidianDarkPalette.elevated,
+    onSurfaceVariant = ObsidianDarkPalette.textSecondary,
+    outline = ObsidianDarkPalette.borderSubtle,
+    outlineVariant = ObsidianDarkPalette.borderAccent,
+    error = ObsidianDarkPalette.error,
     onError = Color.White
 )
 
 /**
- * Apple-inspired Light Scheme:
- * Clean soft gray backdrop (#F5F5F7), pure white cards (#FFFFFF), subtle secondary gray (#EDEDF0),
- * crisp dark typography (#1D1D1F), and vibrant system blue (#007AFF).
+ * Light Scheme:
+ * Clean high-precision gray backdrop (#F3F5F8), pure white cards (#FFFFFF), subtle secondary gray (#E9EDF2),
+ * crisp dark typography (#11151C), and vibrant scientific blue (#007AFF).
  */
 val HaptiXLightColorScheme = lightColorScheme(
-    primary = AppleSystemBlueLight,
+    primary = HaptiXLightPalette.primaryAccent,
     onPrimary = Color.White,
     primaryContainer = Color(0x1A007AFF),
     onPrimaryContainer = Color(0xFF0056B3),
-    secondary = AppleSystemPurpleLight,
+    secondary = HaptiXLightPalette.secondaryAccent,
     onSecondary = Color.White,
-    secondaryContainer = Color(0x1A5856D6),
+    secondaryContainer = Color(0x1A5E5CE6),
     onSecondaryContainer = Color(0xFF3836B0),
-    tertiary = AppleSystemGreenLight,
+    tertiary = HaptiXLightPalette.signalGreen,
     onTertiary = Color.White,
-    background = AppleLightBackground,
-    onBackground = AppleLightTextPrimary,
-    surface = AppleLightSurfacePrimary,
-    onSurface = AppleLightTextPrimary,
-    surfaceVariant = AppleLightSurfaceSecondary,
-    onSurfaceVariant = AppleLightTextSecondary,
-    outline = AppleLightBorder,
-    outlineVariant = AppleLightBorderSubtle,
-    error = AppleSystemRedLight,
+    background = HaptiXLightPalette.background,
+    onBackground = HaptiXLightPalette.textPrimary,
+    surface = HaptiXLightPalette.surface,
+    onSurface = HaptiXLightPalette.textPrimary,
+    surfaceVariant = HaptiXLightPalette.elevated,
+    onSurfaceVariant = HaptiXLightPalette.textSecondary,
+    outline = HaptiXLightPalette.borderSubtle,
+    outlineVariant = HaptiXLightPalette.borderAccent,
+    error = HaptiXLightPalette.error,
     onError = Color.White
 )
 
@@ -108,6 +108,7 @@ fun HaptiXTheme(
     content: @Composable () -> Unit
 ) {
     val targetScheme = if (themeMode == CyberThemeMode.DARK) HaptiXDarkColorScheme else HaptiXLightColorScheme
+    val colorSystem = if (themeMode == CyberThemeMode.DARK) DarkColorSystem else LightColorSystem
 
     // Smooth 200ms color transitions between dark and light themes
     val animatedScheme = ColorScheme(
@@ -151,11 +152,12 @@ fun HaptiXTheme(
 
     CompositionLocalProvider(
         LocalSpacing provides spacing,
-        LocalCyberThemeMode provides themeMode
+        LocalCyberThemeMode provides themeMode,
+        LocalHaptiXColorSystem provides colorSystem
     ) {
         MaterialTheme(
             colorScheme = animatedScheme,
-            typography = Typography,
+            typography = HaptiXTypography,
             shapes = HaptiXShapes,
             content = content
         )

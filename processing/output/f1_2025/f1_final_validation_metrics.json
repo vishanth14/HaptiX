@@ -1,0 +1,136 @@
+{
+  "videoId": "f1_2025_haptic_trailer",
+  "version": "FINAL",
+  "videoDurationMs": 130540,
+  "totalEvents": 29,
+  "transientEvents": 15,
+  "continuousEvents": 14,
+  "activeDurationMs": 20240,
+  "silenceDurationMs": 110300,
+  "activePercentage": 15.5048,
+  "silencePercentage": 84.4952,
+  "minIntensity": 0.178,
+  "maxIntensity": 0.744,
+  "meanIntensity": 0.42986206896551726,
+  "medianIntensity": 0.442,
+  "minDurationMs": 180,
+  "maxDurationMs": 3200,
+  "meanDurationMs": 697.9310344827586,
+  "eventDensityPerMinute": 13.33,
+  "numberOfOverlaps": 0,
+  "numberOfDuplicateIds": 0,
+  "envelopeMismatches": 0,
+  "microEventsCount": 0,
+  "silenceIntervalsCount": 30,
+  "maxCheckpointTimingErrorMs": 0,
+  "checkpointErrors": [
+    {
+      "checkpointMs": 26640,
+      "eventId": "f1_final_007",
+      "peakTimeMs": 26640,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 27140,
+      "eventId": "f1_final_008",
+      "peakTimeMs": 27140,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 29900,
+      "eventId": "f1_final_009",
+      "peakTimeMs": 29900,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 30760,
+      "eventId": "f1_final_010",
+      "peakTimeMs": 30760,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 32640,
+      "eventId": "f1_final_011",
+      "peakTimeMs": 32640,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 42860,
+      "eventId": "f1_final_014",
+      "peakTimeMs": 42860,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 44360,
+      "eventId": "f1_final_015",
+      "peakTimeMs": 44360,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 55620,
+      "eventId": "f1_final_016",
+      "peakTimeMs": 55620,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 73880,
+      "eventId": "f1_final_018",
+      "peakTimeMs": 73880,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 80240,
+      "eventId": "f1_final_019",
+      "peakTimeMs": 80240,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 105060,
+      "eventId": "f1_final_021",
+      "peakTimeMs": 105060,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 117520,
+      "eventId": "f1_final_023",
+      "peakTimeMs": 117520,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 123520,
+      "eventId": "f1_final_024",
+      "peakTimeMs": 123520,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 124020,
+      "eventId": "f1_final_025",
+      "peakTimeMs": 124020,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 124520,
+      "eventId": "f1_final_026",
+      "peakTimeMs": 124520,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 125020,
+      "eventId": "f1_final_027",
+      "peakTimeMs": 125020,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 125520,
+      "eventId": "f1_final_028",
+      "peakTimeMs": 125520,
+      "errorMs": 0
+    },
+    {
+      "checkpointMs": 126020,
+      "eventId": "f1_final_029",
+      "peakTimeMs": 126020,
+      "errorMs": 0
+    }
+  ]
+}

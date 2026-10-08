@@ -1,0 +1,960 @@
+{
+  "videoId": "f1_2025_haptic_trailer",
+  "version": "FINAL",
+  "source": "AUDIO_DERIVED",
+  "videoDurationMs": 130540,
+  "analysis": {
+    "onsetFile": "f1_onsets.csv",
+    "rmsFile": "f1_rms.csv",
+    "method": "Onset + RMS perceptual event extraction",
+    "frequencyMeasurementAvailable": false
+  },
+  "events": [
+    {
+      "id": "f1_final_001",
+      "type": "CONTINUOUS",
+      "startTimeMs": 1040,
+      "peakTimeMs": 1060,
+      "durationMs": 860,
+      "intensity": 0.178,
+      "sharpness": 0.35,
+      "semanticType": "CINEMATIC_ACCENT",
+      "attackMs": 140,
+      "sustainMs": 420,
+      "releaseMs": 300,
+      "confidence": 0.92,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Initial orchestral and sub-bass tension swell marking trailer opening",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 1077,
+        "nearestOnsetOffsetMs": 17,
+        "localRmsAtPeak": 0.007872,
+        "envelope": {
+          "attackMs": 140,
+          "sustainMs": 420,
+          "releaseMs": 300,
+          "curveIn": "SMOOTHSTEP",
+          "curveOut": "SMOOTHSTEP"
+        }
+      }
+    },
+    {
+      "id": "f1_final_002",
+      "type": "CONTINUOUS",
+      "startTimeMs": 6040,
+      "peakTimeMs": 6680,
+      "durationMs": 1040,
+      "intensity": 0.315,
+      "sharpness": 0.28,
+      "semanticType": "LOW_FREQUENCY_DRONE",
+      "attackMs": 240,
+      "sustainMs": 560,
+      "releaseMs": 240,
+      "confidence": 0.9,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Low-frequency pit garage idle rumble and mechanic equipment presence",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 6667,
+        "nearestOnsetOffsetMs": -13,
+        "localRmsAtPeak": 0.024302,
+        "envelope": {
+          "attackMs": 240,
+          "sustainMs": 560,
+          "releaseMs": 240,
+          "curveIn": "SMOOTHSTEP",
+          "curveOut": "SMOOTHSTEP"
+        }
+      }
+    },
+    {
+      "id": "f1_final_003",
+      "type": "CONTINUOUS",
+      "startTimeMs": 7660,
+      "peakTimeMs": 8020,
+      "durationMs": 1940,
+      "intensity": 0.396,
+      "sharpness": 0.45,
+      "semanticType": "ENGINE_RUMBLE",
+      "attackMs": 360,
+      "sustainMs": 980,
+      "releaseMs": 600,
+      "confidence": 0.94,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "APXGP hybrid V6 starter motor cough, initial combustion rev, and throttle blip",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 8000,
+        "nearestOnsetOffsetMs": -20,
+        "localRmsAtPeak": 0.008982,
+        "envelope": {
+          "attackMs": 360,
+          "sustainMs": 980,
+          "releaseMs": 600,
+          "curveIn": "SMOOTHSTEP",
+          "curveOut": "SMOOTHSTEP"
+        }
+      }
+    },
+    {
+      "id": "f1_final_004",
+      "type": "TRANSIENT",
+      "startTimeMs": 10960,
+      "peakTimeMs": 11100,
+      "durationMs": 280,
+      "intensity": 0.212,
+      "sharpness": 0.7,
+      "semanticType": "GEAR_SHIFT",
+      "attackMs": 30,
+      "sustainMs": 110,
+      "releaseMs": 140,
+      "confidence": 0.91,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "First gear engagement mechanical transient before pit exit blend line",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 11083,
+        "nearestOnsetOffsetMs": -17,
+        "localRmsAtPeak": 0.006601,
+        "envelope": {
+          "attackMs": 30,
+          "sustainMs": 110,
+          "releaseMs": 140,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        }
+      }
+    },
+    {
+      "id": "f1_final_005",
+      "type": "CONTINUOUS",
+      "startTimeMs": 12200,
+      "peakTimeMs": 13060,
+      "durationMs": 3000,
+      "intensity": 0.286,
+      "sharpness": 0.4,
+      "semanticType": "ACCELERATION_RISE",
+      "attackMs": 860,
+      "sustainMs": 1280,
+      "releaseMs": 860,
+      "confidence": 0.95,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Pit lane exit acceleration surge climbing to circuit blending speed",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 13835,
+        "nearestOnsetOffsetMs": 775,
+        "localRmsAtPeak": 0.058471,
+        "envelope": {
+          "attackMs": 860,
+          "sustainMs": 1280,
+          "releaseMs": 860,
+          "curveIn": "EASE_IN",
+          "curveOut": "EASE_OUT"
+        }
+      }
+    },
+    {
+      "id": "f1_final_006",
+      "type": "CONTINUOUS",
+      "startTimeMs": 18200,
+      "peakTimeMs": 20860,
+      "durationMs": 3200,
+      "intensity": 0.33,
+      "sharpness": 0.48,
+      "semanticType": "ENGINE_RUMBLE",
+      "attackMs": 960,
+      "sustainMs": 1440,
+      "releaseMs": 800,
+      "confidence": 0.93,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Mid-track turbocharger spool and acoustic power surge approaching braking sector",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 18229,
+        "nearestOnsetOffsetMs": -2631,
+        "localRmsAtPeak": 0.06714,
+        "envelope": {
+          "attackMs": 960,
+          "sustainMs": 1440,
+          "releaseMs": 800,
+          "curveIn": "SMOOTHSTEP",
+          "curveOut": "SMOOTHSTEP"
+        }
+      }
+    },
+    {
+      "id": "f1_final_007",
+      "type": "TRANSIENT",
+      "startTimeMs": 26540,
+      "peakTimeMs": 26640,
+      "durationMs": 260,
+      "intensity": 0.447,
+      "sharpness": 0.8,
+      "semanticType": "GEAR_SHIFT",
+      "attackMs": 20,
+      "sustainMs": 80,
+      "releaseMs": 160,
+      "confidence": 0.96,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Aggressive paddle upshift transient into high-speed acceleration sector",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 26613,
+        "nearestOnsetOffsetMs": -27,
+        "localRmsAtPeak": 0.049174,
+        "envelope": {
+          "attackMs": 20,
+          "sustainMs": 80,
+          "releaseMs": 160,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 26640
+      }
+    },
+    {
+      "id": "f1_final_008",
+      "type": "CONTINUOUS",
+      "startTimeMs": 27040,
+      "peakTimeMs": 27140,
+      "durationMs": 560,
+      "intensity": 0.469,
+      "sharpness": 0.52,
+      "semanticType": "ACCELERATION_RISE",
+      "attackMs": 100,
+      "sustainMs": 260,
+      "releaseMs": 200,
+      "confidence": 0.95,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Engine torque surge following upshift under heavy circuit acceleration",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 27115,
+        "nearestOnsetOffsetMs": -25,
+        "localRmsAtPeak": 0.050286,
+        "envelope": {
+          "attackMs": 100,
+          "sustainMs": 260,
+          "releaseMs": 200,
+          "curveIn": "EASE_IN",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 27140
+      }
+    },
+    {
+      "id": "f1_final_009",
+      "type": "CONTINUOUS",
+      "startTimeMs": 29600,
+      "peakTimeMs": 29900,
+      "durationMs": 700,
+      "intensity": 0.442,
+      "sharpness": 0.55,
+      "semanticType": "ENGINE_RUMBLE",
+      "attackMs": 200,
+      "sustainMs": 300,
+      "releaseMs": 200,
+      "confidence": 0.95,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "High RPM engine spool building velocity toward slipstream overtake",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 29749,
+        "nearestOnsetOffsetMs": -151,
+        "localRmsAtPeak": 0.097714,
+        "envelope": {
+          "attackMs": 200,
+          "sustainMs": 300,
+          "releaseMs": 200,
+          "curveIn": "SMOOTHSTEP",
+          "curveOut": "SMOOTHSTEP"
+        },
+        "verifiedLandmarkMs": 29900
+      }
+    },
+    {
+      "id": "f1_final_010",
+      "type": "CONTINUOUS",
+      "startTimeMs": 30640,
+      "peakTimeMs": 30760,
+      "durationMs": 660,
+      "intensity": 0.5,
+      "sharpness": 0.58,
+      "semanticType": "ACCELERATION_RISE",
+      "attackMs": 120,
+      "sustainMs": 320,
+      "releaseMs": 220,
+      "confidence": 0.96,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Slipstream overtake aerodynamic shockwave and full power burst",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 30741,
+        "nearestOnsetOffsetMs": -19,
+        "localRmsAtPeak": 0.105134,
+        "envelope": {
+          "attackMs": 120,
+          "sustainMs": 320,
+          "releaseMs": 220,
+          "curveIn": "EASE_IN",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 30760
+      }
+    },
+    {
+      "id": "f1_final_011",
+      "type": "TRANSIENT",
+      "startTimeMs": 32440,
+      "peakTimeMs": 32640,
+      "durationMs": 280,
+      "intensity": 0.479,
+      "sharpness": 0.82,
+      "semanticType": "GEAR_SHIFT",
+      "attackMs": 20,
+      "sustainMs": 100,
+      "releaseMs": 160,
+      "confidence": 0.96,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Rapid double upshift transient kick under maximum straightline acceleration load",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 32619,
+        "nearestOnsetOffsetMs": -21,
+        "localRmsAtPeak": 0.047287,
+        "envelope": {
+          "attackMs": 20,
+          "sustainMs": 100,
+          "releaseMs": 160,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 32640
+      }
+    },
+    {
+      "id": "f1_final_012",
+      "type": "CONTINUOUS",
+      "startTimeMs": 39000,
+      "peakTimeMs": 39060,
+      "durationMs": 400,
+      "intensity": 0.222,
+      "sharpness": 0.45,
+      "semanticType": "TRANSITION",
+      "attackMs": 60,
+      "sustainMs": 180,
+      "releaseMs": 160,
+      "confidence": 0.88,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Pit wall comms radio click and cinematic scene transition",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 39040,
+        "nearestOnsetOffsetMs": -20,
+        "localRmsAtPeak": 0.005581,
+        "envelope": {
+          "attackMs": 60,
+          "sustainMs": 180,
+          "releaseMs": 160,
+          "curveIn": "SMOOTHSTEP",
+          "curveOut": "SMOOTHSTEP"
+        }
+      }
+    },
+    {
+      "id": "f1_final_013",
+      "type": "TRANSIENT",
+      "startTimeMs": 41240,
+      "peakTimeMs": 41400,
+      "durationMs": 320,
+      "intensity": 0.27,
+      "sharpness": 0.65,
+      "semanticType": "LIGHT_IMPACT",
+      "attackMs": 25,
+      "sustainMs": 95,
+      "releaseMs": 200,
+      "confidence": 0.9,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Downshift throttle blip and chassis mechanical settling into turn approach",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 41387,
+        "nearestOnsetOffsetMs": -13,
+        "localRmsAtPeak": 0.017576,
+        "envelope": {
+          "attackMs": 25,
+          "sustainMs": 95,
+          "releaseMs": 200,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        }
+      }
+    },
+    {
+      "id": "f1_final_014",
+      "type": "TRANSIENT",
+      "startTimeMs": 42760,
+      "peakTimeMs": 42860,
+      "durationMs": 260,
+      "intensity": 0.438,
+      "sharpness": 0.78,
+      "semanticType": "CURB_RUMBLE",
+      "attackMs": 25,
+      "sustainMs": 95,
+      "releaseMs": 140,
+      "confidence": 0.95,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Apex curb strike sending sharp high-frequency tactile vibrations through suspension",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 42837,
+        "nearestOnsetOffsetMs": -23,
+        "localRmsAtPeak": 0.066306,
+        "envelope": {
+          "attackMs": 25,
+          "sustainMs": 95,
+          "releaseMs": 140,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 42860
+      }
+    },
+    {
+      "id": "f1_final_015",
+      "type": "TRANSIENT",
+      "startTimeMs": 44260,
+      "peakTimeMs": 44360,
+      "durationMs": 260,
+      "intensity": 0.43,
+      "sharpness": 0.76,
+      "semanticType": "CURB_RUMBLE",
+      "attackMs": 25,
+      "sustainMs": 95,
+      "releaseMs": 140,
+      "confidence": 0.95,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Exit curb strike and wheel hop transient as car straightens for traction",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 44341,
+        "nearestOnsetOffsetMs": -19,
+        "localRmsAtPeak": 0.061254,
+        "envelope": {
+          "attackMs": 25,
+          "sustainMs": 95,
+          "releaseMs": 140,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 44360
+      }
+    },
+    {
+      "id": "f1_final_016",
+      "type": "CONTINUOUS",
+      "startTimeMs": 55200,
+      "peakTimeMs": 55620,
+      "durationMs": 1200,
+      "intensity": 0.528,
+      "sharpness": 0.6,
+      "semanticType": "CONTINUOUS_RUMBLE",
+      "attackMs": 360,
+      "sustainMs": 540,
+      "releaseMs": 300,
+      "confidence": 0.96,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Sustained lateral G-force grip vibration and high-rev engine scream through sweeping turn",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 55605,
+        "nearestOnsetOffsetMs": -15,
+        "localRmsAtPeak": 0.030777,
+        "envelope": {
+          "attackMs": 360,
+          "sustainMs": 540,
+          "releaseMs": 300,
+          "curveIn": "SMOOTHSTEP",
+          "curveOut": "SMOOTHSTEP"
+        },
+        "verifiedLandmarkMs": 55620
+      }
+    },
+    {
+      "id": "f1_final_017",
+      "type": "CONTINUOUS",
+      "startTimeMs": 61640,
+      "peakTimeMs": 61880,
+      "durationMs": 520,
+      "intensity": 0.37,
+      "sharpness": 0.5,
+      "semanticType": "FAST_MOTION",
+      "attackMs": 140,
+      "sustainMs": 240,
+      "releaseMs": 140,
+      "confidence": 0.92,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Trackside camera high-speed aerodynamic flyby whoosh",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 61856,
+        "nearestOnsetOffsetMs": -24,
+        "localRmsAtPeak": 0.016272,
+        "envelope": {
+          "attackMs": 140,
+          "sustainMs": 240,
+          "releaseMs": 140,
+          "curveIn": "SMOOTHSTEP",
+          "curveOut": "SMOOTHSTEP"
+        }
+      }
+    },
+    {
+      "id": "f1_final_018",
+      "type": "TRANSIENT",
+      "startTimeMs": 73760,
+      "peakTimeMs": 73880,
+      "durationMs": 280,
+      "intensity": 0.46,
+      "sharpness": 0.8,
+      "semanticType": "GEAR_SHIFT",
+      "attackMs": 20,
+      "sustainMs": 100,
+      "releaseMs": 160,
+      "confidence": 0.95,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Sharp curb hop and simultaneous gear shift in wheel-to-wheel race combat",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 73856,
+        "nearestOnsetOffsetMs": -24,
+        "localRmsAtPeak": 0.021446,
+        "envelope": {
+          "attackMs": 20,
+          "sustainMs": 100,
+          "releaseMs": 160,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 73880
+      }
+    },
+    {
+      "id": "f1_final_019",
+      "type": "CONTINUOUS",
+      "startTimeMs": 80120,
+      "peakTimeMs": 80240,
+      "durationMs": 280,
+      "intensity": 0.453,
+      "sharpness": 0.55,
+      "semanticType": "ENGINE_RUMBLE",
+      "attackMs": 60,
+      "sustainMs": 120,
+      "releaseMs": 100,
+      "confidence": 0.94,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "On-board camera close pass with engine Doppler frequency surge",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 80224,
+        "nearestOnsetOffsetMs": -16,
+        "localRmsAtPeak": 0.036703,
+        "envelope": {
+          "attackMs": 60,
+          "sustainMs": 120,
+          "releaseMs": 100,
+          "curveIn": "SMOOTHSTEP",
+          "curveOut": "SMOOTHSTEP"
+        },
+        "verifiedLandmarkMs": 80240
+      }
+    },
+    {
+      "id": "f1_final_020",
+      "type": "CONTINUOUS",
+      "startTimeMs": 102100,
+      "peakTimeMs": 102440,
+      "durationMs": 500,
+      "intensity": 0.364,
+      "sharpness": 0.65,
+      "semanticType": "TENSION_BUILD",
+      "attackMs": 300,
+      "sustainMs": 120,
+      "releaseMs": 80,
+      "confidence": 0.94,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Pre-crash rising audio scream and tire lockup screech right before impact",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 102421,
+        "nearestOnsetOffsetMs": -19,
+        "localRmsAtPeak": 0.011877,
+        "envelope": {
+          "attackMs": 300,
+          "sustainMs": 120,
+          "releaseMs": 80,
+          "curveIn": "SMOOTHSTEP",
+          "curveOut": "EASE_OUT"
+        }
+      }
+    },
+    {
+      "id": "f1_final_021",
+      "type": "TRANSIENT",
+      "startTimeMs": 105020,
+      "peakTimeMs": 105060,
+      "durationMs": 180,
+      "intensity": 0.744,
+      "sharpness": 0.9,
+      "semanticType": "COLLISION",
+      "attackMs": 20,
+      "sustainMs": 70,
+      "releaseMs": 90,
+      "confidence": 0.98,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "MAJOR CRASH IMPACT: violent high-G primary vehicle collision with barrier",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 105035,
+        "nearestOnsetOffsetMs": -25,
+        "localRmsAtPeak": 0.035863,
+        "envelope": {
+          "attackMs": 20,
+          "sustainMs": 70,
+          "releaseMs": 90,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 105060
+      }
+    },
+    {
+      "id": "f1_final_022",
+      "type": "CONTINUOUS",
+      "startTimeMs": 105240,
+      "peakTimeMs": 105300,
+      "durationMs": 1560,
+      "intensity": 0.271,
+      "sharpness": 0.38,
+      "semanticType": "CRASH_AFTERSHOCK",
+      "attackMs": 60,
+      "sustainMs": 500,
+      "releaseMs": 1000,
+      "confidence": 0.93,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Crash aftermath: tumbling chassis, gravel trap deceleration, and secondary debris dissipation",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 105035,
+        "nearestOnsetOffsetMs": -265,
+        "localRmsAtPeak": 0.055203,
+        "envelope": {
+          "attackMs": 60,
+          "sustainMs": 500,
+          "releaseMs": 1000,
+          "curveIn": "EASE_OUT",
+          "curveOut": "EASE_OUT"
+        }
+      }
+    },
+    {
+      "id": "f1_final_023",
+      "type": "TRANSIENT",
+      "startTimeMs": 117420,
+      "peakTimeMs": 117520,
+      "durationMs": 260,
+      "intensity": 0.452,
+      "sharpness": 0.72,
+      "semanticType": "CINEMATIC_ACCENT",
+      "attackMs": 20,
+      "sustainMs": 80,
+      "releaseMs": 160,
+      "confidence": 0.95,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Cinematic heavy sub-bass drop and dramatic audio cut to black",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 117493,
+        "nearestOnsetOffsetMs": -27,
+        "localRmsAtPeak": 0.087785,
+        "envelope": {
+          "attackMs": 20,
+          "sustainMs": 80,
+          "releaseMs": 160,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 117520
+      }
+    },
+    {
+      "id": "f1_final_024",
+      "type": "TRANSIENT",
+      "startTimeMs": 123440,
+      "peakTimeMs": 123520,
+      "durationMs": 240,
+      "intensity": 0.435,
+      "sharpness": 0.75,
+      "semanticType": "HEAVY_IMPACT",
+      "attackMs": 20,
+      "sustainMs": 80,
+      "releaseMs": 140,
+      "confidence": 0.96,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Climax rhythm sequence Beat 1: trailer percussion impact",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 123627,
+        "nearestOnsetOffsetMs": 107,
+        "localRmsAtPeak": 0.051477,
+        "envelope": {
+          "attackMs": 20,
+          "sustainMs": 80,
+          "releaseMs": 140,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 123520
+      }
+    },
+    {
+      "id": "f1_final_025",
+      "type": "TRANSIENT",
+      "startTimeMs": 123940,
+      "peakTimeMs": 124020,
+      "durationMs": 220,
+      "intensity": 0.529,
+      "sharpness": 0.78,
+      "semanticType": "HEAVY_IMPACT",
+      "attackMs": 20,
+      "sustainMs": 70,
+      "releaseMs": 130,
+      "confidence": 0.96,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Climax rhythm sequence Beat 2: trailer percussion impact (+500ms)",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 124000,
+        "nearestOnsetOffsetMs": -20,
+        "localRmsAtPeak": 0.054557,
+        "envelope": {
+          "attackMs": 20,
+          "sustainMs": 70,
+          "releaseMs": 130,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 124020
+      }
+    },
+    {
+      "id": "f1_final_026",
+      "type": "TRANSIENT",
+      "startTimeMs": 124440,
+      "peakTimeMs": 124520,
+      "durationMs": 220,
+      "intensity": 0.567,
+      "sharpness": 0.8,
+      "semanticType": "HEAVY_IMPACT",
+      "attackMs": 20,
+      "sustainMs": 70,
+      "releaseMs": 130,
+      "confidence": 0.97,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Climax rhythm sequence Beat 3: trailer percussion impact (+1000ms)",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 124501,
+        "nearestOnsetOffsetMs": -19,
+        "localRmsAtPeak": 0.049372,
+        "envelope": {
+          "attackMs": 20,
+          "sustainMs": 70,
+          "releaseMs": 130,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 124520
+      }
+    },
+    {
+      "id": "f1_final_027",
+      "type": "TRANSIENT",
+      "startTimeMs": 124940,
+      "peakTimeMs": 125020,
+      "durationMs": 220,
+      "intensity": 0.592,
+      "sharpness": 0.82,
+      "semanticType": "HEAVY_IMPACT",
+      "attackMs": 20,
+      "sustainMs": 70,
+      "releaseMs": 130,
+      "confidence": 0.97,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Climax rhythm sequence Beat 4: trailer percussion impact (+1500ms)",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 125003,
+        "nearestOnsetOffsetMs": -17,
+        "localRmsAtPeak": 0.048145,
+        "envelope": {
+          "attackMs": 20,
+          "sustainMs": 70,
+          "releaseMs": 130,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 125020
+      }
+    },
+    {
+      "id": "f1_final_028",
+      "type": "TRANSIENT",
+      "startTimeMs": 125440,
+      "peakTimeMs": 125520,
+      "durationMs": 240,
+      "intensity": 0.641,
+      "sharpness": 0.85,
+      "semanticType": "HEAVY_IMPACT",
+      "attackMs": 20,
+      "sustainMs": 80,
+      "releaseMs": 140,
+      "confidence": 0.98,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Climax rhythm sequence Beat 5: trailer percussion impact (+2000ms)",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 125504,
+        "nearestOnsetOffsetMs": -16,
+        "localRmsAtPeak": 0.070727,
+        "envelope": {
+          "attackMs": 20,
+          "sustainMs": 80,
+          "releaseMs": 140,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 125520
+      }
+    },
+    {
+      "id": "f1_final_029",
+      "type": "TRANSIENT",
+      "startTimeMs": 125920,
+      "peakTimeMs": 126020,
+      "durationMs": 300,
+      "intensity": 0.646,
+      "sharpness": 0.88,
+      "semanticType": "HEAVY_IMPACT",
+      "attackMs": 25,
+      "sustainMs": 100,
+      "releaseMs": 175,
+      "confidence": 0.98,
+      "sourceModalities": [
+        "audio_onset",
+        "audio_rms"
+      ],
+      "parameters": {
+        "description": "Climax final title card percussion hit and main sting (+2500ms)",
+        "provenance": "Derived from f1_onsets.csv + f1_rms.csv; perceptual envelope authoring",
+        "nearestOnsetMs": 125995,
+        "nearestOnsetOffsetMs": -25,
+        "localRmsAtPeak": 0.052623,
+        "envelope": {
+          "attackMs": 25,
+          "sustainMs": 100,
+          "releaseMs": 175,
+          "curveIn": "LINEAR",
+          "curveOut": "EASE_OUT"
+        },
+        "verifiedLandmarkMs": 126020
+      }
+    }
+  ]
+}

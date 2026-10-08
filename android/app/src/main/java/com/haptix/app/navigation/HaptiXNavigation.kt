@@ -41,6 +41,8 @@ object HaptiXDestinations {
     const val PARTICIPANT_SETUP = "participant_setup"
     const val VIDEO_LIBRARY = "video_library"
     const val VIDEO_PLAYER = "video_player/{videoId}"
+    const val YOUTUBE_INGESTION = "youtube_ingestion"
+    const val CALIBRATION = "calibration"
     const val FEEDBACK = "feedback/{videoId}"
     const val COMPLETION = "completion"
 
@@ -56,7 +58,8 @@ object HaptiXDestinations {
 @Composable
 fun HaptiXNavigation(
     navController: NavHostController = rememberNavController(),
-    sessionViewModel: StudySessionViewModel = viewModel()
+    sessionViewModel: StudySessionViewModel = viewModel(),
+    startDestination: String = HaptiXDestinations.WELCOME
 ) {
     val context = LocalContext.current
     val isHardwareSupported = remember {
@@ -88,24 +91,34 @@ fun HaptiXNavigation(
 
         NavHost(
             navController = navController,
-            startDestination = HaptiXDestinations.WELCOME,
+            startDestination = startDestination,
             enterTransition = {
-                fadeIn(animationSpec = tween(220)) + slideIntoContainer(
+                fadeIn(animationSpec = tween(200)) + slideIntoContainer(
                     AnimatedContentTransitionScope.SlideDirection.Start,
-                    animationSpec = tween(220)
+                    animationSpec = tween(220),
+                    initialOffset = { it / 6 }
                 )
             },
             exitTransition = {
-                fadeOut(animationSpec = tween(200))
+                fadeOut(animationSpec = tween(180)) + slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Start,
+                    animationSpec = tween(200),
+                    targetOffset = { -it / 8 }
+                )
             },
             popEnterTransition = {
-                fadeIn(animationSpec = tween(220)) + slideIntoContainer(
+                fadeIn(animationSpec = tween(200)) + slideIntoContainer(
                     AnimatedContentTransitionScope.SlideDirection.End,
-                    animationSpec = tween(220)
+                    animationSpec = tween(220),
+                    initialOffset = { -it / 6 }
                 )
             },
             popExitTransition = {
-                fadeOut(animationSpec = tween(200))
+                fadeOut(animationSpec = tween(180)) + slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.End,
+                    animationSpec = tween(200),
+                    targetOffset = { it / 8 }
+                )
             },
             modifier = Modifier.weight(1f)
         ) {
@@ -130,8 +143,42 @@ fun HaptiXNavigation(
 
             // Flow 3: Stimuli Library Selection
             composable(HaptiXDestinations.VIDEO_LIBRARY) {
+                val sessionState by sessionViewModel.sessionState.collectAsState()
                 VideoListScreen(
+                    evaluatedVideoIds = sessionState.evaluatedVideoIds,
                     onVideoSelected = { videoId ->
+                        sessionViewModel.selectVideo(videoId)
+                        navController.navigate(HaptiXDestinations.videoPlayerRoute(videoId))
+                    },
+                    onNavigateToYouTube = {
+                        navController.navigate(HaptiXDestinations.YOUTUBE_INGESTION)
+                    },
+                    onNavigateToCalibration = {
+                        navController.navigate(HaptiXDestinations.CALIBRATION)
+                    }
+                )
+            }
+
+            // Flow 3B: YouTube Ingestion & Multimodal Synthesis
+            composable(HaptiXDestinations.YOUTUBE_INGESTION) {
+                com.haptix.app.ui.screens.youtube.YouTubeIngestionScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    },
+                    onLaunchPlayer = { videoId ->
+                        sessionViewModel.selectVideo(videoId)
+                        navController.navigate(HaptiXDestinations.videoPlayerRoute(videoId))
+                    }
+                )
+            }
+
+            // Flow 3C: Research Device Calibration & Physical Test Mode
+            composable(HaptiXDestinations.CALIBRATION) {
+                com.haptix.app.ui.screens.calibration.CalibrationScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    },
+                    onPlayTimeline = { videoId ->
                         sessionViewModel.selectVideo(videoId)
                         navController.navigate(HaptiXDestinations.videoPlayerRoute(videoId))
                     }
@@ -151,7 +198,8 @@ fun HaptiXNavigation(
                     onHapticsToggled = { enabled ->
                         sessionViewModel.setHapticsEnabled(enabled)
                     },
-                    onPlaybackFinished = { id ->
+                    onPlaybackFinishedWithMetrics = { id, metrics ->
+                        sessionViewModel.recordPerformanceMetrics(metrics)
                         navController.navigate(HaptiXDestinations.feedbackRoute(id))
                     }
                 )

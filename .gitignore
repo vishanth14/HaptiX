@@ -7,3 +7,17 @@ local.properties
 .cxx/
 *.apk
 *.aab
+processing/jobs/
+archive/processing/jobs/
+**/__pycache__/
+*.pyc
+**/.kotlin/
+*.log
+*.tmp
+*.hprof
+.DS_Store
+Thumbs.db
+.agents/
+skills-lock.json
+archive/
+.vscode/

@@ -31,6 +31,13 @@ interface HapticEngine {
     fun stop()
 
     /**
+     * Immediately pauses/cancels active vibration and playback with an explicit diagnostic reason.
+     */
+    fun stop(reason: String) {
+        stop()
+    }
+
+    /**
      * Releases system vibration resources and clears loaded patterns.
      */
     fun release()

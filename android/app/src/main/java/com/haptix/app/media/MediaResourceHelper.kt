@@ -47,7 +47,8 @@ object MediaResourceHelper {
      * Constructs a Media3 [MediaItem] with attached metadata for playback.
      */
     fun buildMediaItem(context: Context, videoItem: VideoItem): MediaItem? {
-        val uri = resolveVideoUri(context, videoItem.videoResUri) ?: return null
+        val targetUri = videoItem.resolvedVideoUri
+        val uri = resolveVideoUri(context, targetUri) ?: return null
 
         return MediaItem.Builder()
             .setMediaId(videoItem.id)

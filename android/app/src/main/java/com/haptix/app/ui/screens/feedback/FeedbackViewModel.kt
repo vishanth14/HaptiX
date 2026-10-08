@@ -79,7 +79,9 @@ class FeedbackViewModel : ViewModel() {
     val uiState: StateFlow<FeedbackUiState> = _uiState.asStateFlow()
 
     fun setVideoId(videoId: String) {
-        _uiState.value = _uiState.value.copy(videoId = videoId)
+        if (_uiState.value.videoId != videoId) {
+            _uiState.value = FeedbackUiState(videoId = videoId)
+        }
     }
 
     fun updateRating(index: Int, rating: Int) {
@@ -105,6 +107,15 @@ class FeedbackViewModel : ViewModel() {
         }
     }
 
+    fun areAllQuestionsAnswered(): Boolean {
+        val state = _uiState.value
+        return state.rating1 in 1..5 &&
+                state.rating2 in 1..5 &&
+                state.rating3 in 1..5 &&
+                state.rating4 in 1..5 &&
+                state.rating5 in 1..5
+    }
+
     fun updateComments(comments: String) {
         _uiState.value = _uiState.value.copy(comments = comments)
     }
@@ -125,9 +136,15 @@ class FeedbackViewModel : ViewModel() {
         hapticEnabled: Boolean,
         onSubmitted: (List<FeedbackResponse>) -> Unit = {}
     ) {
-        val videoId = _uiState.value.videoId
+        val state = _uiState.value
+        if (state.isSubmitted || state.isSubmitting) return
+        val videoId = state.videoId
+        if (videoId.isBlank()) return
+        if (!areAllQuestionsAnswered()) return
+
+        _uiState.value = state.copy(isSubmitting = true)
         val responses = buildResponses(participantId, videoId)
-        _uiState.value = _uiState.value.copy(isSubmitted = true)
+        _uiState.value = state.copy(isSubmitted = true, isSubmitting = false)
         onSubmitted(responses)
     }
 }

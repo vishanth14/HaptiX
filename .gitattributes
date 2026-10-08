@@ -1,0 +1,2 @@
+android/app/src/main/res/raw/*.mp4 filter=lfs diff=lfs merge=lfs -text
+android/app/src/main/res/raw/*.wav filter=lfs diff=lfs merge=lfs -text

@@ -200,5 +200,151 @@ class FrequencyPatternParserTest {
         val hapticEvent = pattern.points[0].toHapticEvent()
         assertEquals("perception-literature motivated", hapticEvent.parameters["provenance"])
     }
+
+    @Test
+    fun parseV2HapticRepresentation_parsesEnvelopeAndTextureObjects() {
+        val v2Json = """
+            {
+              "videoId": "f1_2025_v2",
+              "events": [
+                {
+                  "id": "f1_v2_002",
+                  "startTimeMs": 7100,
+                  "durationMs": 4100,
+                  "semanticType": "ACCELERATION_RISE",
+                  "priority": "HIGH",
+                  "confidence": 0.94,
+                  "intensity": 0.88,
+                  "sharpness": 0.55,
+                  "frequencyHz": 180.0,
+                  "texture": {
+                    "type": "ACCELERATION_RISE",
+                    "modulationDepth": 0.18,
+                    "modulationRateHz": 6.0,
+                    "isContinuous": true
+                  },
+                  "envelope": {
+                    "attackMs": 600,
+                    "sustainMs": 2700,
+                    "releaseMs": 800,
+                    "curveIn": "EASE_IN",
+                    "curveOut": "EASE_OUT",
+                    "totalMs": 4100
+                  }
+                }
+              ]
+            }
+        """.trimIndent()
+
+        val result = FrequencyPatternParser.parseToHapticPattern(v2Json)
+        assertTrue("V2 JSON should parse successfully: ${result.exceptionOrNull()?.message}", result.isSuccess)
+
+        val pattern = result.getOrThrow()
+        assertEquals(1, pattern.eventCount)
+        val event = pattern.events[0]
+        assertEquals(7100L, event.startTimeMs)
+        assertEquals(4100L, event.durationMs)
+        assertEquals(0.88f, event.intensity, 0.01f)
+
+        val env = event.envelope
+        assertNotNull(env)
+        assertEquals(600L, env?.attackMs)
+        assertEquals(2700L, env?.sustainMs)
+        assertEquals(800L, env?.releaseMs)
+        assertEquals("EASE_IN", env?.curveIn)
+        assertEquals("EASE_OUT", env?.curveOut)
+
+        val tex = event.parameters["texture"] as? Map<*, *>
+        assertNotNull(tex)
+        assertEquals("ACCELERATION_RISE", tex?.get("type"))
+    }
+
+    @Test
+    fun parseV3HapticRepresentation_parsesClassificationAndTransientDurations() {
+        val v3Json = """
+            {
+              "videoId": "f1_2025",
+              "version": "3.0.0",
+              "events": [
+                {
+                  "id": "f1_v3_012",
+                  "startTimeMs": 67200,
+                  "durationMs": 160,
+                  "semanticType": "GEAR_SHIFT",
+                  "classification": "TRANSIENT",
+                  "layerRole": "ACCENT",
+                  "priority": "HIGH",
+                  "confidence": 0.94,
+                  "intensity": 0.80,
+                  "sharpness": 0.84,
+                  "frequencyHz": 210.0,
+                  "attackMs": 25,
+                  "sustainMs": 55,
+                  "releaseMs": 80,
+                  "curveIn": "LINEAR",
+                  "curveOut": "EASE_OUT",
+                  "envelope": {
+                    "attackMs": 25,
+                    "sustainMs": 55,
+                    "releaseMs": 80,
+                    "curveIn": "LINEAR",
+                    "curveOut": "EASE_OUT",
+                    "totalMs": 160
+                  },
+                  "texture": {
+                    "type": "GEAR_SHIFT",
+                    "classification": "TRANSIENT",
+                    "isContinuous": false
+                  }
+                },
+                {
+                  "id": "f1_v3_020",
+                  "startTimeMs": 99360,
+                  "durationMs": 1800,
+                  "semanticType": "CRASH_AFTERSHOCK",
+                  "classification": "AFTERMATH",
+                  "layerRole": "AFTERMATH",
+                  "priority": "MEDIUM",
+                  "confidence": 0.90,
+                  "intensity": 0.58,
+                  "sharpness": 0.34,
+                  "frequencyHz": 85.0,
+                  "envelope": {
+                    "attackMs": 216,
+                    "sustainMs": 504,
+                    "releaseMs": 1080,
+                    "curveIn": "EASE_IN",
+                    "curveOut": "SMOOTHSTEP",
+                    "totalMs": 1800
+                  }
+                }
+              ]
+            }
+        """.trimIndent()
+
+        val result = FrequencyPatternParser.parseToHapticPattern(v3Json)
+        assertTrue(result.isSuccess)
+
+        val pattern = result.getOrThrow()
+        assertEquals(2, pattern.eventCount)
+
+        // Transient gear shift
+        val shift = pattern.events[0]
+        assertEquals("f1_v3_012", shift.id)
+        assertEquals(160L, shift.durationMs)
+        assertEquals("TRANSIENT", shift.parameters["classification"])
+        assertEquals("ACCENT", shift.parameters["layerRole"])
+        assertEquals(25L, shift.envelope.attackMs)
+        assertEquals(55L, shift.envelope.sustainMs)
+        assertEquals(80L, shift.envelope.releaseMs)
+
+        // Aftermath rumble
+        val crashAftermath = pattern.events[1]
+        assertEquals("f1_v3_020", crashAftermath.id)
+        assertEquals(1800L, crashAftermath.durationMs)
+        assertEquals("AFTERMATH", crashAftermath.parameters["classification"])
+        assertEquals(0.58f, crashAftermath.intensity, 0.01f)
+        assertEquals("SMOOTHSTEP", crashAftermath.envelope.curveOut)
+    }
 }
 

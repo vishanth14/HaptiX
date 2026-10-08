@@ -1,0 +1,5349 @@
+{
+ "videoId": "f1_2025_haptic_trailer",
+ "version": "1.0.0-audio-derived",
+ "source": "AUDIO_DERIVED",
+ "videoDurationMs": 130549,
+ "analysis": {
+  "inputs": {
+   "onsets": {
+    "file": "f1_onsets.csv",
+    "rows": 350,
+    "columns": [
+     "onsetTimeSec"
+    ],
+    "headerRow": false,
+    "strengthColumn": false,
+    "firstSec": 1.013,
+    "lastSec": 129.333,
+    "sorted": true,
+    "duplicates": 0,
+    "gapMsPercentiles": {
+     "min": 21,
+     "p5": 43,
+     "p25": 117,
+     "p50": 128,
+     "p75": 256,
+     "p95": 1222,
+     "max": 7637
+    }
+   },
+   "rms": {
+    "file": "f1_rms.csv",
+    "rows": 12240,
+    "columns": [
+     "timeSec",
+     "rms"
+    ],
+    "headerRow": false,
+    "hopMs": 10.667,
+    "firstSec": 0,
+    "lastSec": 130.549,
+    "ordered": true,
+    "rmsMin": 0,
+    "rmsMax": 0.10945,
+    "rmsMedian": 0.0201,
+    "rmsP95": 0.05609,
+    "exactZeroFrames": 203
+   }
+  },
+  "onsetClusteringMs": 60,
+  "detection": {
+   "onsetClusters": 318,
+   "keptByFusion": 146,
+   "droppedWeakOrIncidental": 172,
+   "rmsOnlySpikes": 8,
+   "keepRule": "rise>=0.012 and prominence>=0.005, or rise>=0.030, or isolated(gapPrev>0.4s) with rise>=0.008 and prominence>0",
+   "rmsOnlyRule": "single local RMS max (+-3 frames) with jump>=0.04 over preceding median and no onset within -60/+120 ms"
+  },
+  "intensityMapping": {
+   "reference": 0.10945,
+   "gamma": 0.6,
+   "transient": "0.5*(peakRms/ref)^0.6 + 0.5*(riseRms/ref)^0.6, no floor, no normalisation to 1.0",
+   "continuous": "(p90 of sustained envelope/ref)^0.6"
+  },
+  "frequency": "NOT DERIVABLE from onset/RMS data; frequencyHz is null for every event",
+  "sharpness": "heuristic: sqrt(RMS rise per ms of attack / p95 of all events), clipped 0..1 (transients); envelope roughness*2 (continuous). Not spectral.",
+  "audioQuietRegionsMs": [
+   [
+    0,
+    1024
+   ],
+   [
+    3221,
+    6357
+   ],
+   [
+    7093,
+    7648
+   ],
+   [
+    8576,
+    8939
+   ],
+   [
+    9845,
+    10709
+   ],
+   [
+    11595,
+    11989
+   ],
+   [
+    38656,
+    39029
+   ],
+   [
+    40341,
+    40800
+   ],
+   [
+    60256,
+    60768
+   ],
+   [
+    65045,
+    65312
+   ],
+   [
+    66283,
+    66603
+   ],
+   [
+    73547,
+    73813
+   ],
+   [
+    102720,
+    103691
+   ],
+   [
+    122549,
+    122795
+   ],
+   [
+    128427,
+    130549
+   ]
+  ],
+  "validationSummary": {
+   "checks": {
+    "unique_ids": true,
+    "sorted_strict": true,
+    "no_overlap": true,
+    "dur_positive": true,
+    "peak_ok": true,
+    "asr_sum": true,
+    "asr_nonneg": true,
+    "intensity_range": true,
+    "no_dup_start": true,
+    "within_audio": true,
+    "json_roundtrip": true
+   },
+   "stats": {
+    "total": 141,
+    "transient": 123,
+    "continuous": 18,
+    "activeMs": 40233,
+    "silenceMs": 90316,
+    "activePct": 30.8,
+    "minDur": 31,
+    "maxDur": 3552,
+    "avgDur": 285.3,
+    "tMin": 31,
+    "tMax": 450,
+    "tAvg": 161.1,
+    "cMin": 544,
+    "cMax": 3552,
+    "cAvg": 1134.3,
+    "iMin": 0.243,
+    "iMax": 0.854,
+    "iTmean": 0.532,
+    "rmsOnly": 8,
+    "sem": {
+     "LIGHT_IMPACT": 100,
+     "ACCELERATION_RISE": 2,
+     "CONTINUOUS_RUMBLE": 16,
+     "HEAVY_IMPACT": 22,
+     "COLLISION": 1
+    },
+    "minGapBetweenEventsMs": 0,
+    "maxSilentGapMs": 16523,
+    "below30ms": 0
+   }
+  },
+  "landmarkCheck": [
+   {
+    "landmarkSec": 26.64,
+    "nearestOnsetOffsetMs": -27,
+    "nearestEventId": "f1_017",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 26613,
+    "evPeak": 26624,
+    "startOffsetMs": -27,
+    "peakOffsetMs": -16,
+    "intensity": 0.48,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 27.14,
+    "nearestOnsetOffsetMs": -25,
+    "nearestEventId": "f1_020",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 27115,
+    "evPeak": 27125,
+    "startOffsetMs": -25,
+    "peakOffsetMs": -15,
+    "intensity": 0.473,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 29.9,
+    "nearestOnsetOffsetMs": -151,
+    "nearestEventId": "f1_030",
+    "evType": "HEAVY_IMPACT",
+    "evStart": 29749,
+    "evPeak": 29888,
+    "startOffsetMs": -151,
+    "peakOffsetMs": -12,
+    "intensity": 0.815,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 30.76,
+    "nearestOnsetOffsetMs": -19,
+    "nearestEventId": "f1_032",
+    "evType": "HEAVY_IMPACT",
+    "evStart": 30741,
+    "evPeak": 30763,
+    "startOffsetMs": -19,
+    "peakOffsetMs": 3,
+    "intensity": 0.811,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 32.52,
+    "nearestOnsetOffsetMs": -19,
+    "nearestEventId": "f1_038",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 32619,
+    "evPeak": 32629,
+    "startOffsetMs": 98,
+    "peakOffsetMs": 108,
+    "intensity": 0.457,
+    "verdict": "NEAR",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 32.64,
+    "nearestOnsetOffsetMs": -21,
+    "nearestEventId": "f1_038",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 32619,
+    "evPeak": 32629,
+    "startOffsetMs": -21,
+    "peakOffsetMs": -11,
+    "intensity": 0.457,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 42.86,
+    "nearestOnsetOffsetMs": -23,
+    "nearestEventId": "f1_050",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 42837,
+    "evPeak": 42859,
+    "startOffsetMs": -23,
+    "peakOffsetMs": -1,
+    "intensity": 0.575,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 44.36,
+    "nearestOnsetOffsetMs": -19,
+    "nearestEventId": "f1_053",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 44341,
+    "evPeak": 44384,
+    "startOffsetMs": -19,
+    "peakOffsetMs": 24,
+    "intensity": 0.56,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 55.62,
+    "nearestOnsetOffsetMs": -15,
+    "nearestEventId": "f1_072",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 55349,
+    "evPeak": 55424,
+    "startOffsetMs": -271,
+    "peakOffsetMs": -196,
+    "intensity": 0.533,
+    "verdict": "MISS",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 73.88,
+    "nearestOnsetOffsetMs": -24,
+    "nearestEventId": "f1_094",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 73856,
+    "evPeak": 73867,
+    "startOffsetMs": -24,
+    "peakOffsetMs": -13,
+    "intensity": 0.443,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 80.24,
+    "nearestOnsetOffsetMs": -16,
+    "nearestEventId": "f1_105",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 80224,
+    "evPeak": 80235,
+    "startOffsetMs": -16,
+    "peakOffsetMs": -5,
+    "intensity": 0.487,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 105.06,
+    "nearestOnsetOffsetMs": -25,
+    "nearestEventId": "f1_147",
+    "evType": "COLLISION",
+    "evStart": 105035,
+    "evPeak": 105280,
+    "startOffsetMs": -25,
+    "peakOffsetMs": 220,
+    "intensity": 0.732,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 117.52,
+    "nearestOnsetOffsetMs": -27,
+    "nearestEventId": "f1_157",
+    "evType": "HEAVY_IMPACT",
+    "evStart": 117493,
+    "evPeak": 117525,
+    "startOffsetMs": -27,
+    "peakOffsetMs": 5,
+    "intensity": 0.791,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 123.52,
+    "nearestOnsetOffsetMs": 107,
+    "nearestEventId": "f1_159",
+    "evType": "HEAVY_IMPACT",
+    "evStart": 123488,
+    "evPeak": 123499,
+    "startOffsetMs": -32,
+    "peakOffsetMs": -21,
+    "intensity": 0.728,
+    "verdict": "MATCH",
+    "basis": "RMS_ONLY"
+   },
+   {
+    "landmarkSec": 124.02,
+    "nearestOnsetOffsetMs": -20,
+    "nearestEventId": "f1_162",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 124000,
+    "evPeak": 124011,
+    "startOffsetMs": -20,
+    "peakOffsetMs": -9,
+    "intensity": 0.601,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 124.52,
+    "nearestOnsetOffsetMs": -19,
+    "nearestEventId": "f1_165",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 124501,
+    "evPeak": 124512,
+    "startOffsetMs": -19,
+    "peakOffsetMs": -8,
+    "intensity": 0.532,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 125.02,
+    "nearestOnsetOffsetMs": -17,
+    "nearestEventId": "f1_168",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 125003,
+    "evPeak": 125013,
+    "startOffsetMs": -17,
+    "peakOffsetMs": -7,
+    "intensity": 0.554,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 125.52,
+    "nearestOnsetOffsetMs": -16,
+    "nearestEventId": "f1_170",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 125504,
+    "evPeak": 125515,
+    "startOffsetMs": -16,
+    "peakOffsetMs": -5,
+    "intensity": 0.584,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   },
+   {
+    "landmarkSec": 126.02,
+    "nearestOnsetOffsetMs": -25,
+    "nearestEventId": "f1_172",
+    "evType": "LIGHT_IMPACT",
+    "evStart": 125995,
+    "evPeak": 126005,
+    "startOffsetMs": -25,
+    "peakOffsetMs": -15,
+    "intensity": 0.603,
+    "verdict": "MATCH",
+    "basis": "ONSET+RMS"
+   }
+  ]
+ },
+ "events": [
+  {
+   "id": "f1_001",
+   "type": "TRANSIENT",
+   "startTimeMs": 1013,
+   "peakTimeMs": 1141,
+   "durationMs": 235,
+   "intensity": 0.39,
+   "sharpness": 0.183,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 86,
+   "sustainMs": 64,
+   "releaseMs": 85,
+   "frequencyHz": null,
+   "confidence": 0.8,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 1013,
+    "onsetClusterSize": 4,
+    "rmsPeak": 0.02278,
+    "rmsPre": 0,
+    "rmsRise": 0.02278,
+    "rmsProminence": 0.02079,
+    "gapPrevMs": null,
+    "gapNextMs": 149
+   }
+  },
+  {
+   "id": "f1_002",
+   "type": "TRANSIENT",
+   "startTimeMs": 1248,
+   "peakTimeMs": 1419,
+   "durationMs": 437,
+   "intensity": 0.435,
+   "sharpness": 0.227,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 64,
+   "sustainMs": 117,
+   "releaseMs": 256,
+   "frequencyHz": null,
+   "confidence": 0.79,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 1248,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02848,
+    "rmsPre": 0.00231,
+    "rmsRise": 0.02617,
+    "rmsProminence": 0.02018,
+    "gapPrevMs": 149,
+    "gapNextMs": 4085
+   }
+  },
+  {
+   "id": "f1_003",
+   "type": "TRANSIENT",
+   "startTimeMs": 6603,
+   "peakTimeMs": 6667,
+   "durationMs": 64,
+   "intensity": 0.346,
+   "sharpness": 0.19,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 63,
+   "sustainMs": 0,
+   "releaseMs": 1,
+   "frequencyHz": null,
+   "confidence": 0.73,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 6603,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.01933,
+    "rmsPre": 0.00133,
+    "rmsRise": 0.018,
+    "rmsProminence": 0.01767,
+    "gapPrevMs": 96,
+    "gapNextMs": 64
+   }
+  },
+  {
+   "id": "f1_004",
+   "type": "TRANSIENT",
+   "startTimeMs": 6667,
+   "peakTimeMs": 6688,
+   "durationMs": 64,
+   "intensity": 0.445,
+   "sharpness": 0.591,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 10,
+   "sustainMs": 22,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.94,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 6667,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02902,
+    "rmsPre": 0.00133,
+    "rmsRise": 0.02769,
+    "rmsProminence": 0.02729,
+    "gapPrevMs": 64,
+    "gapNextMs": 64
+   }
+  },
+  {
+   "id": "f1_005",
+   "type": "TRANSIENT",
+   "startTimeMs": 6731,
+   "peakTimeMs": 6741,
+   "durationMs": 42,
+   "intensity": 0.43,
+   "sharpness": 0.812,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 5,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.91,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 6731,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02753,
+    "rmsPre": 0.00133,
+    "rmsRise": 0.0262,
+    "rmsProminence": 0.02569,
+    "gapPrevMs": 64,
+    "gapNextMs": 245
+   }
+  },
+  {
+   "id": "f1_006",
+   "type": "TRANSIENT",
+   "startTimeMs": 7936,
+   "peakTimeMs": 8000,
+   "durationMs": 107,
+   "intensity": 0.303,
+   "sharpness": 0.164,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 64,
+   "sustainMs": 11,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.64,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 7936,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.01627,
+    "rmsPre": 0.00262,
+    "rmsRise": 0.01365,
+    "rmsProminence": 0.01336,
+    "gapPrevMs": 128,
+    "gapNextMs": 64
+   }
+  },
+  {
+   "id": "f1_007",
+   "type": "TRANSIENT",
+   "startTimeMs": 12032,
+   "peakTimeMs": 12331,
+   "durationMs": 450,
+   "intensity": 0.379,
+   "sharpness": 0.201,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 64,
+   "sustainMs": 288,
+   "releaseMs": 98,
+   "frequencyHz": null,
+   "confidence": 0.64,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 12032,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02307,
+    "rmsPre": 0.00262,
+    "rmsRise": 0.02045,
+    "rmsProminence": 0.01317,
+    "gapPrevMs": 864,
+    "gapNextMs": 1803
+   }
+  },
+  {
+   "id": "f1_008",
+   "type": "CONTINUOUS",
+   "startTimeMs": 12523,
+   "peakTimeMs": 13120,
+   "durationMs": 1301,
+   "intensity": 0.617,
+   "sharpness": 0.225,
+   "semanticType": "ACCELERATION_RISE",
+   "attackMs": 437,
+   "sustainMs": 804,
+   "releaseMs": 60,
+   "frequencyHz": null,
+   "confidence": 0.54,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_RAMP",
+    "envelopeMeanRms": 0.03178,
+    "shape": "rising",
+    "thirdsRatio": 1.82,
+    "intensityEnvelope": [
+     [
+      12523,
+      0.311
+     ],
+     [
+      12619,
+      0.292
+     ],
+     [
+      12715,
+      0.274
+     ],
+     [
+      12811,
+      0.33
+     ],
+     [
+      12907,
+      0.458
+     ],
+     [
+      13003,
+      0.608
+     ],
+     [
+      13099,
+      0.618
+     ],
+     [
+      13195,
+      0.606
+     ],
+     [
+      13291,
+      0.549
+     ],
+     [
+      13387,
+      0.508
+     ],
+     [
+      13483,
+      0.46
+     ],
+     [
+      13579,
+      0.449
+     ],
+     [
+      13675,
+      0.495
+     ],
+     [
+      13771,
+      0.532
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_009",
+   "type": "TRANSIENT",
+   "startTimeMs": 13835,
+   "peakTimeMs": 13877,
+   "durationMs": 309,
+   "intensity": 0.502,
+   "sharpness": 0.252,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 42,
+   "sustainMs": 11,
+   "releaseMs": 256,
+   "frequencyHz": null,
+   "confidence": 0.71,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 13835,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05078,
+    "rmsPre": 0.02969,
+    "rmsRise": 0.0211,
+    "rmsProminence": 0.01675,
+    "gapPrevMs": 1803,
+    "gapNextMs": 3019
+   }
+  },
+  {
+   "id": "f1_010",
+   "type": "TRANSIENT",
+   "startTimeMs": 18155,
+   "peakTimeMs": 18219,
+   "durationMs": 74,
+   "intensity": 0.553,
+   "sharpness": 0.266,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 64,
+   "sustainMs": 9,
+   "releaseMs": 1,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 18155,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0461,
+    "rmsPre": 0.01026,
+    "rmsRise": 0.03584,
+    "rmsProminence": 0.0339,
+    "gapPrevMs": 117,
+    "gapNextMs": 75
+   }
+  },
+  {
+   "id": "f1_011",
+   "type": "TRANSIENT",
+   "startTimeMs": 18229,
+   "peakTimeMs": 18240,
+   "durationMs": 107,
+   "intensity": 0.476,
+   "sharpness": 0.746,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 5,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.89,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 18229,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03733,
+    "rmsPre": 0.01078,
+    "rmsRise": 0.02654,
+    "rmsProminence": 0.02514,
+    "gapPrevMs": 75,
+    "gapNextMs": 7637
+   }
+  },
+  {
+   "id": "f1_012",
+   "type": "CONTINUOUS",
+   "startTimeMs": 18837,
+   "peakTimeMs": 19456,
+   "durationMs": 1280,
+   "intensity": 0.665,
+   "sharpness": 0.22,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 139,
+   "sustainMs": 661,
+   "releaseMs": 480,
+   "frequencyHz": null,
+   "confidence": 0.79,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.04436,
+    "shape": "steady",
+    "thirdsRatio": 0.78,
+    "intensityEnvelope": [
+     [
+      18837,
+      0.51
+     ],
+     [
+      18933,
+      0.571
+     ],
+     [
+      19029,
+      0.638
+     ],
+     [
+      19125,
+      0.627
+     ],
+     [
+      19221,
+      0.566
+     ],
+     [
+      19317,
+      0.604
+     ],
+     [
+      19413,
+      0.665
+     ],
+     [
+      19509,
+      0.677
+     ],
+     [
+      19605,
+      0.618
+     ],
+     [
+      19701,
+      0.58
+     ],
+     [
+      19797,
+      0.566
+     ],
+     [
+      19893,
+      0.537
+     ],
+     [
+      19989,
+      0.432
+     ],
+     [
+      20085,
+      0.416
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_013",
+   "type": "CONTINUOUS",
+   "startTimeMs": 20597,
+   "peakTimeMs": 20832,
+   "durationMs": 662,
+   "intensity": 0.727,
+   "sharpness": 0.186,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 203,
+   "sustainMs": 214,
+   "releaseMs": 245,
+   "frequencyHz": null,
+   "confidence": 0.9,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.0498,
+    "shape": "steady",
+    "thirdsRatio": 0.99,
+    "intensityEnvelope": [
+     [
+      20597,
+      0.505
+     ],
+     [
+      20693,
+      0.554
+     ],
+     [
+      20789,
+      0.646
+     ],
+     [
+      20885,
+      0.728
+     ],
+     [
+      20981,
+      0.693
+     ],
+     [
+      21077,
+      0.643
+     ],
+     [
+      21173,
+      0.577
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_014",
+   "type": "CONTINUOUS",
+   "startTimeMs": 25163,
+   "peakTimeMs": 25515,
+   "durationMs": 938,
+   "intensity": 0.607,
+   "sharpness": 0.328,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 171,
+   "sustainMs": 458,
+   "releaseMs": 309,
+   "frequencyHz": null,
+   "confidence": 0.71,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.04049,
+    "shape": "steady",
+    "thirdsRatio": 0.82,
+    "intensityEnvelope": [
+     [
+      25163,
+      0.506
+     ],
+     [
+      25259,
+      0.529
+     ],
+     [
+      25355,
+      0.565
+     ],
+     [
+      25451,
+      0.607
+     ],
+     [
+      25547,
+      0.607
+     ],
+     [
+      25643,
+      0.607
+     ],
+     [
+      25739,
+      0.578
+     ],
+     [
+      25835,
+      0.493
+     ],
+     [
+      25931,
+      0.466
+     ],
+     [
+      26027,
+      0.491
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_015",
+   "type": "TRANSIENT",
+   "startTimeMs": 26112,
+   "peakTimeMs": 26123,
+   "durationMs": 128,
+   "intensity": 0.471,
+   "sharpness": 0.464,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 10,
+   "releaseMs": 107,
+   "frequencyHz": null,
+   "confidence": 0.49,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 26112,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04595,
+    "rmsPre": 0.0271,
+    "rmsRise": 0.01884,
+    "rmsProminence": 0.00654,
+    "gapPrevMs": 117,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_016",
+   "type": "TRANSIENT",
+   "startTimeMs": 26240,
+   "peakTimeMs": 26272,
+   "durationMs": 128,
+   "intensity": 0.562,
+   "sharpness": 0.558,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 21,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.77,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 26240,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05909,
+    "rmsPre": 0.03185,
+    "rmsRise": 0.02724,
+    "rmsProminence": 0.01932,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_017",
+   "type": "TRANSIENT",
+   "startTimeMs": 26613,
+   "peakTimeMs": 26624,
+   "durationMs": 43,
+   "intensity": 0.48,
+   "sharpness": 0.441,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 11,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.66,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 26613,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05115,
+    "rmsPre": 0.03418,
+    "rmsRise": 0.01697,
+    "rmsProminence": 0.01433,
+    "gapPrevMs": 117,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_018",
+   "type": "TRANSIENT",
+   "startTimeMs": 26741,
+   "peakTimeMs": 26795,
+   "durationMs": 75,
+   "intensity": 0.489,
+   "sharpness": 0.232,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 43,
+   "sustainMs": 11,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.67,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 26741,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05152,
+    "rmsPre": 0.03322,
+    "rmsRise": 0.0183,
+    "rmsProminence": 0.01498,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_019",
+   "type": "TRANSIENT",
+   "startTimeMs": 26869,
+   "peakTimeMs": 26891,
+   "durationMs": 64,
+   "intensity": 0.452,
+   "sharpness": 0.407,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 11,
+   "releaseMs": 42,
+   "frequencyHz": null,
+   "confidence": 0.58,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 26869,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04761,
+    "rmsPre": 0.03317,
+    "rmsRise": 0.01445,
+    "rmsProminence": 0.01084,
+    "gapPrevMs": 128,
+    "gapNextMs": 117
+   }
+  },
+  {
+   "id": "f1_020",
+   "type": "TRANSIENT",
+   "startTimeMs": 27115,
+   "peakTimeMs": 27125,
+   "durationMs": 42,
+   "intensity": 0.473,
+   "sharpness": 0.472,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 10,
+   "sustainMs": 11,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.6,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 27115,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0481,
+    "rmsPre": 0.03042,
+    "rmsRise": 0.01768,
+    "rmsProminence": 0.0114,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_021",
+   "type": "TRANSIENT",
+   "startTimeMs": 27243,
+   "peakTimeMs": 27285,
+   "durationMs": 74,
+   "intensity": 0.455,
+   "sharpness": 0.308,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 21,
+   "sustainMs": 32,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.56,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 27243,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04623,
+    "rmsPre": 0.03042,
+    "rmsRise": 0.01581,
+    "rmsProminence": 0.00956,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_022",
+   "type": "TRANSIENT",
+   "startTimeMs": 27616,
+   "peakTimeMs": 27627,
+   "durationMs": 43,
+   "intensity": 0.531,
+   "sharpness": 0.536,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 10,
+   "releaseMs": 22,
+   "frequencyHz": null,
+   "confidence": 0.75,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 27616,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05323,
+    "rmsPre": 0.02814,
+    "rmsRise": 0.0251,
+    "rmsProminence": 0.01836,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_023",
+   "type": "TRANSIENT",
+   "startTimeMs": 27744,
+   "peakTimeMs": 27808,
+   "durationMs": 96,
+   "intensity": 0.515,
+   "sharpness": 0.765,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 70,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.71,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 27744,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05146,
+    "rmsPre": 0.02822,
+    "rmsRise": 0.02324,
+    "rmsProminence": 0.01659,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_024",
+   "type": "TRANSIENT",
+   "startTimeMs": 28117,
+   "peakTimeMs": 28245,
+   "durationMs": 224,
+   "intensity": 0.547,
+   "sharpness": 0.578,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 128,
+   "releaseMs": 85,
+   "frequencyHz": null,
+   "confidence": 0.76,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 28117,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0523,
+    "rmsPre": 0.02315,
+    "rmsRise": 0.02915,
+    "rmsProminence": 0.01915,
+    "gapPrevMs": 245,
+    "gapNextMs": 501
+   }
+  },
+  {
+   "id": "f1_025",
+   "type": "TRANSIENT",
+   "startTimeMs": 28619,
+   "peakTimeMs": 28629,
+   "durationMs": 42,
+   "intensity": 0.488,
+   "sharpness": 0.718,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 5,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.61,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 28619,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0481,
+    "rmsPre": 0.02762,
+    "rmsRise": 0.02048,
+    "rmsProminence": 0.01206,
+    "gapPrevMs": 501,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_026",
+   "type": "CONTINUOUS",
+   "startTimeMs": 28693,
+   "peakTimeMs": 29227,
+   "durationMs": 544,
+   "intensity": 0.515,
+   "sharpness": 0.371,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 424,
+   "releaseMs": 60,
+   "frequencyHz": null,
+   "confidence": 0.51,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.0306,
+    "shape": "steady",
+    "thirdsRatio": 0.97,
+    "intensityEnvelope": [
+     [
+      28693,
+      0.489
+     ],
+     [
+      28789,
+      0.492
+     ],
+     [
+      28885,
+      0.443
+     ],
+     [
+      28981,
+      0.422
+     ],
+     [
+      29077,
+      0.445
+     ],
+     [
+      29173,
+      0.5
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_027",
+   "type": "TRANSIENT",
+   "startTimeMs": 29248,
+   "peakTimeMs": 29280,
+   "durationMs": 128,
+   "intensity": 0.606,
+   "sharpness": 0.463,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 21,
+   "sustainMs": 22,
+   "releaseMs": 85,
+   "frequencyHz": null,
+   "confidence": 0.79,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 29248,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06054,
+    "rmsPre": 0.02481,
+    "rmsRise": 0.03572,
+    "rmsProminence": 0.02032,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_028",
+   "type": "TRANSIENT",
+   "startTimeMs": 29376,
+   "peakTimeMs": 29387,
+   "durationMs": 245,
+   "intensity": 0.507,
+   "sharpness": 0.72,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 6,
+   "releaseMs": 234,
+   "frequencyHz": null,
+   "confidence": 0.6,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 29376,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.053,
+    "rmsPre": 0.03242,
+    "rmsRise": 0.02058,
+    "rmsProminence": 0.01138,
+    "gapPrevMs": 128,
+    "gapNextMs": 245
+   }
+  },
+  {
+   "id": "f1_029",
+   "type": "TRANSIENT",
+   "startTimeMs": 29621,
+   "peakTimeMs": 29643,
+   "durationMs": 128,
+   "intensity": 0.524,
+   "sharpness": 0.631,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 26,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.72,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 29621,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06007,
+    "rmsPre": 0.04111,
+    "rmsRise": 0.01896,
+    "rmsProminence": 0.01703,
+    "gapPrevMs": 245,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_030",
+   "type": "TRANSIENT",
+   "startTimeMs": 29749,
+   "peakTimeMs": 29888,
+   "durationMs": 406,
+   "intensity": 0.815,
+   "sharpness": 0.576,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 22,
+   "sustainMs": 149,
+   "releaseMs": 235,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 29749,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.09997,
+    "rmsPre": 0.04192,
+    "rmsRise": 0.05805,
+    "rmsProminence": 0.05594,
+    "gapPrevMs": 128,
+    "gapNextMs": 373
+   }
+  },
+  {
+   "id": "f1_031",
+   "type": "TRANSIENT",
+   "startTimeMs": 30368,
+   "peakTimeMs": 30379,
+   "durationMs": 53,
+   "intensity": 0.492,
+   "sharpness": 0.412,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 10,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.63,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 30368,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05784,
+    "rmsPre": 0.04298,
+    "rmsRise": 0.01486,
+    "rmsProminence": 0.01298,
+    "gapPrevMs": 245,
+    "gapNextMs": 256
+   }
+  },
+  {
+   "id": "f1_032",
+   "type": "TRANSIENT",
+   "startTimeMs": 30741,
+   "peakTimeMs": 30763,
+   "durationMs": 64,
+   "intensity": 0.811,
+   "sharpness": 0.824,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 21,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 30741,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.09693,
+    "rmsPre": 0.03762,
+    "rmsRise": 0.05931,
+    "rmsProminence": 0.05406,
+    "gapPrevMs": 117,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_033",
+   "type": "TRANSIENT",
+   "startTimeMs": 30997,
+   "peakTimeMs": 31061,
+   "durationMs": 96,
+   "intensity": 0.574,
+   "sharpness": 0.258,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 54,
+   "sustainMs": 10,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.76,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 30997,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06054,
+    "rmsPre": 0.03191,
+    "rmsRise": 0.02863,
+    "rmsProminence": 0.01892,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_034",
+   "type": "TRANSIENT",
+   "startTimeMs": 31499,
+   "peakTimeMs": 31616,
+   "durationMs": 117,
+   "intensity": 0.62,
+   "sharpness": 0.197,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 116,
+   "sustainMs": 0,
+   "releaseMs": 1,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 31499,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06447,
+    "rmsPre": 0.02859,
+    "rmsRise": 0.03588,
+    "rmsProminence": 0.02894,
+    "gapPrevMs": 128,
+    "gapNextMs": 501
+   }
+  },
+  {
+   "id": "f1_035",
+   "type": "TRANSIENT",
+   "startTimeMs": 31616,
+   "peakTimeMs": 31627,
+   "durationMs": 256,
+   "intensity": 0.642,
+   "sharpness": 0.686,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 21,
+   "releaseMs": 224,
+   "frequencyHz": null,
+   "confidence": 0.55,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_ONLY",
+    "onsetTimeMs": null,
+    "onsetClusterSize": 0,
+    "rmsPeak": 0.06447,
+    "rmsPre": 0.02338,
+    "rmsRise": 0.04109,
+    "rmsProminence": 0.02999,
+    "gapPrevMs": null,
+    "gapNextMs": null
+   }
+  },
+  {
+   "id": "f1_036",
+   "type": "TRANSIENT",
+   "startTimeMs": 32117,
+   "peakTimeMs": 32139,
+   "durationMs": 54,
+   "intensity": 0.406,
+   "sharpness": 0.373,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 11,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.48,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 32117,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03984,
+    "rmsPre": 0.0277,
+    "rmsRise": 0.01214,
+    "rmsProminence": 0.00611,
+    "gapPrevMs": 117,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_037",
+   "type": "TRANSIENT",
+   "startTimeMs": 32245,
+   "peakTimeMs": 32288,
+   "durationMs": 86,
+   "intensity": 0.438,
+   "sharpness": 0.214,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 43,
+   "sustainMs": 11,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.53,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 32245,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04208,
+    "rmsPre": 0.02641,
+    "rmsRise": 0.01567,
+    "rmsProminence": 0.00817,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_038",
+   "type": "TRANSIENT",
+   "startTimeMs": 32619,
+   "peakTimeMs": 32629,
+   "durationMs": 74,
+   "intensity": 0.457,
+   "sharpness": 0.464,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 10,
+   "sustainMs": 11,
+   "releaseMs": 53,
+   "frequencyHz": null,
+   "confidence": 0.54,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 32619,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04481,
+    "rmsPre": 0.02775,
+    "rmsRise": 0.01706,
+    "rmsProminence": 0.00876,
+    "gapPrevMs": 117,
+    "gapNextMs": 256
+   }
+  },
+  {
+   "id": "f1_039",
+   "type": "TRANSIENT",
+   "startTimeMs": 32875,
+   "peakTimeMs": 33152,
+   "durationMs": 450,
+   "intensity": 0.484,
+   "sharpness": 0.096,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 256,
+   "sustainMs": 192,
+   "releaseMs": 2,
+   "frequencyHz": null,
+   "confidence": 0.65,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 32875,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04978,
+    "rmsPre": 0.03122,
+    "rmsRise": 0.01856,
+    "rmsProminence": 0.01405,
+    "gapPrevMs": 256,
+    "gapNextMs": 1003
+   }
+  },
+  {
+   "id": "f1_040",
+   "type": "CONTINUOUS",
+   "startTimeMs": 33365,
+   "peakTimeMs": 33621,
+   "durationMs": 886,
+   "intensity": 0.65,
+   "sharpness": 0.244,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 472,
+   "releaseMs": 354,
+   "frequencyHz": null,
+   "confidence": 0.66,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.03808,
+    "shape": "falling",
+    "thirdsRatio": 0.6,
+    "intensityEnvelope": [
+     [
+      33365,
+      0.565
+     ],
+     [
+      33461,
+      0.561
+     ],
+     [
+      33557,
+      0.633
+     ],
+     [
+      33653,
+      0.669
+     ],
+     [
+      33749,
+      0.569
+     ],
+     [
+      33845,
+      0.47
+     ],
+     [
+      33941,
+      0.451
+     ],
+     [
+      34037,
+      0.451
+     ],
+     [
+      34133,
+      0.446
+     ],
+     [
+      34229,
+      0.423
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_041",
+   "type": "TRANSIENT",
+   "startTimeMs": 34496,
+   "peakTimeMs": 34645,
+   "durationMs": 149,
+   "intensity": 0.832,
+   "sharpness": 0.256,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 139,
+   "sustainMs": 10,
+   "releaseMs": 0,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 34496,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.08912,
+    "rmsPre": 0.01667,
+    "rmsRise": 0.07245,
+    "rmsProminence": 0.0604,
+    "gapPrevMs": 117,
+    "gapNextMs": 629
+   }
+  },
+  {
+   "id": "f1_042",
+   "type": "TRANSIENT",
+   "startTimeMs": 34645,
+   "peakTimeMs": 34656,
+   "durationMs": 107,
+   "intensity": 0.821,
+   "sharpness": 1,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 16,
+   "releaseMs": 85,
+   "frequencyHz": null,
+   "confidence": 0.55,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_ONLY",
+    "onsetTimeMs": null,
+    "onsetClusterSize": 0,
+    "rmsPeak": 0.08743,
+    "rmsPre": 0.01678,
+    "rmsRise": 0.07065,
+    "rmsProminence": 0.0592,
+    "gapPrevMs": null,
+    "gapNextMs": null
+   }
+  },
+  {
+   "id": "f1_043",
+   "type": "TRANSIENT",
+   "startTimeMs": 35125,
+   "peakTimeMs": 35136,
+   "durationMs": 54,
+   "intensity": 0.425,
+   "sharpness": 0.575,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 5,
+   "releaseMs": 43,
+   "frequencyHz": null,
+   "confidence": 0.63,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 35125,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03881,
+    "rmsPre": 0.02307,
+    "rmsRise": 0.01574,
+    "rmsProminence": 0.01271,
+    "gapPrevMs": 629,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_044",
+   "type": "TRANSIENT",
+   "startTimeMs": 35509,
+   "peakTimeMs": 35648,
+   "durationMs": 235,
+   "intensity": 0.481,
+   "sharpness": 0.147,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 128,
+   "sustainMs": 32,
+   "releaseMs": 75,
+   "frequencyHz": null,
+   "confidence": 0.68,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 35509,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04422,
+    "rmsPre": 0.02231,
+    "rmsRise": 0.02192,
+    "rmsProminence": 0.01541,
+    "gapPrevMs": 128,
+    "gapNextMs": 747
+   }
+  },
+  {
+   "id": "f1_045",
+   "type": "TRANSIENT",
+   "startTimeMs": 36256,
+   "peakTimeMs": 36267,
+   "durationMs": 117,
+   "intensity": 0.456,
+   "sharpness": 0.699,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 16,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.66,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 36256,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04127,
+    "rmsPre": 0.02185,
+    "rmsRise": 0.01941,
+    "rmsProminence": 0.01439,
+    "gapPrevMs": 747,
+    "gapNextMs": 117
+   }
+  },
+  {
+   "id": "f1_046",
+   "type": "TRANSIENT",
+   "startTimeMs": 36373,
+   "peakTimeMs": 36587,
+   "durationMs": 310,
+   "intensity": 0.441,
+   "sharpness": 0.1,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 203,
+   "sustainMs": 53,
+   "releaseMs": 54,
+   "frequencyHz": null,
+   "confidence": 0.69,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 36373,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04244,
+    "rmsPre": 0.02648,
+    "rmsRise": 0.01597,
+    "rmsProminence": 0.01574,
+    "gapPrevMs": 117,
+    "gapNextMs": 2667
+   }
+  },
+  {
+   "id": "f1_049",
+   "type": "TRANSIENT",
+   "startTimeMs": 42581,
+   "peakTimeMs": 42592,
+   "durationMs": 256,
+   "intensity": 0.676,
+   "sharpness": 1,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 26,
+   "releaseMs": 224,
+   "frequencyHz": null,
+   "confidence": 0.55,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_ONLY",
+    "onsetTimeMs": null,
+    "onsetClusterSize": 0,
+    "rmsPeak": 0.06368,
+    "rmsPre": 0.01313,
+    "rmsRise": 0.05055,
+    "rmsProminence": 0.03175,
+    "gapPrevMs": null,
+    "gapNextMs": null
+   }
+  },
+  {
+   "id": "f1_050",
+   "type": "TRANSIENT",
+   "startTimeMs": 42837,
+   "peakTimeMs": 42859,
+   "durationMs": 139,
+   "intensity": 0.575,
+   "sharpness": 0.541,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 21,
+   "releaseMs": 107,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 42837,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06499,
+    "rmsPre": 0.03942,
+    "rmsRise": 0.02557,
+    "rmsProminence": 0.03228,
+    "gapPrevMs": 1451,
+    "gapNextMs": 256
+   }
+  },
+  {
+   "id": "f1_051",
+   "type": "CONTINUOUS",
+   "startTimeMs": 43008,
+   "peakTimeMs": null,
+   "durationMs": 1067,
+   "intensity": 0.544,
+   "sharpness": 0.277,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 581,
+   "releaseMs": 426,
+   "frequencyHz": null,
+   "confidence": 0.56,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.03322,
+    "shape": "steady",
+    "thirdsRatio": 0.82,
+    "intensityEnvelope": [
+     [
+      43008,
+      0.604
+     ],
+     [
+      43104,
+      0.493
+     ],
+     [
+      43200,
+      0.502
+     ],
+     [
+      43296,
+      0.544
+     ],
+     [
+      43392,
+      0.537
+     ],
+     [
+      43488,
+      0.504
+     ],
+     [
+      43584,
+      0.444
+     ],
+     [
+      43680,
+      0.435
+     ],
+     [
+      43776,
+      0.483
+     ],
+     [
+      43872,
+      0.471
+     ],
+     [
+      43968,
+      0.445
+     ],
+     [
+      44064,
+      0.484
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_052",
+   "type": "TRANSIENT",
+   "startTimeMs": 44085,
+   "peakTimeMs": 44149,
+   "durationMs": 256,
+   "intensity": 0.576,
+   "sharpness": 0.42,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 22,
+   "sustainMs": 53,
+   "releaseMs": 181,
+   "frequencyHz": null,
+   "confidence": 0.75,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 44085,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0583,
+    "rmsPre": 0.02747,
+    "rmsRise": 0.03083,
+    "rmsProminence": 0.01859,
+    "gapPrevMs": 117,
+    "gapNextMs": 256
+   }
+  },
+  {
+   "id": "f1_053",
+   "type": "TRANSIENT",
+   "startTimeMs": 44341,
+   "peakTimeMs": 44384,
+   "durationMs": 86,
+   "intensity": 0.56,
+   "sharpness": 0.369,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 22,
+   "sustainMs": 32,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.81,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 44341,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06312,
+    "rmsPre": 0.03928,
+    "rmsRise": 0.02384,
+    "rmsProminence": 0.02134,
+    "gapPrevMs": 256,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_054",
+   "type": "TRANSIENT",
+   "startTimeMs": 44469,
+   "peakTimeMs": 44512,
+   "durationMs": 128,
+   "intensity": 0.55,
+   "sharpness": 0.248,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 43,
+   "sustainMs": 11,
+   "releaseMs": 74,
+   "frequencyHz": null,
+   "confidence": 0.8,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 44469,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06466,
+    "rmsPre": 0.04373,
+    "rmsRise": 0.02093,
+    "rmsProminence": 0.02058,
+    "gapPrevMs": 128,
+    "gapNextMs": 117
+   }
+  },
+  {
+   "id": "f1_055",
+   "type": "TRANSIENT",
+   "startTimeMs": 44843,
+   "peakTimeMs": 44896,
+   "durationMs": 202,
+   "intensity": 0.52,
+   "sharpness": 0.215,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 53,
+   "sustainMs": 53,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.6,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 44843,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05841,
+    "rmsPre": 0.03899,
+    "rmsRise": 0.01942,
+    "rmsProminence": 0.01167,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_056",
+   "type": "TRANSIENT",
+   "startTimeMs": 45088,
+   "peakTimeMs": 45109,
+   "durationMs": 43,
+   "intensity": 0.547,
+   "sharpness": 0.47,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 10,
+   "releaseMs": 22,
+   "frequencyHz": null,
+   "confidence": 0.77,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 45088,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06628,
+    "rmsPre": 0.04699,
+    "rmsRise": 0.0193,
+    "rmsProminence": 0.01954,
+    "gapPrevMs": 117,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_057",
+   "type": "TRANSIENT",
+   "startTimeMs": 45216,
+   "peakTimeMs": 45291,
+   "durationMs": 128,
+   "intensity": 0.528,
+   "sharpness": 0.175,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 75,
+   "sustainMs": 21,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.7,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 45216,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06246,
+    "rmsPre": 0.0442,
+    "rmsRise": 0.01826,
+    "rmsProminence": 0.01628,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_058",
+   "type": "TRANSIENT",
+   "startTimeMs": 45344,
+   "peakTimeMs": 45419,
+   "durationMs": 224,
+   "intensity": 0.577,
+   "sharpness": 0.552,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 74,
+   "releaseMs": 139,
+   "frequencyHz": null,
+   "confidence": 0.77,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 45344,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06419,
+    "rmsPre": 0.03754,
+    "rmsRise": 0.02665,
+    "rmsProminence": 0.01935,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_059",
+   "type": "TRANSIENT",
+   "startTimeMs": 47840,
+   "peakTimeMs": 47872,
+   "durationMs": 256,
+   "intensity": 0.51,
+   "sharpness": 0.338,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 21,
+   "sustainMs": 22,
+   "releaseMs": 213,
+   "frequencyHz": null,
+   "confidence": 0.56,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 47840,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05605,
+    "rmsPre": 0.03701,
+    "rmsRise": 0.01904,
+    "rmsProminence": 0.00983,
+    "gapPrevMs": 245,
+    "gapNextMs": 256
+   }
+  },
+  {
+   "id": "f1_060",
+   "type": "TRANSIENT",
+   "startTimeMs": 48096,
+   "peakTimeMs": 48107,
+   "durationMs": 53,
+   "intensity": 0.55,
+   "sharpness": 0.694,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 6,
+   "releaseMs": 42,
+   "frequencyHz": null,
+   "confidence": 0.77,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 48096,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06758,
+    "rmsPre": 0.04846,
+    "rmsRise": 0.01912,
+    "rmsProminence": 0.01951,
+    "gapPrevMs": 256,
+    "gapNextMs": 245
+   }
+  },
+  {
+   "id": "f1_061",
+   "type": "TRANSIENT",
+   "startTimeMs": 48341,
+   "peakTimeMs": 48427,
+   "durationMs": 192,
+   "intensity": 0.695,
+   "sharpness": 0.252,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 75,
+   "sustainMs": 21,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 48341,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.08542,
+    "rmsPre": 0.04755,
+    "rmsRise": 0.03787,
+    "rmsProminence": 0.03736,
+    "gapPrevMs": 245,
+    "gapNextMs": 757
+   }
+  },
+  {
+   "id": "f1_062",
+   "type": "CONTINUOUS",
+   "startTimeMs": 48565,
+   "peakTimeMs": null,
+   "durationMs": 544,
+   "intensity": 0.623,
+   "sharpness": 0.39,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 377,
+   "releaseMs": 107,
+   "frequencyHz": null,
+   "confidence": 0.78,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.04413,
+    "shape": "steady",
+    "thirdsRatio": 0.81,
+    "intensityEnvelope": [
+     [
+      48565,
+      0.714
+     ],
+     [
+      48661,
+      0.596
+     ],
+     [
+      48757,
+      0.564
+     ],
+     [
+      48853,
+      0.564
+     ],
+     [
+      48949,
+      0.614
+     ],
+     [
+      49045,
+      0.53
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_063",
+   "type": "TRANSIENT",
+   "startTimeMs": 50347,
+   "peakTimeMs": 50368,
+   "durationMs": 64,
+   "intensity": 0.525,
+   "sharpness": 0.865,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 27,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.92,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 50347,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04589,
+    "rmsPre": 0.01619,
+    "rmsRise": 0.0297,
+    "rmsProminence": 0.02636,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_064",
+   "type": "TRANSIENT",
+   "startTimeMs": 50475,
+   "peakTimeMs": 50539,
+   "durationMs": 106,
+   "intensity": 0.374,
+   "sharpness": 0.178,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 53,
+   "sustainMs": 21,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.61,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 50475,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03051,
+    "rmsPre": 0.01716,
+    "rmsRise": 0.01334,
+    "rmsProminence": 0.01207,
+    "gapPrevMs": 128,
+    "gapNextMs": 245
+   }
+  },
+  {
+   "id": "f1_065",
+   "type": "TRANSIENT",
+   "startTimeMs": 51477,
+   "peakTimeMs": 51531,
+   "durationMs": 118,
+   "intensity": 0.44,
+   "sharpness": 0.252,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 43,
+   "sustainMs": 53,
+   "releaseMs": 22,
+   "frequencyHz": null,
+   "confidence": 0.66,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 51477,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03482,
+    "rmsPre": 0.01321,
+    "rmsRise": 0.0216,
+    "rmsProminence": 0.01452,
+    "gapPrevMs": 128,
+    "gapNextMs": 117
+   }
+  },
+  {
+   "id": "f1_066",
+   "type": "TRANSIENT",
+   "startTimeMs": 51595,
+   "peakTimeMs": 51627,
+   "durationMs": 298,
+   "intensity": 0.455,
+   "sharpness": 0.379,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 21,
+   "sustainMs": 21,
+   "releaseMs": 256,
+   "frequencyHz": null,
+   "confidence": 0.66,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 51595,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03548,
+    "rmsPre": 0.01154,
+    "rmsRise": 0.02394,
+    "rmsProminence": 0.01452,
+    "gapPrevMs": 117,
+    "gapNextMs": 256
+   }
+  },
+  {
+   "id": "f1_091",
+   "type": "CONTINUOUS",
+   "startTimeMs": 68416,
+   "peakTimeMs": 68939,
+   "durationMs": 949,
+   "intensity": 0.639,
+   "sharpness": 0.294,
+   "semanticType": "ACCELERATION_RISE",
+   "attackMs": 459,
+   "sustainMs": 287,
+   "releaseMs": 203,
+   "frequencyHz": null,
+   "confidence": 0.55,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_RAMP",
+    "envelopeMeanRms": 0.03256,
+    "shape": "rising",
+    "thirdsRatio": 2.43,
+    "intensityEnvelope": [
+     [
+      68416,
+      0.266
+     ],
+     [
+      68512,
+      0.306
+     ],
+     [
+      68608,
+      0.321
+     ],
+     [
+      68704,
+      0.365
+     ],
+     [
+      68800,
+      0.478
+     ],
+     [
+      68896,
+      0.634
+     ],
+     [
+      68992,
+      0.646
+     ],
+     [
+      69088,
+      0.588
+     ],
+     [
+      69184,
+      0.521
+     ],
+     [
+      69280,
+      0.499
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_092",
+   "type": "TRANSIENT",
+   "startTimeMs": 71904,
+   "peakTimeMs": 71957,
+   "durationMs": 128,
+   "intensity": 0.343,
+   "sharpness": 0.261,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 32,
+   "sustainMs": 64,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.56,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 71904,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.01948,
+    "rmsPre": 0.00211,
+    "rmsRise": 0.01737,
+    "rmsProminence": 0.00946,
+    "gapPrevMs": 299,
+    "gapNextMs": 459
+   }
+  },
+  {
+   "id": "f1_093",
+   "type": "TRANSIENT",
+   "startTimeMs": 72363,
+   "peakTimeMs": 72437,
+   "durationMs": 352,
+   "intensity": 0.243,
+   "sharpness": 0.129,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 64,
+   "sustainMs": 32,
+   "releaseMs": 256,
+   "frequencyHz": null,
+   "confidence": 0.42,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 72363,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.01244,
+    "rmsPre": 0.00399,
+    "rmsRise": 0.00845,
+    "rmsProminence": 0.00338,
+    "gapPrevMs": 459,
+    "gapNextMs": 373
+   }
+  },
+  {
+   "id": "f1_094",
+   "type": "TRANSIENT",
+   "startTimeMs": 73856,
+   "peakTimeMs": 73867,
+   "durationMs": 53,
+   "intensity": 0.443,
+   "sharpness": 0.828,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 6,
+   "releaseMs": 42,
+   "frequencyHz": null,
+   "confidence": 0.8,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 73856,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02916,
+    "rmsPre": 0.00191,
+    "rmsRise": 0.02725,
+    "rmsProminence": 0.0207,
+    "gapPrevMs": 117,
+    "gapNextMs": 256
+   }
+  },
+  {
+   "id": "f1_095",
+   "type": "TRANSIENT",
+   "startTimeMs": 74112,
+   "peakTimeMs": 74208,
+   "durationMs": 181,
+   "intensity": 0.344,
+   "sharpness": 0.161,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 85,
+   "sustainMs": 64,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.58,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 74112,
+    "onsetClusterSize": 2,
+    "rmsPeak": 0.01942,
+    "rmsPre": 0.00186,
+    "rmsRise": 0.01757,
+    "rmsProminence": 0.01049,
+    "gapPrevMs": 256,
+    "gapNextMs": 224
+   }
+  },
+  {
+   "id": "f1_096",
+   "type": "TRANSIENT",
+   "startTimeMs": 74357,
+   "peakTimeMs": 74421,
+   "durationMs": 448,
+   "intensity": 0.361,
+   "sharpness": 0.456,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 181,
+   "releaseMs": 256,
+   "frequencyHz": null,
+   "confidence": 0.61,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 74357,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02186,
+    "rmsPre": 0.00367,
+    "rmsRise": 0.01819,
+    "rmsProminence": 0.01203,
+    "gapPrevMs": 224,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_097",
+   "type": "TRANSIENT",
+   "startTimeMs": 75243,
+   "peakTimeMs": 75253,
+   "durationMs": 277,
+   "intensity": 0.665,
+   "sharpness": 1,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 16,
+   "releaseMs": 256,
+   "frequencyHz": null,
+   "confidence": 0.76,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 75243,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05784,
+    "rmsPre": 0.00476,
+    "rmsRise": 0.05308,
+    "rmsProminence": 0.01907,
+    "gapPrevMs": 192,
+    "gapNextMs": 2485
+   }
+  },
+  {
+   "id": "f1_098",
+   "type": "CONTINUOUS",
+   "startTimeMs": 75552,
+   "peakTimeMs": null,
+   "durationMs": 2069,
+   "intensity": 0.588,
+   "sharpness": 0.194,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 1913,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.71,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.04044,
+    "shape": "steady",
+    "thirdsRatio": 0.94,
+    "intensityEnvelope": [
+     [
+      75552,
+      0.575
+     ],
+     [
+      75648,
+      0.575
+     ],
+     [
+      75744,
+      0.575
+     ],
+     [
+      75840,
+      0.588
+     ],
+     [
+      75936,
+      0.609
+     ],
+     [
+      76032,
+      0.603
+     ],
+     [
+      76128,
+      0.576
+     ],
+     [
+      76224,
+      0.556
+     ],
+     [
+      76320,
+      0.49
+     ],
+     [
+      76416,
+      0.489
+     ],
+     [
+      76512,
+      0.486
+     ],
+     [
+      76608,
+      0.499
+     ],
+     [
+      76704,
+      0.499
+     ],
+     [
+      76800,
+      0.515
+     ],
+     [
+      76896,
+      0.539
+     ],
+     [
+      76992,
+      0.567
+     ],
+     [
+      77088,
+      0.584
+     ],
+     [
+      77184,
+      0.558
+     ],
+     [
+      77280,
+      0.576
+     ],
+     [
+      77376,
+      0.563
+     ],
+     [
+      77472,
+      0.555
+     ],
+     [
+      77568,
+      0.529
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_099",
+   "type": "TRANSIENT",
+   "startTimeMs": 77984,
+   "peakTimeMs": 77995,
+   "durationMs": 128,
+   "intensity": 0.439,
+   "sharpness": 0.791,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 16,
+   "releaseMs": 107,
+   "frequencyHz": null,
+   "confidence": 0.63,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 77984,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0307,
+    "rmsPre": 0.00588,
+    "rmsRise": 0.02483,
+    "rmsProminence": 0.01302,
+    "gapPrevMs": 181,
+    "gapNextMs": 171
+   }
+  },
+  {
+   "id": "f1_100",
+   "type": "TRANSIENT",
+   "startTimeMs": 78720,
+   "peakTimeMs": 78731,
+   "durationMs": 53,
+   "intensity": 0.406,
+   "sharpness": 0.464,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 10,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.73,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 78720,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03049,
+    "rmsPre": 0.01166,
+    "rmsRise": 0.01883,
+    "rmsProminence": 0.01735,
+    "gapPrevMs": 171,
+    "gapNextMs": 192
+   }
+  },
+  {
+   "id": "f1_101",
+   "type": "TRANSIENT",
+   "startTimeMs": 79275,
+   "peakTimeMs": 79285,
+   "durationMs": 74,
+   "intensity": 0.365,
+   "sharpness": 0.686,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 37,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.57,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 79275,
+    "onsetClusterSize": 2,
+    "rmsPeak": 0.02212,
+    "rmsPre": 0.00345,
+    "rmsRise": 0.01868,
+    "rmsProminence": 0.01026,
+    "gapPrevMs": 171,
+    "gapNextMs": 181
+   }
+  },
+  {
+   "id": "f1_102",
+   "type": "TRANSIENT",
+   "startTimeMs": 79477,
+   "peakTimeMs": 79488,
+   "durationMs": 64,
+   "intensity": 0.43,
+   "sharpness": 0.707,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 16,
+   "releaseMs": 42,
+   "frequencyHz": null,
+   "confidence": 0.74,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 79477,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0299,
+    "rmsPre": 0.00612,
+    "rmsRise": 0.02378,
+    "rmsProminence": 0.01803,
+    "gapPrevMs": 181,
+    "gapNextMs": 107
+   }
+  },
+  {
+   "id": "f1_103",
+   "type": "TRANSIENT",
+   "startTimeMs": 79584,
+   "peakTimeMs": 79648,
+   "durationMs": 64,
+   "intensity": 0.357,
+   "sharpness": 0.212,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 43,
+   "sustainMs": 21,
+   "releaseMs": 0,
+   "frequencyHz": null,
+   "confidence": 0.62,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 79584,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02433,
+    "rmsPre": 0.00896,
+    "rmsRise": 0.01537,
+    "rmsProminence": 0.01246,
+    "gapPrevMs": 107,
+    "gapNextMs": 64
+   }
+  },
+  {
+   "id": "f1_104",
+   "type": "TRANSIENT",
+   "startTimeMs": 79648,
+   "peakTimeMs": 79659,
+   "durationMs": 75,
+   "intensity": 0.37,
+   "sharpness": 0.663,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 16,
+   "releaseMs": 54,
+   "frequencyHz": null,
+   "confidence": 0.62,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 79648,
+    "onsetClusterSize": 2,
+    "rmsPeak": 0.02457,
+    "rmsPre": 0.00713,
+    "rmsRise": 0.01745,
+    "rmsProminence": 0.01237,
+    "gapPrevMs": 64,
+    "gapNextMs": 181
+   }
+  },
+  {
+   "id": "f1_105",
+   "type": "TRANSIENT",
+   "startTimeMs": 80224,
+   "peakTimeMs": 80235,
+   "durationMs": 192,
+   "intensity": 0.487,
+   "sharpness": 0.897,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 16,
+   "releaseMs": 171,
+   "frequencyHz": null,
+   "confidence": 0.67,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 80224,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03409,
+    "rmsPre": 0.00215,
+    "rmsRise": 0.03194,
+    "rmsProminence": 0.01474,
+    "gapPrevMs": 192,
+    "gapNextMs": 192
+   }
+  },
+  {
+   "id": "f1_106",
+   "type": "TRANSIENT",
+   "startTimeMs": 80416,
+   "peakTimeMs": 80459,
+   "durationMs": 181,
+   "intensity": 0.473,
+   "sharpness": 0.584,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 169,
+   "releaseMs": 1,
+   "frequencyHz": null,
+   "confidence": 0.59,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 80416,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03304,
+    "rmsPre": 0.00329,
+    "rmsRise": 0.02975,
+    "rmsProminence": 0.01088,
+    "gapPrevMs": 192,
+    "gapNextMs": 181
+   }
+  },
+  {
+   "id": "f1_107",
+   "type": "TRANSIENT",
+   "startTimeMs": 80597,
+   "peakTimeMs": 80608,
+   "durationMs": 54,
+   "intensity": 0.428,
+   "sharpness": 0.577,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 16,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.68,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 80597,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03954,
+    "rmsPre": 0.02367,
+    "rmsRise": 0.01587,
+    "rmsProminence": 0.01521,
+    "gapPrevMs": 181,
+    "gapNextMs": 181
+   }
+  },
+  {
+   "id": "f1_108",
+   "type": "TRANSIENT",
+   "startTimeMs": 81163,
+   "peakTimeMs": 81227,
+   "durationMs": 64,
+   "intensity": 0.589,
+   "sharpness": 0.273,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 63,
+   "sustainMs": 0,
+   "releaseMs": 1,
+   "frequencyHz": null,
+   "confidence": 0.77,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 81163,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05393,
+    "rmsPre": 0.01665,
+    "rmsRise": 0.03728,
+    "rmsProminence": 0.01954,
+    "gapPrevMs": 192,
+    "gapNextMs": 64
+   }
+  },
+  {
+   "id": "f1_109",
+   "type": "TRANSIENT",
+   "startTimeMs": 81227,
+   "peakTimeMs": 81248,
+   "durationMs": 298,
+   "intensity": 0.701,
+   "sharpness": 0.801,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 10,
+   "sustainMs": 32,
+   "releaseMs": 256,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 81227,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.07074,
+    "rmsPre": 0.01985,
+    "rmsRise": 0.05089,
+    "rmsProminence": 0.03464,
+    "gapPrevMs": 64,
+    "gapNextMs": 2368
+   }
+  },
+  {
+   "id": "f1_110",
+   "type": "CONTINUOUS",
+   "startTimeMs": 81557,
+   "peakTimeMs": null,
+   "durationMs": 1216,
+   "intensity": 0.649,
+   "sharpness": 0.232,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 985,
+   "releaseMs": 171,
+   "frequencyHz": null,
+   "confidence": 0.83,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.04665,
+    "shape": "steady",
+    "thirdsRatio": 0.86,
+    "intensityEnvelope": [
+     [
+      81557,
+      0.62
+     ],
+     [
+      81653,
+      0.623
+     ],
+     [
+      81749,
+      0.638
+     ],
+     [
+      81845,
+      0.583
+     ],
+     [
+      81941,
+      0.622
+     ],
+     [
+      82037,
+      0.65
+     ],
+     [
+      82133,
+      0.65
+     ],
+     [
+      82229,
+      0.596
+     ],
+     [
+      82325,
+      0.579
+     ],
+     [
+      82421,
+      0.579
+     ],
+     [
+      82517,
+      0.612
+     ],
+     [
+      82613,
+      0.595
+     ],
+     [
+      82709,
+      0.463
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_111",
+   "type": "TRANSIENT",
+   "startTimeMs": 83179,
+   "peakTimeMs": 83189,
+   "durationMs": 277,
+   "intensity": 0.68,
+   "sharpness": 1,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 48,
+   "releaseMs": 224,
+   "frequencyHz": null,
+   "confidence": 0.55,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_ONLY",
+    "onsetTimeMs": null,
+    "onsetClusterSize": 0,
+    "rmsPeak": 0.07187,
+    "rmsPre": 0.02737,
+    "rmsRise": 0.0445,
+    "rmsProminence": 0.03799,
+    "gapPrevMs": null,
+    "gapNextMs": null
+   }
+  },
+  {
+   "id": "f1_112",
+   "type": "TRANSIENT",
+   "startTimeMs": 83595,
+   "peakTimeMs": 83605,
+   "durationMs": 32,
+   "intensity": 0.455,
+   "sharpness": 0.657,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 5,
+   "releaseMs": 22,
+   "frequencyHz": null,
+   "confidence": 0.82,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 83595,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04445,
+    "rmsPre": 0.02733,
+    "rmsRise": 0.01712,
+    "rmsProminence": 0.02162,
+    "gapPrevMs": 2368,
+    "gapNextMs": 171
+   }
+  },
+  {
+   "id": "f1_113",
+   "type": "TRANSIENT",
+   "startTimeMs": 83968,
+   "peakTimeMs": 83979,
+   "durationMs": 75,
+   "intensity": 0.381,
+   "sharpness": 0.696,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 6,
+   "releaseMs": 64,
+   "frequencyHz": null,
+   "confidence": 0.52,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 83968,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02476,
+    "rmsPre": 0.00554,
+    "rmsRise": 0.01923,
+    "rmsProminence": 0.00776,
+    "gapPrevMs": 181,
+    "gapNextMs": 139
+   }
+  },
+  {
+   "id": "f1_114",
+   "type": "TRANSIENT",
+   "startTimeMs": 84341,
+   "peakTimeMs": 84352,
+   "durationMs": 43,
+   "intensity": 0.484,
+   "sharpness": 0.556,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 0,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.88,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 84341,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0386,
+    "rmsPre": 0.01156,
+    "rmsRise": 0.02704,
+    "rmsProminence": 0.02438,
+    "gapPrevMs": 181,
+    "gapNextMs": 117
+   }
+  },
+  {
+   "id": "f1_121",
+   "type": "TRANSIENT",
+   "startTimeMs": 88277,
+   "peakTimeMs": 88469,
+   "durationMs": 235,
+   "intensity": 0.425,
+   "sharpness": 0.117,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 182,
+   "sustainMs": 10,
+   "releaseMs": 43,
+   "frequencyHz": null,
+   "confidence": 0.69,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 88277,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03353,
+    "rmsPre": 0.01373,
+    "rmsRise": 0.0198,
+    "rmsProminence": 0.01574,
+    "gapPrevMs": 128,
+    "gapNextMs": 373
+   }
+  },
+  {
+   "id": "f1_122",
+   "type": "TRANSIENT",
+   "startTimeMs": 88651,
+   "peakTimeMs": 88683,
+   "durationMs": 224,
+   "intensity": 0.365,
+   "sharpness": 0.3,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 21,
+   "sustainMs": 21,
+   "releaseMs": 182,
+   "frequencyHz": null,
+   "confidence": 0.47,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 88651,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02655,
+    "rmsPre": 0.01158,
+    "rmsRise": 0.01496,
+    "rmsProminence": 0.00566,
+    "gapPrevMs": 373,
+    "gapNextMs": 192
+   }
+  },
+  {
+   "id": "f1_123",
+   "type": "TRANSIENT",
+   "startTimeMs": 88960,
+   "peakTimeMs": 89035,
+   "durationMs": 85,
+   "intensity": 0.419,
+   "sharpness": 0.179,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 75,
+   "sustainMs": 9,
+   "releaseMs": 1,
+   "frequencyHz": null,
+   "confidence": 0.54,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 88960,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03307,
+    "rmsPre": 0.01406,
+    "rmsRise": 0.01901,
+    "rmsProminence": 0.0088,
+    "gapPrevMs": 117,
+    "gapNextMs": 85
+   }
+  },
+  {
+   "id": "f1_124",
+   "type": "TRANSIENT",
+   "startTimeMs": 89045,
+   "peakTimeMs": 89109,
+   "durationMs": 171,
+   "intensity": 0.854,
+   "sharpness": 0.486,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 43,
+   "sustainMs": 43,
+   "releaseMs": 85,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 89045,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.08792,
+    "rmsPre": 0.00738,
+    "rmsRise": 0.08054,
+    "rmsProminence": 0.06302,
+    "gapPrevMs": 85,
+    "gapNextMs": 171
+   }
+  },
+  {
+   "id": "f1_125",
+   "type": "TRANSIENT",
+   "startTimeMs": 89216,
+   "peakTimeMs": 89333,
+   "durationMs": 267,
+   "intensity": 0.827,
+   "sharpness": 0.934,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 128,
+   "releaseMs": 128,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 89216,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.08352,
+    "rmsPre": 0.00738,
+    "rmsRise": 0.07613,
+    "rmsProminence": 0.0559,
+    "gapPrevMs": 171,
+    "gapNextMs": 939
+   }
+  },
+  {
+   "id": "f1_126",
+   "type": "CONTINUOUS",
+   "startTimeMs": 89515,
+   "peakTimeMs": null,
+   "durationMs": 672,
+   "intensity": 0.471,
+   "sharpness": 0.42,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 516,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.48,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.02913,
+    "shape": "steady",
+    "thirdsRatio": 0.88,
+    "intensityEnvelope": [
+     [
+      89515,
+      0.478
+     ],
+     [
+      89611,
+      0.467
+     ],
+     [
+      89707,
+      0.464
+     ],
+     [
+      89803,
+      0.451
+     ],
+     [
+      89899,
+      0.438
+     ],
+     [
+      89995,
+      0.435
+     ],
+     [
+      90091,
+      0.442
+     ],
+     [
+      90187,
+      0.43
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_127",
+   "type": "TRANSIENT",
+   "startTimeMs": 90656,
+   "peakTimeMs": 90731,
+   "durationMs": 245,
+   "intensity": 0.391,
+   "sharpness": 0.19,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 64,
+   "sustainMs": 160,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.46,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 90656,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02778,
+    "rmsPre": 0.00944,
+    "rmsRise": 0.01835,
+    "rmsProminence": 0.00502,
+    "gapPrevMs": 501,
+    "gapNextMs": 245
+   }
+  },
+  {
+   "id": "f1_128",
+   "type": "TRANSIENT",
+   "startTimeMs": 90901,
+   "peakTimeMs": 90933,
+   "durationMs": 246,
+   "intensity": 0.402,
+   "sharpness": 0.479,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 43,
+   "releaseMs": 192,
+   "frequencyHz": null,
+   "confidence": 0.46,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 90901,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02802,
+    "rmsPre": 0.00794,
+    "rmsRise": 0.02008,
+    "rmsProminence": 0.00526,
+    "gapPrevMs": 245,
+    "gapNextMs": 192
+   }
+  },
+  {
+   "id": "f1_129",
+   "type": "TRANSIENT",
+   "startTimeMs": 91381,
+   "peakTimeMs": 91392,
+   "durationMs": 75,
+   "intensity": 0.435,
+   "sharpness": 0.525,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 21,
+   "releaseMs": 43,
+   "frequencyHz": null,
+   "confidence": 0.48,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 91381,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03083,
+    "rmsPre": 0.00679,
+    "rmsRise": 0.02404,
+    "rmsProminence": 0.00588,
+    "gapPrevMs": 288,
+    "gapNextMs": 75
+   }
+  },
+  {
+   "id": "f1_130",
+   "type": "TRANSIENT",
+   "startTimeMs": 91456,
+   "peakTimeMs": 91477,
+   "durationMs": 117,
+   "intensity": 0.457,
+   "sharpness": 0.814,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 27,
+   "releaseMs": 85,
+   "frequencyHz": null,
+   "confidence": 0.52,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 91456,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03312,
+    "rmsPre": 0.00679,
+    "rmsRise": 0.02633,
+    "rmsProminence": 0.00768,
+    "gapPrevMs": 75,
+    "gapNextMs": 203
+   }
+  },
+  {
+   "id": "f1_131",
+   "type": "TRANSIENT",
+   "startTimeMs": 91659,
+   "peakTimeMs": 91733,
+   "durationMs": 74,
+   "intensity": 0.539,
+   "sharpness": 0.357,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 32,
+   "sustainMs": 42,
+   "releaseMs": 0,
+   "frequencyHz": null,
+   "confidence": 0.76,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 91659,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04627,
+    "rmsPre": 0.01395,
+    "rmsRise": 0.03232,
+    "rmsProminence": 0.01873,
+    "gapPrevMs": 203,
+    "gapNextMs": 75
+   }
+  },
+  {
+   "id": "f1_132",
+   "type": "TRANSIENT",
+   "startTimeMs": 91733,
+   "peakTimeMs": 91776,
+   "durationMs": 310,
+   "intensity": 0.575,
+   "sharpness": 0.87,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 48,
+   "releaseMs": 256,
+   "frequencyHz": null,
+   "confidence": 0.87,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 91733,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05152,
+    "rmsPre": 0.01547,
+    "rmsRise": 0.03604,
+    "rmsProminence": 0.02378,
+    "gapPrevMs": 75,
+    "gapNextMs": 1045
+   }
+  },
+  {
+   "id": "f1_133",
+   "type": "CONTINUOUS",
+   "startTimeMs": 92075,
+   "peakTimeMs": null,
+   "durationMs": 608,
+   "intensity": 0.49,
+   "sharpness": 0.267,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 488,
+   "releaseMs": 60,
+   "frequencyHz": null,
+   "confidence": 0.51,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.03052,
+    "shape": "steady",
+    "thirdsRatio": 0.92,
+    "intensityEnvelope": [
+     [
+      92075,
+      0.445
+     ],
+     [
+      92171,
+      0.49
+     ],
+     [
+      92267,
+      0.49
+     ],
+     [
+      92363,
+      0.458
+     ],
+     [
+      92459,
+      0.458
+     ],
+     [
+      92555,
+      0.46
+     ],
+     [
+      92651,
+      0.437
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_134",
+   "type": "TRANSIENT",
+   "startTimeMs": 93152,
+   "peakTimeMs": 93355,
+   "durationMs": 331,
+   "intensity": 0.479,
+   "sharpness": 0.135,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 192,
+   "sustainMs": 11,
+   "releaseMs": 128,
+   "frequencyHz": null,
+   "confidence": 0.71,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 93152,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03659,
+    "rmsPre": 0.00872,
+    "rmsRise": 0.02787,
+    "rmsProminence": 0.01645,
+    "gapPrevMs": 373,
+    "gapNextMs": 779
+   }
+  },
+  {
+   "id": "f1_135",
+   "type": "TRANSIENT",
+   "startTimeMs": 93931,
+   "peakTimeMs": 94091,
+   "durationMs": 341,
+   "intensity": 0.467,
+   "sharpness": 0.154,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 138,
+   "sustainMs": 43,
+   "releaseMs": 160,
+   "frequencyHz": null,
+   "confidence": 0.7,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 93931,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.036,
+    "rmsPre": 0.01014,
+    "rmsRise": 0.02586,
+    "rmsProminence": 0.01633,
+    "gapPrevMs": 779,
+    "gapNextMs": 544
+   }
+  },
+  {
+   "id": "f1_136",
+   "type": "TRANSIENT",
+   "startTimeMs": 94475,
+   "peakTimeMs": 94539,
+   "durationMs": 256,
+   "intensity": 0.49,
+   "sharpness": 0.237,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 64,
+   "sustainMs": 10,
+   "releaseMs": 182,
+   "frequencyHz": null,
+   "confidence": 0.7,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 94475,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03845,
+    "rmsPre": 0.00999,
+    "rmsRise": 0.02846,
+    "rmsProminence": 0.01629,
+    "gapPrevMs": 544,
+    "gapNextMs": 523
+   }
+  },
+  {
+   "id": "f1_137",
+   "type": "TRANSIENT",
+   "startTimeMs": 94997,
+   "peakTimeMs": 95232,
+   "durationMs": 450,
+   "intensity": 0.481,
+   "sharpness": 0.142,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 171,
+   "sustainMs": 128,
+   "releaseMs": 151,
+   "frequencyHz": null,
+   "confidence": 0.64,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 94997,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03758,
+    "rmsPre": 0.01019,
+    "rmsRise": 0.02738,
+    "rmsProminence": 0.01322,
+    "gapPrevMs": 523,
+    "gapNextMs": 704
+   }
+  },
+  {
+   "id": "f1_138",
+   "type": "TRANSIENT",
+   "startTimeMs": 96256,
+   "peakTimeMs": 96363,
+   "durationMs": 384,
+   "intensity": 0.597,
+   "sharpness": 0.222,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 96,
+   "sustainMs": 32,
+   "releaseMs": 256,
+   "frequencyHz": null,
+   "confidence": 0.93,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 96256,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05575,
+    "rmsPre": 0.01816,
+    "rmsRise": 0.03759,
+    "rmsProminence": 0.02671,
+    "gapPrevMs": 555,
+    "gapNextMs": 3093
+   }
+  },
+  {
+   "id": "f1_139",
+   "type": "CONTINUOUS",
+   "startTimeMs": 97984,
+   "peakTimeMs": null,
+   "durationMs": 1355,
+   "intensity": 0.602,
+   "sharpness": 0.242,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 491,
+   "sustainMs": 661,
+   "releaseMs": 203,
+   "frequencyHz": null,
+   "confidence": 0.71,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.04051,
+    "shape": "steady",
+    "thirdsRatio": 1.16,
+    "intensityEnvelope": [
+     [
+      97984,
+      0.514
+     ],
+     [
+      98080,
+      0.538
+     ],
+     [
+      98176,
+      0.54
+     ],
+     [
+      98272,
+      0.51
+     ],
+     [
+      98368,
+      0.449
+     ],
+     [
+      98464,
+      0.523
+     ],
+     [
+      98560,
+      0.606
+     ],
+     [
+      98656,
+      0.593
+     ],
+     [
+      98752,
+      0.59
+     ],
+     [
+      98848,
+      0.562
+     ],
+     [
+      98944,
+      0.584
+     ],
+     [
+      99040,
+      0.605
+     ],
+     [
+      99136,
+      0.578
+     ],
+     [
+      99232,
+      0.509
+     ],
+     [
+      99328,
+      0.456
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_140",
+   "type": "TRANSIENT",
+   "startTimeMs": 99349,
+   "peakTimeMs": 99381,
+   "durationMs": 54,
+   "intensity": 0.44,
+   "sharpness": 0.224,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 32,
+   "sustainMs": 11,
+   "releaseMs": 11,
+   "frequencyHz": null,
+   "confidence": 0.7,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 99349,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.04718,
+    "rmsPre": 0.03438,
+    "rmsRise": 0.0128,
+    "rmsProminence": 0.01622,
+    "gapPrevMs": 3093,
+    "gapNextMs": 1280
+   }
+  },
+  {
+   "id": "f1_141",
+   "type": "TRANSIENT",
+   "startTimeMs": 100629,
+   "peakTimeMs": 100661,
+   "durationMs": 75,
+   "intensity": 0.319,
+   "sharpness": 0.359,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 32,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.52,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 100629,
+    "onsetClusterSize": 2,
+    "rmsPeak": 0.02205,
+    "rmsPre": 0.01082,
+    "rmsRise": 0.01123,
+    "rmsProminence": 0.00806,
+    "gapPrevMs": 1280,
+    "gapNextMs": 64
+   }
+  },
+  {
+   "id": "f1_142",
+   "type": "TRANSIENT",
+   "startTimeMs": 103669,
+   "peakTimeMs": 103733,
+   "durationMs": 64,
+   "intensity": 0.389,
+   "sharpness": 0.211,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 63,
+   "sustainMs": 0,
+   "releaseMs": 1,
+   "frequencyHz": null,
+   "confidence": 0.81,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 103669,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02301,
+    "rmsPre": 0.00064,
+    "rmsRise": 0.02237,
+    "rmsProminence": 0.02112,
+    "gapPrevMs": 1248,
+    "gapNextMs": 64
+   }
+  },
+  {
+   "id": "f1_143",
+   "type": "TRANSIENT",
+   "startTimeMs": 103733,
+   "peakTimeMs": 103808,
+   "durationMs": 256,
+   "intensity": 0.474,
+   "sharpness": 0.598,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 85,
+   "releaseMs": 160,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 103733,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.03183,
+    "rmsPre": 0.00059,
+    "rmsRise": 0.03124,
+    "rmsProminence": 0.02994,
+    "gapPrevMs": 64,
+    "gapNextMs": 363
+   }
+  },
+  {
+   "id": "f1_144",
+   "type": "TRANSIENT",
+   "startTimeMs": 104096,
+   "peakTimeMs": 104171,
+   "durationMs": 171,
+   "intensity": 0.321,
+   "sharpness": 0.165,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 64,
+   "sustainMs": 53,
+   "releaseMs": 54,
+   "frequencyHz": null,
+   "confidence": 0.66,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 104096,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.01927,
+    "rmsPre": 0.00536,
+    "rmsRise": 0.01391,
+    "rmsProminence": 0.01442,
+    "gapPrevMs": 363,
+    "gapNextMs": 277
+   }
+  },
+  {
+   "id": "f1_145",
+   "type": "TRANSIENT",
+   "startTimeMs": 104373,
+   "peakTimeMs": 104587,
+   "durationMs": 406,
+   "intensity": 0.334,
+   "sharpness": 0.255,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 32,
+   "sustainMs": 278,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.47,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 104373,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.01859,
+    "rmsPre": 0.00203,
+    "rmsRise": 0.01657,
+    "rmsProminence": 0.00548,
+    "gapPrevMs": 277,
+    "gapNextMs": 576
+   }
+  },
+  {
+   "id": "f1_146",
+   "type": "TRANSIENT",
+   "startTimeMs": 104949,
+   "peakTimeMs": 105024,
+   "durationMs": 86,
+   "intensity": 0.399,
+   "sharpness": 0.197,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 75,
+   "sustainMs": 10,
+   "releaseMs": 1,
+   "frequencyHz": null,
+   "confidence": 0.5,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 104949,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.02428,
+    "rmsPre": 0.00113,
+    "rmsRise": 0.02315,
+    "rmsProminence": 0.00688,
+    "gapPrevMs": 576,
+    "gapNextMs": 85
+   }
+  },
+  {
+   "id": "f1_147",
+   "type": "TRANSIENT",
+   "startTimeMs": 105035,
+   "peakTimeMs": 105280,
+   "durationMs": 450,
+   "intensity": 0.732,
+   "sharpness": 0.278,
+   "semanticType": "COLLISION",
+   "attackMs": 106,
+   "sustainMs": 182,
+   "releaseMs": 162,
+   "frequencyHz": null,
+   "confidence": 0.9,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 105035,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06509,
+    "rmsPre": 0.00005,
+    "rmsRise": 0.06504,
+    "rmsProminence": 0.03621,
+    "gapPrevMs": 85,
+    "gapNextMs": 5728
+   }
+  },
+  {
+   "id": "f1_148",
+   "type": "CONTINUOUS",
+   "startTimeMs": 105525,
+   "peakTimeMs": 105995,
+   "durationMs": 3552,
+   "intensity": 0.621,
+   "sharpness": 0.168,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 3432,
+   "releaseMs": 60,
+   "frequencyHz": null,
+   "confidence": 0.72,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.04118,
+    "shape": "steady",
+    "thirdsRatio": 0.76,
+    "intensityEnvelope": [
+     [
+      105525,
+      0.629
+     ],
+     [
+      105621,
+      0.615
+     ],
+     [
+      105717,
+      0.62
+     ],
+     [
+      105813,
+      0.605
+     ],
+     [
+      105909,
+      0.621
+     ],
+     [
+      106005,
+      0.634
+     ],
+     [
+      106101,
+      0.611
+     ],
+     [
+      106197,
+      0.609
+     ],
+     [
+      106293,
+      0.563
+     ],
+     [
+      106389,
+      0.544
+     ],
+     [
+      106485,
+      0.564
+     ],
+     [
+      106581,
+      0.594
+     ],
+     [
+      106677,
+      0.615
+     ],
+     [
+      106773,
+      0.619
+     ],
+     [
+      106869,
+      0.628
+     ],
+     [
+      106965,
+      0.612
+     ],
+     [
+      107061,
+      0.563
+     ],
+     [
+      107157,
+      0.58
+     ],
+     [
+      107253,
+      0.558
+     ],
+     [
+      107349,
+      0.532
+     ],
+     [
+      107445,
+      0.516
+     ],
+     [
+      107541,
+      0.513
+     ],
+     [
+      107637,
+      0.5
+     ],
+     [
+      107733,
+      0.507
+     ],
+     [
+      107829,
+      0.519
+     ],
+     [
+      107925,
+      0.511
+     ],
+     [
+      108021,
+      0.532
+     ],
+     [
+      108117,
+      0.534
+     ],
+     [
+      108213,
+      0.524
+     ],
+     [
+      108309,
+      0.522
+     ],
+     [
+      108405,
+      0.53
+     ],
+     [
+      108501,
+      0.526
+     ],
+     [
+      108597,
+      0.514
+     ],
+     [
+      108693,
+      0.473
+     ],
+     [
+      108789,
+      0.447
+     ],
+     [
+      108885,
+      0.443
+     ],
+     [
+      108981,
+      0.504
+     ],
+     [
+      109077,
+      0.62
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_149",
+   "type": "TRANSIENT",
+   "startTimeMs": 109088,
+   "peakTimeMs": 109099,
+   "durationMs": 181,
+   "intensity": 0.714,
+   "sharpness": 1,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 16,
+   "releaseMs": 160,
+   "frequencyHz": null,
+   "confidence": 0.55,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_ONLY",
+    "onsetTimeMs": null,
+    "onsetClusterSize": 0,
+    "rmsPeak": 0.07655,
+    "rmsPre": 0.02718,
+    "rmsRise": 0.04937,
+    "rmsProminence": 0.04076,
+    "gapPrevMs": null,
+    "gapNextMs": null
+   }
+  },
+  {
+   "id": "f1_150",
+   "type": "CONTINUOUS",
+   "startTimeMs": 109301,
+   "peakTimeMs": null,
+   "durationMs": 630,
+   "intensity": 0.629,
+   "sharpness": 0.24,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 318,
+   "releaseMs": 252,
+   "frequencyHz": null,
+   "confidence": 0.59,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.03457,
+    "shape": "steady",
+    "thirdsRatio": 0.61,
+    "intensityEnvelope": [
+     [
+      109301,
+      0.633
+     ],
+     [
+      109397,
+      0.629
+     ],
+     [
+      109493,
+      0.501
+     ],
+     [
+      109589,
+      0.464
+     ],
+     [
+      109685,
+      0.446
+     ],
+     [
+      109781,
+      0.447
+     ],
+     [
+      109877,
+      0.438
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_151",
+   "type": "TRANSIENT",
+   "startTimeMs": 110763,
+   "peakTimeMs": 110837,
+   "durationMs": 128,
+   "intensity": 0.521,
+   "sharpness": 0.827,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 101,
+   "releaseMs": 22,
+   "frequencyHz": null,
+   "confidence": 0.75,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 110763,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0479,
+    "rmsPre": 0.02074,
+    "rmsRise": 0.02716,
+    "rmsProminence": 0.01827,
+    "gapPrevMs": 5728,
+    "gapNextMs": 171
+   }
+  },
+  {
+   "id": "f1_152",
+   "type": "TRANSIENT",
+   "startTimeMs": 110933,
+   "peakTimeMs": 111339,
+   "durationMs": 450,
+   "intensity": 0.78,
+   "sharpness": 0.139,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 395,
+   "sustainMs": 21,
+   "releaseMs": 34,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 110933,
+    "onsetClusterSize": 3,
+    "rmsPeak": 0.08446,
+    "rmsPre": 0.02345,
+    "rmsRise": 0.06101,
+    "rmsProminence": 0.04797,
+    "gapPrevMs": 171,
+    "gapNextMs": 5931
+   }
+  },
+  {
+   "id": "f1_153",
+   "type": "CONTINUOUS",
+   "startTimeMs": 111424,
+   "peakTimeMs": null,
+   "durationMs": 1291,
+   "intensity": 0.683,
+   "sharpness": 0.158,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 1171,
+   "releaseMs": 60,
+   "frequencyHz": null,
+   "confidence": 0.74,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.04213,
+    "shape": "steady",
+    "thirdsRatio": 0.78,
+    "intensityEnvelope": [
+     [
+      111424,
+      0.822
+     ],
+     [
+      111520,
+      0.691
+     ],
+     [
+      111616,
+      0.621
+     ],
+     [
+      111712,
+      0.599
+     ],
+     [
+      111808,
+      0.563
+     ],
+     [
+      111904,
+      0.517
+     ],
+     [
+      112000,
+      0.475
+     ],
+     [
+      112096,
+      0.459
+     ],
+     [
+      112192,
+      0.468
+     ],
+     [
+      112288,
+      0.496
+     ],
+     [
+      112384,
+      0.498
+     ],
+     [
+      112480,
+      0.537
+     ],
+     [
+      112576,
+      0.565
+     ],
+     [
+      112672,
+      0.618
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_154",
+   "type": "TRANSIENT",
+   "startTimeMs": 112725,
+   "peakTimeMs": 112736,
+   "durationMs": 96,
+   "intensity": 0.782,
+   "sharpness": 1,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 5,
+   "releaseMs": 85,
+   "frequencyHz": null,
+   "confidence": 0.55,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_ONLY",
+    "onsetTimeMs": null,
+    "onsetClusterSize": 0,
+    "rmsPeak": 0.09387,
+    "rmsPre": 0.04014,
+    "rmsRise": 0.05373,
+    "rmsProminence": 0.05927,
+    "gapPrevMs": null,
+    "gapNextMs": null
+   }
+  },
+  {
+   "id": "f1_155",
+   "type": "TRANSIENT",
+   "startTimeMs": 113813,
+   "peakTimeMs": 113824,
+   "durationMs": 406,
+   "intensity": 0.816,
+   "sharpness": 1,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 304,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.55,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_ONLY",
+    "onsetTimeMs": null,
+    "onsetClusterSize": 0,
+    "rmsPeak": 0.09042,
+    "rmsPre": 0.02415,
+    "rmsRise": 0.06627,
+    "rmsProminence": 0.05683,
+    "gapPrevMs": null,
+    "gapNextMs": null
+   }
+  },
+  {
+   "id": "f1_156",
+   "type": "TRANSIENT",
+   "startTimeMs": 116971,
+   "peakTimeMs": 116981,
+   "durationMs": 96,
+   "intensity": 0.7,
+   "sharpness": 1,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 27,
+   "releaseMs": 64,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 116971,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0708,
+    "rmsPre": 0.02008,
+    "rmsRise": 0.05072,
+    "rmsProminence": 0.0445,
+    "gapPrevMs": 5931,
+    "gapNextMs": 523
+   }
+  },
+  {
+   "id": "f1_157",
+   "type": "TRANSIENT",
+   "startTimeMs": 117493,
+   "peakTimeMs": 117525,
+   "durationMs": 107,
+   "intensity": 0.791,
+   "sharpness": 0.843,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 32,
+   "releaseMs": 64,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 117493,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.08693,
+    "rmsPre": 0.02485,
+    "rmsRise": 0.06207,
+    "rmsProminence": 0.062,
+    "gapPrevMs": 523,
+    "gapNextMs": 6133
+   }
+  },
+  {
+   "id": "f1_158",
+   "type": "CONTINUOUS",
+   "startTimeMs": 120448,
+   "peakTimeMs": 120981,
+   "durationMs": 853,
+   "intensity": 0.599,
+   "sharpness": 0.227,
+   "semanticType": "CONTINUOUS_RUMBLE",
+   "attackMs": 60,
+   "sustainMs": 601,
+   "releaseMs": 192,
+   "frequencyHz": null,
+   "confidence": 0.64,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_SUSTAINED",
+    "envelopeMeanRms": 0.037,
+    "shape": "steady",
+    "thirdsRatio": 0.98,
+    "intensityEnvelope": [
+     [
+      120448,
+      0.508
+     ],
+     [
+      120544,
+      0.502
+     ],
+     [
+      120640,
+      0.508
+     ],
+     [
+      120736,
+      0.514
+     ],
+     [
+      120832,
+      0.528
+     ],
+     [
+      120928,
+      0.585
+     ],
+     [
+      121024,
+      0.622
+     ],
+     [
+      121120,
+      0.503
+     ],
+     [
+      121216,
+      0.45
+     ]
+    ]
+   }
+  },
+  {
+   "id": "f1_159",
+   "type": "TRANSIENT",
+   "startTimeMs": 123488,
+   "peakTimeMs": 123499,
+   "durationMs": 139,
+   "intensity": 0.728,
+   "sharpness": 0.73,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 10,
+   "releaseMs": 118,
+   "frequencyHz": null,
+   "confidence": 0.55,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "RMS_ONLY",
+    "onsetTimeMs": null,
+    "onsetClusterSize": 0,
+    "rmsPeak": 0.08455,
+    "rmsPre": 0.03802,
+    "rmsRise": 0.04654,
+    "rmsProminence": 0.04223,
+    "gapPrevMs": null,
+    "gapNextMs": null
+   }
+  },
+  {
+   "id": "f1_160",
+   "type": "TRANSIENT",
+   "startTimeMs": 123627,
+   "peakTimeMs": 123637,
+   "durationMs": 74,
+   "intensity": 0.631,
+   "sharpness": 0.899,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 16,
+   "releaseMs": 53,
+   "frequencyHz": null,
+   "confidence": 0.95,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 123627,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.07292,
+    "rmsPre": 0.04082,
+    "rmsRise": 0.0321,
+    "rmsProminence": 0.02759,
+    "gapPrevMs": 6133,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_161",
+   "type": "TRANSIENT",
+   "startTimeMs": 123872,
+   "peakTimeMs": 123936,
+   "durationMs": 85,
+   "intensity": 0.478,
+   "sharpness": 0.414,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 53,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.46,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 123872,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05382,
+    "rmsPre": 0.03885,
+    "rmsRise": 0.01497,
+    "rmsProminence": 0.00523,
+    "gapPrevMs": 117,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_162",
+   "type": "TRANSIENT",
+   "startTimeMs": 124000,
+   "peakTimeMs": 124011,
+   "durationMs": 128,
+   "intensity": 0.601,
+   "sharpness": 0.865,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 6,
+   "releaseMs": 117,
+   "frequencyHz": null,
+   "confidence": 0.74,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 124000,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06702,
+    "rmsPre": 0.03735,
+    "rmsRise": 0.02967,
+    "rmsProminence": 0.01821,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_163",
+   "type": "TRANSIENT",
+   "startTimeMs": 124128,
+   "peakTimeMs": 124149,
+   "durationMs": 128,
+   "intensity": 0.703,
+   "sharpness": 0.689,
+   "semanticType": "HEAVY_IMPACT",
+   "attackMs": 11,
+   "sustainMs": 21,
+   "releaseMs": 96,
+   "frequencyHz": null,
+   "confidence": 0.98,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 124128,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.08314,
+    "rmsPre": 0.04168,
+    "rmsRise": 0.04147,
+    "rmsProminence": 0.03358,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_164",
+   "type": "TRANSIENT",
+   "startTimeMs": 124256,
+   "peakTimeMs": 124309,
+   "durationMs": 75,
+   "intensity": 0.486,
+   "sharpness": 0.171,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 53,
+   "sustainMs": 0,
+   "releaseMs": 22,
+   "frequencyHz": null,
+   "confidence": 0.58,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 124256,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06078,
+    "rmsPre": 0.04853,
+    "rmsRise": 0.01225,
+    "rmsProminence": 0.01068,
+    "gapPrevMs": 128,
+    "gapNextMs": 117
+   }
+  },
+  {
+   "id": "f1_165",
+   "type": "TRANSIENT",
+   "startTimeMs": 124501,
+   "peakTimeMs": 124512,
+   "durationMs": 31,
+   "intensity": 0.532,
+   "sharpness": 0.598,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 6,
+   "sustainMs": 5,
+   "releaseMs": 20,
+   "frequencyHz": null,
+   "confidence": 0.7,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 124501,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06559,
+    "rmsPre": 0.04854,
+    "rmsRise": 0.01704,
+    "rmsProminence": 0.01602,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_166",
+   "type": "TRANSIENT",
+   "startTimeMs": 124629,
+   "peakTimeMs": 124683,
+   "durationMs": 75,
+   "intensity": 0.567,
+   "sharpness": 0.257,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 43,
+   "sustainMs": 11,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.74,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 124629,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.0672,
+    "rmsPre": 0.04464,
+    "rmsRise": 0.02256,
+    "rmsProminence": 0.01818,
+    "gapPrevMs": 128,
+    "gapNextMs": 117
+   }
+  },
+  {
+   "id": "f1_167",
+   "type": "TRANSIENT",
+   "startTimeMs": 124747,
+   "peakTimeMs": 124768,
+   "durationMs": 74,
+   "intensity": 0.566,
+   "sharpness": 0.368,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 21,
+   "sustainMs": 11,
+   "releaseMs": 42,
+   "frequencyHz": null,
+   "confidence": 0.74,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 124747,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06691,
+    "rmsPre": 0.04437,
+    "rmsRise": 0.02254,
+    "rmsProminence": 0.01787,
+    "gapPrevMs": 117,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_168",
+   "type": "TRANSIENT",
+   "startTimeMs": 125003,
+   "peakTimeMs": 125013,
+   "durationMs": 42,
+   "intensity": 0.554,
+   "sharpness": 0.774,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 5,
+   "releaseMs": 32,
+   "frequencyHz": null,
+   "confidence": 0.65,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 125003,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06141,
+    "rmsPre": 0.03765,
+    "rmsRise": 0.02376,
+    "rmsProminence": 0.0138,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_169",
+   "type": "TRANSIENT",
+   "startTimeMs": 125131,
+   "peakTimeMs": 125173,
+   "durationMs": 74,
+   "intensity": 0.562,
+   "sharpness": 0.312,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 32,
+   "sustainMs": 21,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.69,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 125131,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06238,
+    "rmsPre": 0.03758,
+    "rmsRise": 0.0248,
+    "rmsProminence": 0.01548,
+    "gapPrevMs": 128,
+    "gapNextMs": 117
+   }
+  },
+  {
+   "id": "f1_170",
+   "type": "TRANSIENT",
+   "startTimeMs": 125504,
+   "peakTimeMs": 125515,
+   "durationMs": 32,
+   "intensity": 0.584,
+   "sharpness": 0.836,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 6,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.8,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 125504,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06473,
+    "rmsPre": 0.03698,
+    "rmsRise": 0.02775,
+    "rmsProminence": 0.02081,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_171",
+   "type": "TRANSIENT",
+   "startTimeMs": 125632,
+   "peakTimeMs": 125696,
+   "durationMs": 85,
+   "intensity": 0.549,
+   "sharpness": 0.768,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 59,
+   "releaseMs": 21,
+   "frequencyHz": null,
+   "confidence": 0.72,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 125632,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06056,
+    "rmsPre": 0.03717,
+    "rmsRise": 0.02339,
+    "rmsProminence": 0.01701,
+    "gapPrevMs": 128,
+    "gapNextMs": 117
+   }
+  },
+  {
+   "id": "f1_172",
+   "type": "TRANSIENT",
+   "startTimeMs": 125995,
+   "peakTimeMs": 126005,
+   "durationMs": 128,
+   "intensity": 0.603,
+   "sharpness": 0.673,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 10,
+   "sustainMs": 11,
+   "releaseMs": 107,
+   "frequencyHz": null,
+   "confidence": 0.78,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 125995,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.05932,
+    "rmsPre": 0.02337,
+    "rmsRise": 0.03595,
+    "rmsProminence": 0.0197,
+    "gapPrevMs": 117,
+    "gapNextMs": 128
+   }
+  },
+  {
+   "id": "f1_173",
+   "type": "TRANSIENT",
+   "startTimeMs": 126123,
+   "peakTimeMs": 126133,
+   "durationMs": 170,
+   "intensity": 0.619,
+   "sharpness": 0.979,
+   "semanticType": "LIGHT_IMPACT",
+   "attackMs": 5,
+   "sustainMs": 16,
+   "releaseMs": 149,
+   "frequencyHz": null,
+   "confidence": 0.85,
+   "sourceModalities": [
+    "audio"
+   ],
+   "parameters": {
+    "detectionBasis": "ONSET+RMS",
+    "onsetTimeMs": 126123,
+    "onsetClusterSize": 1,
+    "rmsPeak": 0.06145,
+    "rmsPre": 0.02337,
+    "rmsRise": 0.03808,
+    "rmsProminence": 0.02314,
+    "gapPrevMs": 128,
+    "gapNextMs": 128
+   }
+  }
+ ]
+}

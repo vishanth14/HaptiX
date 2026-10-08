@@ -102,16 +102,7 @@ val EditorialMetadataLabel = TextStyle(
     letterSpacing = 0.8.sp
 )
 
-/**
- * Research telemetry micro-label (preserved for developer / debug HUD).
- */
-val TechnicalMicroLabel = TextStyle(
-    fontFamily = FontFamily.Default,
-    fontWeight = FontWeight.SemiBold,
-    fontSize = 11.sp,
-    lineHeight = 15.sp,
-    letterSpacing = 0.6.sp
-)
+// TechnicalMicroLabel is canonically defined in HaptiXTypography.kt
 
 val TechnicalValueLabel = TextStyle(
     fontFamily = FontFamily.Default,

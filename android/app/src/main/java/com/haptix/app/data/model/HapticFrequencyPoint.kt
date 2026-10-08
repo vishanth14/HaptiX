@@ -66,12 +66,22 @@ data class HapticFrequencyPoint(
             put("amplitude", amplitude)
             provenance?.let { put("provenance", it) }
         }
+        val pAttack = (parameters["attackMs"] as? Number)?.toLong() ?: 0L
+        val pSustain = (parameters["sustainMs"] as? Number)?.toLong() ?: 0L
+        val pRelease = (parameters["releaseMs"] as? Number)?.toLong() ?: 0L
+        val sType = SemanticHapticType.fromString(parameters["hapticType"] as? String ?: parameters["semanticType"] as? String)
+
         return HapticEvent(
             type = if (durationMs > 80L) HapticEventType.CONTINUOUS else HapticEventType.TRANSIENT,
             startTimeMs = startTimeMs,
             durationMs = durationMs,
             intensity = amplitude,
             sharpness = normalizedSharpness,
+            semanticType = sType,
+            attackMs = pAttack,
+            sustainMs = pSustain,
+            releaseMs = pRelease,
+            frequencyHz = frequencyHz,
             parameters = eventParams
         )
     }

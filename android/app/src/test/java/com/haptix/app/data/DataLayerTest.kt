@@ -161,10 +161,12 @@ class DataLayerTest {
 
         assertEquals(1690000000000L, metric.timestamp)
         assertEquals(1690000000000L, metric.timestampMs)
-        assertEquals(28.5f, metric.cpuUsagePercent, 0.01f)
+        assertNotNull(metric.cpuUsagePercent)
+        assertEquals(28.5f, metric.cpuUsagePercent!!, 0.01f)
         assertNotNull(metric.gpuUsagePercent)
         assertEquals(42.0f, metric.gpuUsagePercent!!, 0.01f)
-        assertEquals(36.8f, metric.deviceTemperatureCelsius, 0.01f)
+        assertNotNull(metric.deviceTemperatureCelsius)
+        assertEquals(36.8f, metric.deviceTemperatureCelsius!!, 0.01f)
         assertEquals("vid_01", metric.videoId)
     }
 
@@ -177,7 +179,9 @@ class DataLayerTest {
         )
 
         assertNull(metric.gpuUsagePercent)
-        assertEquals(15.0f, metric.cpuUsagePercent, 0.01f)
-        assertEquals(34.0f, metric.deviceTemperatureCelsius, 0.01f)
+        assertNotNull(metric.cpuUsagePercent)
+        assertEquals(15.0f, metric.cpuUsagePercent!!, 0.01f)
+        assertNotNull(metric.deviceTemperatureCelsius)
+        assertEquals(34.0f, metric.deviceTemperatureCelsius!!, 0.01f)
     }
 }
