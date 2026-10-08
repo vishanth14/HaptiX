@@ -1,6 +1,6 @@
 <div align="center">
 
-# HAPtiX
+# HaptiX
 
 ### **Feel the frame.**
 
@@ -50,3 +50,24 @@ The current Android implementation focuses on **precise temporal synchronization
 | 🔬 Reproducible Processing | Source analysis and validation scripts are included |
 
 ---
+## 🎬 Current Demonstrations
+
+### F1 (2025)
+
+An audiovisual sequence with an audio-derived tactile timeline containing **141 haptic events**.
+
+```text
+F1
+├── 130.5 s
+└── 141 haptic events
+```
+
+### Koji
+
+A longer animation sequence with an audio-derived tactile timeline containing **246 haptic events**.
+
+```text
+Koji
+├── 290.1 s
+└── 246 haptic events
+```
